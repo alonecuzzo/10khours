@@ -1,0 +1,14 @@
+
+.session-button{
+	height: 15px;
+	width: 100px;
+}
+
+#start-button {
+	border: 1px solid green;
+}
+
+#stop-button {
+	border: 1px solid red;
+}
+

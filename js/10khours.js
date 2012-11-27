@@ -24,21 +24,22 @@ $(function(){
 		
 		// can't really think of anything to initialize
 		initialize: function() {
-			this.totalTime = 0;
+			this.set({'totalTime' : 0});
 		},
 		
 		// starts a new task recording session
-		start: function() {
+		startSession: function() {
 			// fire off event ever second to run timer
-			this.timerInterval = setInterval(function(){
+			this.set({'timerInterval' : setInterval(function(){
 				// some stuff we should do every second 	
-
-			}, 1000);
+				console.log("doing some stuff");
+			}, 1000)});
 		}, 
 		
 		// stops or pauses a current recording session 
-		stop: function() {
-			clearInterval(this.timerInterval);
+		stopSession: function() {
+			clearInterval(this.get('timerInterval'));
+			console.log('session should be stopped');
 		}
 	});
 
@@ -51,26 +52,29 @@ $(function(){
 			return {
 				title: "default value",
 				order: Tasks.nextOrder(),
-				sessions: new Array() 
+				sessions: new Array()
 			};
 		},
 
 		// initialize 
 		initialize: function() {
-				
+			this.set({'sessions' : this.defaults().sessions});
 		},
 
 		// when start is called, add a new session to the sessions array and then call play() on it
-		start: function() {
-			this.sessions.push(new Session());
+		startSession: function() {
+			var sessions = this.get('sessions');
+			sessions.push(new Session());
 			// stores index of current session 
-			this.sessionIndex = sessions.length - 1;
-			this.sessions[this.sessionIndex].start();
+			var sessionIndex = sessions.length - 1;
+			sessions[sessionIndex].startSession();
 		},
 		
 		// stops the current session 
-		stop: function() {
-			this.sessions[this.sessionIndex].stop();	
+		stopSession: function() {
+			// should probably add a check to see if the current session is actually running
+			var sessions = this.get('sessions');
+			sessions[sessions.length - 1].stopSession();	
 		},
 
 		// returns total time of all sesssions stored in task
@@ -117,7 +121,8 @@ $(function(){
 
 		// events to listen to
 		events: {
-
+			'click #start-button' : 'startSession',
+			'click #stop-button' : 'stopSession'
 		},
 
 		//init
@@ -128,8 +133,15 @@ $(function(){
 		// re render titles of the task item
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
-			console.log('returning from render()');
 			return this;
+		},
+
+		startSession: function() {
+			this.model.startSession();	
+		},
+
+		stopSession: function() {
+			this.model.stopSession();
 		},
 
 		// close and save values to the model
