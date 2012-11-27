@@ -19,13 +19,12 @@ $(function(){
 		// defaults for a session
 		defaults: function() {
 			// sessions are only created when the start function is called and they are added to the sessions array, hmm but what about pause/play functionality?
-			startTime: new Date(),
-			totalTime: 0
+			startTime: new Date()
 		},
 		
 		// can't really think of anything to initialize
 		initialize: function() {
-
+			this.totalTime = 0;
 		},
 		
 		// starts a new task recording session
@@ -105,4 +104,53 @@ $(function(){
 	});
 
 	var Tasks = new TaskList;
+
+	// Task Item View
+	// --------------
+
+	var TaskView = Backbone.View.extend({
+		
+		tagName: "li",
+
+		// cache the template function for a single item 
+		template: _.template($('#item-template').html()),
+
+		// events to listen to
+		events: {
+
+		},
+
+		//init
+		initialize: function() {
+			this.model.on('change', this.render, this);
+		},
+
+		// re render titles of the task item
+		render: function() {
+
+		},
+
+		// close and save values to the model
+		close: function() {
+			
+		},
+
+		updateOnEnter: function(e) {
+			if (e.keyCode == 13) this.close();
+		},
+
+		// remove the item and then destroy the model
+		clear: function() {
+			this.model.destroy();
+		}
+	});
+
+	// Application
+	// -----------
+	
+	var AppView = Backbone.View.extend({
+		
+		el: $('#10khoursapp')
+
+	});
 });
