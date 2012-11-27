@@ -127,7 +127,9 @@ $(function(){
 
 		// re render titles of the task item
 		render: function() {
-
+			this.$el.html(this.template(this.model.toJSON()));
+			console.log('returning from render()');
+			return this;
 		},
 
 		// close and save values to the model
@@ -150,7 +152,38 @@ $(function(){
 	
 	var AppView = Backbone.View.extend({
 		
-		el: $('#10khoursapp')
+		el: $('#10khoursapp'),
 
+		initialize: function() {
+			
+			this.input = this.$('#new-task');
+
+			Tasks.on('add', this.addOne, this);
+
+			Tasks.fetch();
+		},
+
+		render: function() {
+		},
+
+		events: {
+			'keypress #new-task': 'createOnEnter'
+		},
+
+		addOne: function(task) {
+			var view = new TaskView({model : task});
+			this.$('#task-list').append(view.render().el);
+		},
+
+		createOnEnter: function(e) {
+			if (e.keyCode != 13) return;
+			if (!this.input.val()) return;
+
+			Tasks.create({title: this.input.val()});
+			this.input.val('');
+		}
 	});
+	
+	// create the app
+	var App = new AppView;
 });
