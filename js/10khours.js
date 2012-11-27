@@ -159,6 +159,7 @@ $(function(){
 			this.input = this.$('#new-task');
 
 			Tasks.on('add', this.addOne, this);
+			Tasks.on('reset', this.addAll, this);
 
 			Tasks.fetch();
 		},
@@ -173,6 +174,10 @@ $(function(){
 		addOne: function(task) {
 			var view = new TaskView({model : task});
 			this.$('#task-list').append(view.render().el);
+		},
+
+		addAll: function() {
+			Tasks.each(this.addOne);
 		},
 
 		createOnEnter: function(e) {
