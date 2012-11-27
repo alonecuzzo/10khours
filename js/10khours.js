@@ -30,16 +30,19 @@ $(function(){
 		// starts a new task recording session
 		startSession: function() {
 			// fire off event ever second to run timer
+			var seconds = 0;
 			this.set({'timerInterval' : setInterval(function(){
 				// some stuff we should do every second 	
-				console.log("doing some stuff");
+				seconds += 1;
+				var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
+				console.log(stringToPrint);
 			}, 1000)});
 		}, 
 		
 		// stops or pauses a current recording session 
 		stopSession: function() {
 			clearInterval(this.get('timerInterval'));
-			console.log('session should be stopped');
+			// console.log('session should be stopped');
 		}
 	});
 
