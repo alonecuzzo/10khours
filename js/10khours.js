@@ -107,6 +107,24 @@ $(function(){
 		
 		comparator: function(task) {
 			return task.get('order');
+		},
+
+		// keeps track of the presence of an active session
+		logStartSession: function(task) {
+			this.activeSession = task;
+		},
+
+		// logs the stopping of an active session, in other words setting it to null
+		logStopSession: function(task) {
+			this.activeSession = null;
+		},
+
+		// this function will stop the active session if one exists
+		stopActiveSession: function() {
+			if(this.activeSession) {
+				this.activeSession.stopSession();
+				console.log('stopping active session!');
+			}
 		}
 	});
 
@@ -140,10 +158,14 @@ $(function(){
 		},
 
 		startSession: function() {
+			// if there is a current session running, we need to stop it
+			Tasks.stopActiveSession();
+			Tasks.logStartSession(this.model);
 			this.model.startSession();	
 		},
 
 		stopSession: function() {
+			Tasks.logStopSession(this.model);
 			this.model.stopSession();
 		},
 
