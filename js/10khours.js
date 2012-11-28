@@ -19,7 +19,6 @@ $(function(){
 		// defaults for a session
 		defaults: function() {
 			// sessions are only created when the start function is called and they are added to the sessions array, hmm but what about pause/play functionality?
-			startTime: new Date()
 		},
 		
 		// can't really think of anything to initialize
@@ -62,6 +61,7 @@ $(function(){
 		// initialize 
 		initialize: function() {
 			this.set({'sessions' : this.defaults().sessions});
+			this.set({'isRecording' : false});
 		},
 
 		// when start is called, add a new session to the sessions array and then call play() on it
@@ -71,6 +71,7 @@ $(function(){
 			// stores index of current session 
 			var sessionIndex = sessions.length - 1;
 			sessions[sessionIndex].startSession();
+			this.set({'isRecording' : true});
 		},
 		
 		// stops the current session 
@@ -78,6 +79,7 @@ $(function(){
 			// should probably add a check to see if the current session is actually running
 			var sessions = this.get('sessions');
 			sessions[sessions.length - 1].stopSession();	
+			this.set({'isRecording' : false});
 		},
 
 		// returns total time of all sesssions stored in task
@@ -115,16 +117,13 @@ $(function(){
 		},
 
 		// logs the stopping of an active session, in other words setting it to null
-		logStopSession: function(task) {
+		logStopSession: function() {
 			this.activeSession = null;
 		},
 
 		// this function will stop the active session if one exists
 		stopActiveSession: function() {
-			if(this.activeSession) {
-				this.activeSession.stopSession();
-				console.log('stopping active session!');
-			}
+			if(this.activeSession) this.activeSession.stopSession();
 		}
 	});
 
@@ -165,8 +164,10 @@ $(function(){
 		},
 
 		stopSession: function() {
-			Tasks.logStopSession(this.model);
-			this.model.stopSession();
+			if(this.model.get('isRecording') === true) {			
+				Tasks.logStopSession();
+				this.model.stopSession();
+			}
 		},
 
 		// close and save values to the model
