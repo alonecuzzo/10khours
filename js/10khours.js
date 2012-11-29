@@ -11,44 +11,10 @@
  */
 
 $(function(){
-	
-	// Session Model
-	// --------------
-	var Session = Backbone.Model.extend({
-		
-		// defaults for a session
-		defaults: function() {
-			// sessions are only created when the start function is called and they are added to the sessions array, hmm but what about pause/play functionality?
-		},
-		
-		// can't really think of anything to initialize
-		initialize: function() {
-			this.set({'totalTime' : 0});
-		},
-		
-		// starts a new task recording session
-		startSession: function() {
-			// fire off event ever second to run timer
-			var seconds = 0;
-			this.set({'timerInterval' : setInterval(function(){
-				// some stuff we should do every second 	
-				seconds += 1;
-				var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
-				console.log(stringToPrint);
-			}, 1000)});
-		}, 
-		
-		// stops or pauses a current recording session 
-		stopSession: function() {
-			clearInterval(this.get('timerInterval'));
-			// console.log('session should be stopped');
-		}
-	});
 
 	// Task Model
 	// -----------
-	var Task = Backbone.Model.extend({
-		
+	Task = Backbone.Model.extend({
 		// defaults set for a task
 		defaults: function() {
 			return {
@@ -58,45 +24,67 @@ $(function(){
 			};
 		},
 
-		// initialize 
 		initialize: function() {
-			this.set({'sessions' : this.defaults().sessions});
 			this.set({'isRecording' : false});
 		},
 
 		// when start is called, add a new session to the sessions array and then call play() on it
 		startSession: function() {
-			var sessions = this.get('sessions');
-			sessions.push(new Session());
-			// stores index of current session 
-			var sessionIndex = sessions.length - 1;
-			sessions[sessionIndex].startSession();
 			this.set({'isRecording' : true});
+			var sessions = this.get('sessions');
+			// instead of keeping a session model, let's just create a session object and keep it in an array
+			var session = {
+				
+				totalTime: 0,
+
+				timerInterval: null,
+
+				startSession: function() {
+					var seconds = 0;
+					var instance = this;
+					this.timerInterval = setInterval(function(){
+						seconds += 1;
+						instance.totalTime = seconds;
+						var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
+						console.log(stringToPrint);
+					}, 1000);
+				},
+
+				stopSession: function() {
+					clearInterval(this.timerInterval);
+				}
+			};
+			this.set('currentSession', session);
+			session.startSession();
+			sessions.push(session);
 		},
 		
 		// stops the current session 
 		stopSession: function() {
-			// should probably add a check to see if the current session is actually running
-			var sessions = this.get('sessions');
-			sessions[sessions.length - 1].stopSession();	
+			var	currentSession = this.get('currentSession');
+			currentSession.stopSession();
 			this.set({'isRecording' : false});
+			this.save();
+
+			console.log('total time for this activity: ' + this.getTotalTime());
 		},
 
 		// returns total time of all sesssions stored in task
 		getTotalTime: function() {
-			// loop through sessions and get sum of the total time spent on the task	
 			var i;
 			var sum = 0;
-			for(i = 0; i <= this.sessionIndex - 1; i++) {
-				sum += this.sessions[i].getTotalTime();
+			var sessions = this.get('sessions');
+			var sessionsLen = sessions.length;
+			for(i = 0; i <= sessionsLen - 1; i++) {
+				sum += parseInt(sessions[i].totalTime);
 			}
+
 			return sum;
 		}
 	});
 
 	// Tasks Collection
 	// ----------------
-	
 	var TaskList = Backbone.Collection.extend({
 		model: Task,
 
@@ -131,7 +119,6 @@ $(function(){
 
 	// Task Item View
 	// --------------
-
 	var TaskView = Backbone.View.extend({
 		
 		tagName: "li",
@@ -187,7 +174,6 @@ $(function(){
 
 	// Application
 	// -----------
-	
 	var AppView = Backbone.View.extend({
 		
 		el: $('#10khoursapp'),
