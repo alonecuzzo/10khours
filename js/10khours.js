@@ -32,6 +32,7 @@ $(function(){
 		startSession: function() {
 			this.set({'isRecording' : true});
 			var sessions = this.get('sessions');
+			var self = this;
 			// instead of keeping a session model, let's just create a session object and keep it in an array
 			var session = {
 				
@@ -46,6 +47,7 @@ $(function(){
 						seconds += 1;
 						instance.totalTime = seconds;
 						var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
+						self.trigger('timerChange', stringToPrint);
 						console.log(stringToPrint);
 					}, 1000);
 				},
@@ -135,12 +137,17 @@ $(function(){
 		//init
 		initialize: function() {
 			this.model.on('change', this.render, this);
+			this.model.on('timerChange', this.onTimerUpdate, this);
 		},
 
 		// re render titles of the task item
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
+		},
+
+		onTimerUpdate: function(timerString) {
+			console.log('timer string: ' + timerString);	
 		},
 
 		startSession: function() {
