@@ -29,12 +29,12 @@ $(function(){
 		initialize: function() {
 			this.set({'isRecording' : false});
 			this.set('displayTime', '0:00:00');
-			this.set('totalTime', this.getTotalTime());
+			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
 		},
 
 		updateDisplayTime: function(stringToPrint) {
 			this.set('displayTime', stringToPrint);
-			this.set('totalTime', this.getTotalTime());
+			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
 			this.save();
 		},
 
@@ -49,6 +49,11 @@ $(function(){
 				
 				totalTime: 0,
 
+				startDate: new Date,
+
+				endDate: Number.MAX_VALUE,
+
+				// this is the setInterval function that runs the timer
 				timerInterval: null,
 
 				startSession: function() {
@@ -75,24 +80,26 @@ $(function(){
 		// stops the current session 
 		stopSession: function() {
 			var	currentSession = this.get('currentSession');
+			currentSession.endDate = new Date().getTime();
 			currentSession.stopSession();
+			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
 			this.set({'isRecording' : false});
-			this.save();
 			this.set('displayTime', '0:00:00');
-
+			this.save();
 			console.log('total time for this activity: ' + this.getTotalTime());
 		},
 
 		// returns total time of all sesssions stored in task
-		getTotalTime: function() {
-			var i;
-			var sum = 0;
-			var sessions = this.get('sessions');
-			var sessionsLen = sessions.length;
+		// passes 'sinceDate' variable that checks to see that the session being pulled
+		// is within the specified date range... 
+		getTotalTime: function(sinceDate) {
+			var i, sd = 0, sum = 0,
+				sessions = this.get('sessions'),
+				sessionsLen = sessions.length;
+			if(sinceDate > 0) sd = sinceDate;
 			for(i = 0; i <= sessionsLen - 1; i++) {
-				sum += parseInt(sessions[i].totalTime);
+				if(sessions[i].endDate > sd) sum += parseInt(sessions[i].totalTime);
 			}
-
 			return sum;
 		}
 	});
