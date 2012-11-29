@@ -18,7 +18,8 @@ $(function(){
 		// defaults set for a task
 		defaults: function() {
 			return {
-				title: "default value",
+				title: 'default value',
+				displayTime: '0:00:00',
 				order: Tasks.nextOrder(),
 				sessions: new Array()
 			};
@@ -28,9 +29,15 @@ $(function(){
 			this.set({'isRecording' : false});
 		},
 
+		updateDisplayTime: function(stringToPrint) {
+			this.set('displayTime', stringToPrint);
+			this.save();
+		},
+
 		// when start is called, add a new session to the sessions array and then call play() on it
 		startSession: function() {
 			this.set({'isRecording' : true});
+			this.set('displayTime', '0:00:00');
 			var sessions = this.get('sessions');
 			var self = this;
 			// instead of keeping a session model, let's just create a session object and keep it in an array
@@ -47,7 +54,7 @@ $(function(){
 						seconds += 1;
 						instance.totalTime = seconds;
 						var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
-						self.trigger('timerChange', stringToPrint);
+						self.updateDisplayTime(stringToPrint);
 						console.log(stringToPrint);
 					}, 1000);
 				},
@@ -137,17 +144,12 @@ $(function(){
 		//init
 		initialize: function() {
 			this.model.on('change', this.render, this);
-			this.model.on('timerChange', this.onTimerUpdate, this);
 		},
 
 		// re render titles of the task item
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
-		},
-
-		onTimerUpdate: function(timerString) {
-			console.log('timer string: ' + timerString);	
 		},
 
 		startSession: function() {
