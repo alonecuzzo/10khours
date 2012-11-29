@@ -87,6 +87,7 @@ $(function(){
 			this.set('displayTime', '0:00:00');
 			this.save();
 			console.log('total time for this activity: ' + this.getTotalTime());
+			console.log('weekly percentage: ' + this.getWeeklyPercentage());
 		},
 
 		// returns total time of all sesssions stored in task
@@ -101,6 +102,16 @@ $(function(){
 				if(sessions[i].endDate > sd) sum += parseInt(sessions[i].totalTime);
 			}
 			return sum;
+		},
+		
+		// gets weekly percentage of seconds completed, the weekly goal amount will be hardcoded for now
+		// but eventually there will be functions for getting daily, weekly, and total percentage of the set
+		// goal time
+		getWeeklyPercentage: function() {
+			var weeklyTotalSeconds = 68400, // 19 hours per week to hit 10,000 hours in 10 years
+				totalWeeklyTime = this.getTotalTime(Date.today().last().sunday().getTime());
+				// totalWeeklyTime = 30000;
+			return Math.round((totalWeeklyTime / weeklyTotalSeconds) * 100) / 100;
 		}
 	});
 
@@ -142,7 +153,7 @@ $(function(){
 	// --------------
 	var TaskView = Backbone.View.extend({
 		
-		tagName: "li",
+		tagName: 'li',
 
 		// cache the template function for a single item 
 		template: _.template($('#item-template').html()),
