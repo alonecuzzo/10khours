@@ -21,16 +21,20 @@ $(function(){
 				title: 'default value',
 				displayTime: '0:00:00',
 				order: Tasks.nextOrder(),
-				sessions: new Array()
+				sessions: new Array(),
+				totalTime: 0 
 			};
 		},
 
 		initialize: function() {
 			this.set({'isRecording' : false});
+			this.set('displayTime', '0:00:00');
+			this.set('totalTime', this.getTotalTime());
 		},
 
 		updateDisplayTime: function(stringToPrint) {
 			this.set('displayTime', stringToPrint);
+			this.set('totalTime', this.getTotalTime());
 			this.save();
 		},
 
@@ -74,6 +78,7 @@ $(function(){
 			currentSession.stopSession();
 			this.set({'isRecording' : false});
 			this.save();
+			this.set('displayTime', '0:00:00');
 
 			console.log('total time for this activity: ' + this.getTotalTime());
 		},
