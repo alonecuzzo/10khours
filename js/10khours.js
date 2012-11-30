@@ -249,7 +249,14 @@ $(function(){
 	var App = new AppView;
 	
 	// handles the drag&drop functionality for the list
-	$('#task-list').sortable();
+	$('#task-list').sortable({       
+		start: function(e, ui){
+			$(ui.placeholder).hide(300);
+		},
+		change: function (e,ui){
+			$(ui.placeholder).hide().show(300);
+		}
+	});
     $('#task-list').disableSelection();
 
 	// make ui buttons
