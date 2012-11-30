@@ -255,7 +255,8 @@ $(function(){
 		},
 		change: function (e,ui){
 			$(ui.placeholder).hide().show(300);
-		}
+		},
+		axis: 'y'
 	});
     $('#task-list').disableSelection();
 
