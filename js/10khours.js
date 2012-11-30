@@ -247,4 +247,11 @@ $(function(){
 	
 	// create the app
 	var App = new AppView;
+	
+	// handles the drag&drop functionality for the list
+	$('#task-list').sortable();
+    $('#task-list').disableSelection();
+
+	// make ui buttons
+	$('button').button();
 });
