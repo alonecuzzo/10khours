@@ -211,12 +211,9 @@ $(function(){
 		el: $('#tenKhoursapp'),
 
 		initialize: function() {
-			
 			this.input = this.$('#new-task');
-
 			Tasks.on('add', this.addOne, this);
 			Tasks.on('reset', this.addAll, this);
-
 			Tasks.fetch();
 		},
 
@@ -256,7 +253,8 @@ $(function(){
 		change: function (e,ui){
 			$(ui.placeholder).hide().show(300);
 		},
-		axis: 'y'
+		// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
+		placeholder: 'ui-state-highlight'
 	});
     $('#task-list').disableSelection();
 
