@@ -14,7 +14,7 @@ class App < Sinatra::Base
 
 	get '/' do
 		erb :index, :locals => {
-			:title => "10k"
+			:title => "10K"
 		}
 	end
 end

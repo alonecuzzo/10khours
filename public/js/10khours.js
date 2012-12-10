@@ -12,6 +12,9 @@
 
 $(function(){
 
+	// Timing constants
+	var ANIMATION_FADE_TIME = 200;
+
 	// Task Model
 	// -----------
 	Task = Backbone.Model.extend({
@@ -41,6 +44,7 @@ $(function(){
 		// when start is called, add a new session to the sessions array and then call play() on it
 		startSession: function() {
 			this.set({'isRecording' : true});
+			this.set({'justStopped' : false});
 			this.set('displayTime', '0:00:00');
 			var sessions = this.get('sessions');
 			var self = this;
@@ -79,6 +83,7 @@ $(function(){
 		
 		// stops the current session 
 		stopSession: function() {
+			this.set({'justStopped' : true});
 			var	currentSession = this.get('currentSession');
 			currentSession.endDate = new Date().getTime();
 			currentSession.stopSession();
@@ -156,7 +161,7 @@ $(function(){
 		tagName: 'li',
 
 		// cache the template function for a single item 
-		template: _.template("<div class='view' id='item-template'><label><%- title %></label><label><%- displayTime %></label><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div>"),
+		template: _.template("<div class='view' id='item'><div id='item-template'><label><%- title %></label><label><%- displayTime %></label><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div></div>"),
 
 		// events to listen to
 		events: {
@@ -167,25 +172,44 @@ $(function(){
 		//init
 		initialize: function() {
 			this.model.on('change', this.render, this);
+			this.model.on('change', this.render, this);
 		},
 
 		// re render titles of the task item
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
+			if(this.model.get('justStopped') === true) {
+				var $element = this.$el;
+				$element.animate({backgroundColor : '#FFF'}, ANIMATION_FADE_TIME);
+				$element.animate({color : '#AAA'}, ANIMATION_FADE_TIME);
+				$element.css({'border-color' : '#EEE'});
+				this.model.set({'justStopped' : false});					
+			}
 			return this;
 		},
 
 		startSession: function() {
-			// if there is a current session running, we need to stop it
-			Tasks.stopActiveSession();
-			Tasks.logStartSession(this.model);
-			this.model.startSession();	
+			if(this.model.get('isRecording') ==! true) {
+				// if there is a current session running, we need to stop it
+				Tasks.stopActiveSession();
+				Tasks.logStartSession(this.model);
+				this.model.startSession();	
+				var $element = $(this.$el);
+				// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
+				$element.animate({backgroundColor : '#9a63f5'}, ANIMATION_FADE_TIME);
+				$element.animate({color : '#FFF'}, ANIMATION_FADE_TIME);
+				$element.css({'border-color' : '#773fd3'});
+			}
 		},
 
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {			
 				Tasks.logStopSession();
 				this.model.stopSession();
+				var $element = $(this.$el);
+				$element.animate({backgroundColor : '#FFF'}, ANIMATION_FADE_TIME);
+				$element.animate({color : '#AAA'}, ANIMATION_FADE_TIME);
+				$element.css({'border-color' : '#EEE'});
 			}
 		},
 

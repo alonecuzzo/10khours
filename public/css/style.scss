@@ -4,7 +4,10 @@ $bg-color: #F7F7F7;
 // header stuff
 $header-background-url: '../img/backgrounds/header-background.png';
 $header-bottom-border-color: #9a63f5;
-$h1-color: #484848;
+$h1-color: #F7F7F7;
+
+// task list stuff
+$selected-task-background-color: #FF0000;
 
 html,
 body {
@@ -24,14 +27,14 @@ body {
 	width: 100%;
 	height: 70px;
 	background-image: url($header-background-url);
-	background-size: 50px 50px;
+	background-size: 70px 70px;
 	position: relative;
 	z-index: 3;
 	border-bottom: 12px solid $header-bottom-border-color;
 
 	h1 {
-		font-size: 45px;
-		font-weight: bold;
+		font-size: 35px;
+		// font-weight: bold;
 		text-align: center;
 		margin: 0;
 		padding-top: 25px;
@@ -41,7 +44,7 @@ body {
 }
 
 #tenKhoursapp {
-	background: #ffffff;
+	background: $bg-color;
 	padding: 20px;
 	margin-bottom: 40px;
 	width: 520px;
@@ -58,31 +61,17 @@ body {
 
 #task-list {
 	list-style: none;
-	margin: 10px 0;
+	margin: 30px 0;
 	padding: 0;
 
 	li {
 		padding : 18px 20px 18px 0;
 		position: relative;
 		font-size: 24px;
-		background-color: #cccccc;
+		background-color: #FFF;
 		margin-top: 3px;
-		
-		/* used this site to generate gradient code: http://gradients.glrzad.com/ */
-		background-image: linear-gradient(bottom, rgb(138,138,138) 1%, rgb(176,176,176) 28%, rgb(207,207,207) 76%);
-		background-image: -o-linear-gradient(bottom, rgb(138,138,138) 1%, rgb(176,176,176) 28%, rgb(207,207,207) 76%);
-		background-image: -moz-linear-gradient(bottom, rgb(138,138,138) 1%, rgb(176,176,176) 28%, rgb(207,207,207) 76%);
-		background-image: -webkit-linear-gradient(bottom, rgb(138,138,138) 1%, rgb(176,176,176) 28%, rgb(207,207,207) 76%);
-		background-image: -ms-linear-gradient(bottom, rgb(138,138,138) 1%, rgb(176,176,176) 28%, rgb(207,207,207) 76%);
-
-		background-image: -webkit-gradient(
-			linear,
-			left bottom,
-			left top,
-			color-stop(0.01, rgb(138,138,138)),
-			color-stop(0.28, rgb(176,176,176)),
-			color-stop(0.76, rgb(207,207,207))
-		);
+		border: 1px solid #EEE;
+		color: #AAA;
 	}
 }
 
