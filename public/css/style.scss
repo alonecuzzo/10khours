@@ -1,6 +1,10 @@
 
 $bg-color: #F7F7F7;
 
+// header stuff
+$header-background-url: '../img/backgrounds/header-background.png';
+$header-bottom-border-color: #9a63f5;
+$h1-color: #484848;
 
 html,
 body {
@@ -12,24 +16,35 @@ body {
 body {
 	font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
-	background: #111;
 	color: #333333;
-	width: 520px;
-	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
+}
+
+#header {
+	width: 100%;
+	height: 100px;
+	background-image: url($header-background-url);
+	background-size: 70px 70px;
+	position: relative;
+	z-index: 3;
+	border-bottom: 12px solid $header-bottom-border-color;
+
+	h1 {
+		font-size: 65px;
+		font-weight: bold;
+		text-align: center;
+		margin: 0;
+		padding-top: 40px;
+		color: $h1-color;
+	}
 }
 
 #tenKhoursapp {
 	background: #ffffff;
 	padding: 20px;
 	margin-bottom: 40px;
-}
-
-#tenKhoursapp h1 {
-	font-size: 45px;
-	font-weight: bold;
-	text-align: center;
-	padding: 0 0 30px 0;
+	width: 520px;
+	margin: 0 auto;
 }
 
 #task-list {
