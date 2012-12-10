@@ -1,0 +1,47 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7; }
+
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #111;
+  color: #333333;
+  width: 520px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased; }
+
+#tenKhoursapp {
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 40px; }
+
+#tenKhoursapp h1 {
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 30px 0; }
+
+#task-list {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0; }
+
+#task-list li {
+  padding: 18px 20px 18px 0;
+  position: relative;
+  font-size: 24px;
+  background-color: #cccccc;
+  margin-top: 3px;
+  /* used this site to generate gradient code: http://gradients.glrzad.com/ */
+  background-image: linear-gradient(bottom, #8a8a8a 1%, #b0b0b0 28%, #cfcfcf 76%);
+  background-image: -o-linear-gradient(bottom, #8a8a8a 1%, #b0b0b0 28%, #cfcfcf 76%);
+  background-image: -moz-linear-gradient(bottom, #8a8a8a 1%, #b0b0b0 28%, #cfcfcf 76%);
+  background-image: -webkit-linear-gradient(bottom, #8a8a8a 1%, #b0b0b0 28%, #cfcfcf 76%);
+  background-image: -ms-linear-gradient(bottom, #8a8a8a 1%, #b0b0b0 28%, #cfcfcf 76%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.01, #8a8a8a), color-stop(0.28, #b0b0b0), color-stop(0.76, #cfcfcf)); }
+
+.edit {
+  display: none; }
