@@ -180,12 +180,24 @@ $(function(){
 			this.$el.html(this.template(this.model.toJSON()));
 			if(this.model.get('justStopped') === true) {
 				var $element = this.$el;
-				$element.animate({backgroundColor : '#FFF'}, ANIMATION_FADE_TIME);
-				$element.animate({color : '#AAA'}, ANIMATION_FADE_TIME);
-				$element.css({'border-color' : '#EEE'});
+				this.animateSelectedTask($element, false);
 				this.model.set({'justStopped' : false});					
 			}
 			return this;
+		},
+
+		animateSelectedTask: function($element, out) {
+			var targetBackgroundColor = '#FFF',
+				targetBorderColor = '#EEE',
+				targetFontColor = '#AAA';
+			if(out === true) {
+				targetBackgroundColor = '#9a63f5';
+				targetBorderColor = '#773fd3';
+				targetFontColor = '#FFF';	
+			}
+			$element.animate({backgroundColor : targetBackgroundColor}, ANIMATION_FADE_TIME);
+			$element.animate({color : targetFontColor}, ANIMATION_FADE_TIME);
+			$element.css({borderColor : targetBorderColor});
 		},
 
 		startSession: function() {
@@ -196,9 +208,7 @@ $(function(){
 				this.model.startSession();	
 				var $element = $(this.$el);
 				// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
-				$element.animate({backgroundColor : '#9a63f5'}, ANIMATION_FADE_TIME);
-				$element.animate({color : '#FFF'}, ANIMATION_FADE_TIME);
-				$element.css({'border-color' : '#773fd3'});
+				this.animateSelectedTask($element, true);
 			}
 		},
 
@@ -207,9 +217,7 @@ $(function(){
 				Tasks.logStopSession();
 				this.model.stopSession();
 				var $element = $(this.$el);
-				$element.animate({backgroundColor : '#FFF'}, ANIMATION_FADE_TIME);
-				$element.animate({color : '#AAA'}, ANIMATION_FADE_TIME);
-				$element.css({'border-color' : '#EEE'});
+				this.animateSelectedTask($element, false);
 			}
 		},
 
