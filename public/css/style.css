@@ -44,12 +44,15 @@ body {
   padding: 0; }
   #task-list li {
     padding: 18px 20px 18px 0;
-    /*position: relative;*/
     font-size: 24px;
     background-color: #FFF;
     margin-top: 3px;
     border: 1px solid #EEE;
     color: #AAA; }
+
+.task-holder-state-highlight {
+  background-color: #FF0000;
+  border: 1px solid #EEE; }
 
 .edit {
   display: none; }

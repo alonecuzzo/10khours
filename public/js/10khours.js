@@ -216,11 +216,8 @@ $(function(){
 				this.model.startSession();
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, true);
-				// take a look at this to get the sorting issue worked out programmatically: http://stackoverflow.com/questions/4928002/jquery-sortable-set-item-to-an-index-programmatically
-				// $element.insertAfter($('#task-list').first());
-				// $element.insertAfter($element.first());
-				// console.log('$element: ' + );
 				animateSelectedTaskToTop($element.index(), 0);
+				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			}
 		},
 
@@ -280,7 +277,6 @@ $(function(){
 		createOnEnter: function(e) {
 			if (e.keyCode != 13) return;
 			if (!this.input.val()) return;
-
 			Tasks.create({title: this.input.val()});
 			this.input.val('');
 		}
@@ -304,19 +300,6 @@ $(function(){
         
         // Let's start
         doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
-
-        //once it's done, let's try reseting the sortable bit?
-		$('#task-list').sortable({
-			start: function(e, ui){
-				$(ui.placeholder).hide(300);
-			},
-			change: function (e,ui){
-				$(ui.placeholder).hide().show(300);
-			},
-			// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
-			placeholder: 'ui-state-highlight'
-		});
-		$('#task-list').disableSelection();
     }
     
     // The actual function which gets the job done
@@ -410,11 +393,24 @@ $(function(){
 		start: function(e, ui){
 			$(ui.placeholder).hide(300);
 		},
+		forcePlaceholderSize: true,
 		change: function (e,ui){
 			$(ui.placeholder).hide().show(300);
 		},
 		// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
-		placeholder: 'ui-state-highlight'
+		// using this hack to customize look of placeholder: http://stackoverflow.com/questions/2150002/jquery-ui-sortable-how-can-i-change-the-appearance-of-the-placeholder-object
+		placeholder: {
+			element: function(currentItem) {
+				return $('<li></li>')[0];
+			},
+			update: function(container, p) {
+				container.refreshPositions();
+				container.placeholder.css('backgroundColor', '#eff6fc');
+				container.placeholder.css('borderColor', '#4192d7');
+				container.placeholder.css('height', '42px');
+				return;
+			}
+		}
 	});
     $('#task-list').disableSelection();
 
