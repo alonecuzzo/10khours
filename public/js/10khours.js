@@ -282,10 +282,10 @@ $(function(){
 	});
 	
 	// create the app
-	var App = new AppView;
+	var App = new AppView();
 	
 	// handles the drag&drop functionality for the list
-	$('#task-list').sortable({       
+	$('#task-list').sortable({
 		start: function(e, ui){
 			$(ui.placeholder).hide(300);
 		},
