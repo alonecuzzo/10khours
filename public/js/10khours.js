@@ -168,17 +168,16 @@ $(function(){
 		tagName: 'li',
 
 		// cache the template function for a single item
-		template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></label><div id='task-display-time'><%- displayTime %></div><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div></div>"),
+		template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /></div></div>"),
 
 		// events to listen to
 		events: {
-			'click #start-button' : 'startSession',
-			'click #stop-button' : 'stopSession'
+			'click' : 'startSession'
+			// 'click' : 'stopSession'
 		},
 
 		//init
 		initialize: function() {
-			this.model.on('change', this.render, this);
 			this.model.on('change', this.render, this);
 		},
 
@@ -211,6 +210,8 @@ $(function(){
 		startSession: function() {
 			if(this.model.get('isRecording') !== true) {
 				// if there is a current session running, we need to stop it
+				this.undelegateEvents();
+				this.delegateEvents({'click' : 'stopSession'});
 				Tasks.stopActiveSession();
 				Tasks.logStartSession(this.model);
 				this.model.startSession();
@@ -223,6 +224,8 @@ $(function(){
 
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {
+				this.undelegateEvents();
+				this.delegateEvents({'click' : 'startSession'});
 				Tasks.logStopSession();
 				this.model.stopSession();
 				var $element = $(this.$el);
@@ -411,7 +414,4 @@ $(function(){
 		}
 	});
     $('#task-list').disableSelection();
-
-	// make ui buttons
-	$('button').button();
 });

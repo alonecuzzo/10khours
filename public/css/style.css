@@ -52,9 +52,14 @@ body {
     -moz-border-radius: 15px;
     border-radius: 15px; }
     #task-list li #task-title {
-      margin-left: 15px; }
+      margin-left: 15px;
+      color: #666; }
     #task-list li #task-display-time {
-      float: right; }
+      float: right;
+      font-size: 27px;
+      margin-top: -20px; }
+    #task-list li #task-total-time {
+      display: none; }
 
 .task-holder-state-highlight {
   background-color: #FF0000;

@@ -76,10 +76,17 @@ body {
 
 		#task-title {
 			margin-left: 15px;
+			color: #666;
 		}
 
 		#task-display-time {
 			float: right;
+			font-size: 27px;
+			margin-top: -20px;
+		}
+
+		#task-total-time {
+			display: none;
 		}
 	}
 }
