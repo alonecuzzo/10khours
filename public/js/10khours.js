@@ -346,10 +346,6 @@ $(function(){
         
         var movement = $northLi.outerHeight();
         
-        // Set position of the li elements to relative
-        $northLi.css('position', 'relative');
-        $southLi.css('position', 'relative');
-        
         // Set the z-index of the moved item to 999 to it appears on top of the other elements
         if(isPushingDown)
             $northLi.css('z-index', '999');
