@@ -13,7 +13,9 @@
 $(function(){
 
 	// Timing constants
-	var ANIMATION_FADE_TIME = 200;
+	var ANIMATION_FADE_TIME = 200,
+		DURATION = 70,
+		JQUERYUI_EASING = "easeInQuart";
 
 	// Task Model
 	// -----------
@@ -216,6 +218,9 @@ $(function(){
 				this.animateSelectedTask($element, true);
 				// take a look at this to get the sorting issue worked out programmatically: http://stackoverflow.com/questions/4928002/jquery-sortable-set-item-to-an-index-programmatically
 				// $element.insertAfter($('#task-list').first());
+				// $element.insertAfter($element.first());
+				// console.log('$element: ' + );
+				votingAnimation($element.index(), 0);	
 			}
 		},
 
@@ -283,7 +288,111 @@ $(function(){
 	
 	// create the app
 	var App = new AppView();
-	
+    
+    
+    // ############## The functions ############
+    
+    // Convenient function to call the recursive one
+    function votingAnimation(startIndex, destinationIndex) {
+        // The number of swaps done so far
+        var numberOfSwapsDone = 0;
+        var numberOfSwapsToDo = 0;
+        
+        // Determine the number of swaps to do
+        if(startIndex < destinationIndex)
+            numberOfSwapsToDo = destinationIndex - startIndex;
+        else
+            numberOfSwapsToDo = startIndex - destinationIndex;
+        
+        // Let's start
+        doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
+    }
+    
+    // The actual function which gets the job done
+    function doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex) {
+        
+        console.debug(">>>> Do swapping");
+        
+        // The li elements of the list
+        // Do it within the function so it's refreshed for every call
+        var $liElements = $("ul").children();
+        
+        // Check if we try to push up or down an item
+        var isPushingDown = startIndex < destinationIndex;
+        
+        // Index of the top and botto li
+        var northLiIndex = startIndex + numberOfSwapsDone;
+        var southLiIndex = startIndex + numberOfSwapsDone + 1;
+        if(! isPushingDown) { // Pushing up
+            northLiIndex = startIndex - numberOfSwapsDone - 1;
+            southLiIndex = startIndex - numberOfSwapsDone;
+        }
+        
+        // Get the JQ elements (use .eq, not get)
+        var $northLi = $liElements.eq(northLiIndex);
+        var $southLi = $liElements.eq(southLiIndex);
+        
+        
+        swapLiElements($northLi, $southLi, isPushingDown, DURATION, JQUERYUI_EASING, function(){
+        
+            numberOfSwapsDone++;
+                
+            // End point of the recursive function
+            if(numberOfSwapsDone >= numberOfSwapsToDo)
+                return;
+                
+            // Recursive call
+            doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
+        });
+    }
+    
+    function swapLiElements($northLi, $southLi, isPushingDown, duration, easing, callbackFunction) {
+        
+        var movement = $northLi.outerHeight();
+        
+        // Set position of the li elements to relative
+        $northLi.css('position', 'relative');
+        $southLi.css('position', 'relative');
+        
+        // Set the z-index of the moved item to 999 to it appears on top of the other elements
+        if(isPushingDown)
+            $northLi.css('z-index', '999');
+        else
+            $southLi.css('z-index', '999');
+        
+        // Move down the first li
+        $northLi.animate({'top': movement}, {
+            duration: duration,
+            queue: false,
+            easing: easing,
+            complete: function() {
+                // Swap the li in the DOM
+                if(isPushingDown)
+                    $northLi.insertAfter($southLi);
+                else
+                    $southLi.insertBefore($northLi);
+                
+                resetLiCssPosition($northLi);
+                resetLiCssPosition($southLi);
+                
+                callbackFunction();
+            }
+        });
+        
+        $southLi.animate({'top': -movement}, {
+            duration: duration,
+            queue: false,
+            easing: easing
+        });
+        
+    }
+    
+    // Reset the positioning of a li element to the default one
+    function resetLiCssPosition($liElement) {
+        $liElement.css({'position': 'static', 'top': 0});
+        $liElement.css('z-index', '0');
+    }
+
 	// handles the drag&drop functionality for the list
 	$('#task-list').sortable({
 		start: function(e, ui){
