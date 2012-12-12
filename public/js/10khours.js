@@ -66,7 +66,7 @@ $(function(){
 					this.timerInterval = setInterval(function(){
 						seconds += 1;
 						instance.totalTime = seconds;
-						var stringToPrint = (new Date).clearTime().addSeconds(seconds).toString('H:mm:ss');
+						var stringToPrint = (new Date()).clearTime().addSeconds(seconds).toString('H:mm:ss');
 						self.updateDisplayTime(stringToPrint);
 						console.log(stringToPrint);
 					}, 1000);
@@ -104,7 +104,7 @@ $(function(){
 				sessionsLen = sessions.length;
 			if(sinceDate > 0) sd = sinceDate;
 			for(i = 0; i <= sessionsLen - 1; i++) {
-				if(sessions[i].endDate > sd) sum += parseInt(sessions[i].totalTime);
+				if(sessions[i].endDate > sd) sum += parseInt(sessions[i].totalTime, 10);
 			}
 			return sum;
 		},
@@ -157,7 +157,7 @@ $(function(){
 		// Act on the event
 	});
 
-	var Tasks = new TaskList;
+	var Tasks = new TaskList();
 
 	// Task Item View
 	// --------------
@@ -165,7 +165,7 @@ $(function(){
 		
 		tagName: 'li',
 
-		// cache the template function for a single item 
+		// cache the template function for a single item
 		template: _.template("<div class='view' id='item'><div id='item-template'><label><%- title %></label><label><%- displayTime %></label><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div></div>"),
 
 		// events to listen to
@@ -186,7 +186,7 @@ $(function(){
 			if(this.model.get('justStopped') === true) {
 				var $element = this.$el;
 				this.animateSelectedTask($element, false);
-				this.model.set({'justStopped' : false});					
+				this.model.set({'justStopped' : false});
 			}
 			return this;
 		},
@@ -199,7 +199,7 @@ $(function(){
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
 				targetBorderColor = '#773fd3';
-				targetFontColor = '#FFF';	
+				targetFontColor = '#FFF';
 			}
 			$element.animate({backgroundColor : targetBackgroundColor}, ANIMATION_FADE_TIME);
 			$element.animate({color : targetFontColor}, ANIMATION_FADE_TIME);
@@ -207,11 +207,11 @@ $(function(){
 		},
 
 		startSession: function() {
-			if(this.model.get('isRecording') ==! true) {
+			if(this.model.get('isRecording') !== true) {
 				// if there is a current session running, we need to stop it
 				Tasks.stopActiveSession();
 				Tasks.logStartSession(this.model);
-				this.model.startSession();	
+				this.model.startSession();
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, true);
 				// take a look at this to get the sorting issue worked out programmatically: http://stackoverflow.com/questions/4928002/jquery-sortable-set-item-to-an-index-programmatically
@@ -220,7 +220,7 @@ $(function(){
 		},
 
 		stopSession: function() {
-			if(this.model.get('isRecording') === true) {			
+			if(this.model.get('isRecording') === true) {
 				Tasks.logStopSession();
 				this.model.stopSession();
 				var $element = $(this.$el);
