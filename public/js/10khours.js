@@ -1,7 +1,7 @@
 /*
  *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
  *
- *    Jabari Bell jabari.bell@23b.it some 
+ *    Jabari Bell jabari.bell@23b.it some
  *    27-11-12
  */
 
@@ -24,8 +24,8 @@ $(function(){
 				title: 'default value',
 				displayTime: '0:00:00',
 				order: Tasks.nextOrder(),
-				sessions: new Array(),
-				totalTime: 0 
+				sessions: [],
+				totalTime: 0
 			};
 		},
 
@@ -53,7 +53,7 @@ $(function(){
 				
 				totalTime: 0,
 
-				startDate: new Date,
+				startDate: new Date(),
 
 				endDate: Number.MAX_VALUE,
 
@@ -81,7 +81,7 @@ $(function(){
 			sessions.push(session);
 		},
 		
-		// stops the current session 
+		// stops the current session
 		stopSession: function() {
 			this.set({'justStopped' : true});
 			var	currentSession = this.get('currentSession');
@@ -97,7 +97,7 @@ $(function(){
 
 		// returns total time of all sesssions stored in task
 		// passes 'sinceDate' variable that checks to see that the session being pulled
-		// is within the specified date range... 
+		// is within the specified date range...
 		getTotalTime: function(sinceDate) {
 			var i, sd = 0, sum = 0,
 				sessions = this.get('sessions'),
@@ -152,6 +152,11 @@ $(function(){
 		}
 	});
 
+	$('animateSelectedTask').on('click', '$("selector")', function(event) {
+		event.preventDefault();
+		// Act on the event
+	});
+
 	var Tasks = new TaskList;
 
 	// Task Item View
@@ -187,6 +192,7 @@ $(function(){
 		},
 
 		animateSelectedTask: function($element, out) {
+			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 			var targetBackgroundColor = '#FFF',
 				targetBorderColor = '#EEE',
 				targetFontColor = '#AAA';
@@ -207,8 +213,9 @@ $(function(){
 				Tasks.logStartSession(this.model);
 				this.model.startSession();	
 				var $element = $(this.$el);
-				// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 				this.animateSelectedTask($element, true);
+				// take a look at this to get the sorting issue worked out programmatically: http://stackoverflow.com/questions/4928002/jquery-sortable-set-item-to-an-index-programmatically
+				// $element.insertAfter($('#task-list').first());
 			}
 		},
 
