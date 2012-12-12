@@ -168,7 +168,7 @@ $(function(){
 		tagName: 'li',
 
 		// cache the template function for a single item
-		template: _.template("<div class='view' id='item'><div id='item-template'><label><%- title %></label><label><%- displayTime %></label><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div></div>"),
+		template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></label><div id='task-display-time'><%- displayTime %></div><label>Total time: <%- totalTime %></label><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /><button id='start-button'>Start</button><button id='stop-button'>Stop</button></div></div>"),
 
 		// events to listen to
 		events: {
@@ -295,8 +295,10 @@ $(function(){
         // Determine the number of swaps to do
         if(startIndex < destinationIndex)
             numberOfSwapsToDo = destinationIndex - startIndex;
-        else
+        else if(destinationIndex < startIndex)
             numberOfSwapsToDo = startIndex - destinationIndex;
+        else if(destinationIndex === startIndex)
+			return;
         
         // Let's start
         doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
@@ -345,8 +347,8 @@ $(function(){
         var movement = $northLi.outerHeight();
         
         // Set position of the li elements to relative
-        // $northLi.css('position', 'relative');
-        // $southLi.css('position', 'relative');
+        $northLi.css('position', 'relative');
+        $southLi.css('position', 'relative');
         
         // Set the z-index of the moved item to 999 to it appears on top of the other elements
         if(isPushingDown)

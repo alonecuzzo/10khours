@@ -73,6 +73,14 @@ body {
 		color: #AAA;
 		-moz-border-radius: 15px;
 		border-radius: 15px;
+
+		#task-title {
+			margin-left: 15px;
+		}
+
+		#task-display-time {
+			float: right;
+		}
 	}
 }
 
