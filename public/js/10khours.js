@@ -14,7 +14,7 @@ $(function(){
 
 	// Timing constants
 	var ANIMATION_FADE_TIME = 200,
-		DURATION = 70,
+		DURATION = 100,
 		JQUERYUI_EASING = "easeInQuart";
 
 	// Task Model
@@ -220,7 +220,7 @@ $(function(){
 				// $element.insertAfter($('#task-list').first());
 				// $element.insertAfter($element.first());
 				// console.log('$element: ' + );
-				votingAnimation($element.index(), 0);	
+				animateSelectedTaskToTop($element.index(), 0);
 			}
 		},
 
@@ -289,11 +289,9 @@ $(function(){
 	// create the app
 	var App = new AppView();
     
-    
-    // ############## The functions ############
-    
-    // Convenient function to call the recursive one
-    function votingAnimation(startIndex, destinationIndex) {
+    // List Manipulation
+	// -----------------
+    function animateSelectedTaskToTop(startIndex, destinationIndex) {
         // The number of swaps done so far
         var numberOfSwapsDone = 0;
         var numberOfSwapsToDo = 0;
@@ -306,6 +304,19 @@ $(function(){
         
         // Let's start
         doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
+
+        //once it's done, let's try reseting the sortable bit?
+		$('#task-list').sortable({
+			start: function(e, ui){
+				$(ui.placeholder).hide(300);
+			},
+			change: function (e,ui){
+				$(ui.placeholder).hide().show(300);
+			},
+			// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
+			placeholder: 'ui-state-highlight'
+		});
+		$('#task-list').disableSelection();
     }
     
     // The actual function which gets the job done
@@ -351,8 +362,8 @@ $(function(){
         var movement = $northLi.outerHeight();
         
         // Set position of the li elements to relative
-        $northLi.css('position', 'relative');
-        $southLi.css('position', 'relative');
+        // $northLi.css('position', 'relative');
+        // $southLi.css('position', 'relative');
         
         // Set the z-index of the moved item to 999 to it appears on top of the other elements
         if(isPushingDown)
@@ -389,11 +400,12 @@ $(function(){
     
     // Reset the positioning of a li element to the default one
     function resetLiCssPosition($liElement) {
-        $liElement.css({'position': 'static', 'top': 0});
+        $liElement.css({'position': 'static', 'top': '0'});
         $liElement.css('z-index', '0');
     }
 
-	// handles the drag&drop functionality for the list
+    // jQuery ui sortable stuff for drag & drop functionality
+	// -----------
 	$('#task-list').sortable({
 		start: function(e, ui){
 			$(ui.placeholder).hide(300);

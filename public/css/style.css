@@ -44,7 +44,7 @@ body {
   padding: 0; }
   #task-list li {
     padding: 18px 20px 18px 0;
-    position: relative;
+    /*position: relative;*/
     font-size: 24px;
     background-color: #FFF;
     margin-top: 3px;
