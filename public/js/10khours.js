@@ -168,7 +168,7 @@ $(function(){
 		tagName: 'li',
 
 		// cache the template function for a single item
-		template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /></div></div>"),
+		template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><div class='ui-progress-bar blue ui-container'><div class='ui-progress'></div></div><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /></div></div>"),
 
 		// events to listen to
 		events: {

@@ -8,6 +8,7 @@ $h1-color: #F7F7F7;
 
 // task list stuff
 $selected-task-background-color: #FF0000;
+$progress-bar-height: 10px;
 
 html,
 body {
@@ -87,6 +88,18 @@ body {
 
 		#task-total-time {
 			display: none;
+		}
+
+		.ui-progress-bar {
+			height: $progress-bar-height + 2px; 
+			width: 30%;
+			margin-left: 15px;
+			margin-top: 10px;
+		}
+
+		.ui-progress {
+			width: 40%;
+			height: $progress-bar-height;
 		}
 	}
 }

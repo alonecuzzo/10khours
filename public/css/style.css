@@ -60,6 +60,14 @@ body {
       margin-top: -20px; }
     #task-list li #task-total-time {
       display: none; }
+    #task-list li .ui-progress-bar {
+      height: 12px;
+      width: 30%;
+      margin-left: 15px;
+      margin-top: 10px; }
+    #task-list li .ui-progress {
+      width: 40%;
+      height: 10px; }
 
 .task-holder-state-highlight {
   background-color: #FF0000;
