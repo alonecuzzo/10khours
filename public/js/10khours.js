@@ -172,7 +172,11 @@ $(function(){
 
 		// events to listen to
 		events: {
-			'click' : 'startSession'
+			// 'click' : 'startSession',
+			'mousemove' : 'onViewDrag',
+			'mousedown' : 'setDraggingTrue',
+			// 'mouseup' : 'setDraggingFalse'
+			'mouseup' : 'startSession'
 			// 'click' : 'stopSession'
 		},
 
@@ -192,6 +196,16 @@ $(function(){
 			return this;
 		},
 
+		onViewDrag: function() {
+			if((this.isDragging) === true){
+				this.undelegateEvents();
+				this.delegateEvents({'mouseup' : 'setDraggingFalse'});
+				console.log('draaaaaging!');
+			} else {
+				// this.delegateEvents({'click' : 'startSession'});
+			}
+		},
+
 		animateSelectedTask: function($element, out) {
 			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 			var targetBackgroundColor = '#FFF',
@@ -207,16 +221,29 @@ $(function(){
 			$element.css({borderColor : targetBorderColor});
 		},
 
+		setDraggingTrue: function() {
+			console.log('start');
+			this.isDragging = true;
+		},
+
+		setDraggingFalse: function() {
+			this.isDragging = false;
+			this.undelegateEvents();
+			console.log('stop');
+			this.delegateEvents(this.events);
+		},
+
 		startSession: function() {
 			if(this.model.get('isRecording') !== true) {
 				// if there is a current session running, we need to stop it
 				this.undelegateEvents();
-				this.delegateEvents({'click' : 'stopSession'});
+				this.delegateEvents({'mouseup' : 'stopSession'});
 				Tasks.stopActiveSession();
 				Tasks.logStartSession(this.model);
 				this.model.startSession();
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, true);
+				console.log('my index is: ' + $element.index());
 				animateSelectedTaskToTop($element.index(), 0);
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			}
@@ -224,13 +251,19 @@ $(function(){
 
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {
+				this.isDragging = false;
 				this.undelegateEvents();
-				this.delegateEvents({'click' : 'startSession'});
+				this.delegateEvents({'mouseup' : 'startSession'});
 				Tasks.logStopSession();
 				this.model.stopSession();
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, false);
 			}
+		},
+
+		undelegate: function() {
+			console.log('undelegating');
+			this.undelegateEvents();
 		},
 
 		// close and save values to the model
@@ -392,11 +425,16 @@ $(function(){
 	// -----------
 	$('#task-list').sortable({
 		start: function(e, ui){
-			$(ui.placeholder).hide(300);
+			$(ui.placeholder).hide(100);
+			// was looking to fix that index not updating properly issue here: http://stackoverflow.com/questions/4956039/jquery-sortable-change-event-element-position
+			var start_pos = ui.item.index();
+			ui.item.data('start_pos', start_pos);
+		},
+		stop: function(e, ui){
 		},
 		forcePlaceholderSize: true,
 		change: function (e,ui){
-			$(ui.placeholder).hide().show(300);
+			$(ui.placeholder).hide().show(100);
 		},
 		// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
 		// using this hack to customize look of placeholder: http://stackoverflow.com/questions/2150002/jquery-ui-sortable-how-can-i-change-the-appearance-of-the-placeholder-object
