@@ -176,7 +176,9 @@ $(function(){
 			'mousemove' : 'onViewDrag',
 			'mousedown' : 'setDraggingTrue',
 			// 'mouseup' : 'setDraggingFalse'
-			'mouseup' : 'startSession'
+			'mouseup' : 'startSession',
+			'mouseenter' : 'onMouseOver',
+			'mouseleave' : 'onMouseOut'
 			// 'click' : 'stopSession'
 		},
 
@@ -194,6 +196,14 @@ $(function(){
 				this.model.set({'justStopped' : false});
 			}
 			return this;
+		},
+
+		onMouseOut: function() {
+			console.log('mouse out');
+		},
+
+		onMouseOver: function() {
+			console.log('mouse over');
 		},
 
 		onViewDrag: function() {
