@@ -220,11 +220,7 @@ $(function(){
 			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 			var targetBackgroundColor = '#FFF',
 				targetBorderColor = '#EEE',
-<<<<<<< Updated upstream
-				targetFontColor = '#AAA';
-=======
 				targetFontColor = '#CCC';
->>>>>>> Stashed changes
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
 				targetBorderColor = '#773fd3';
