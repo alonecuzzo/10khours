@@ -9,6 +9,7 @@ $h1-color: #F7F7F7;
 // task list stuff
 $selected-task-background-color: #FF0000;
 $progress-bar-height: 8px;
+$task-border-color: #CCC; 
 
 html,
 body {
@@ -70,7 +71,7 @@ body {
 		font-size: 24px;
 		background-color: #FFF;
 		margin-top: 3px;
-		border: 1px solid #CCC;
+		border: 1px solid $task-border-color;
 		color: #AAA;
 		-moz-border-radius: 15px;
 		border-radius: 15px;
