@@ -13,7 +13,7 @@
 $(function(){
 
 	// Timing constants
-	var ANIMATION_FADE_TIME = 200,
+	var ANIMATION_FADE_TIME = 150,
 		DURATION = 100,
 		JQUERYUI_EASING = "easeInQuart";
 
@@ -199,11 +199,11 @@ $(function(){
 		},
 
 		onMouseOut: function() {
-			console.log('mouse out');
+			// console.log('mouse out');
 		},
 
 		onMouseOver: function() {
-			console.log('mouse over');
+			// console.log('mouse over');
 		},
 
 		onViewDrag: function() {
@@ -218,14 +218,15 @@ $(function(){
 
 		animateSelectedTask: function($element, out) {
 			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
-			var targetBackgroundColor = '#FFF',
-				targetBorderColor = '#CCC',
-				targetFontColor = '#CCC';
+			var targetBackgroundColor = '#FFFFFF',
+				targetBorderColor = '#CCCCCC',
+				targetFontColor = '#666';
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
 				targetBorderColor = '#773fd3';
-				targetFontColor = '#FFF';
+				targetFontColor = '#FFFFFF';
 			}
+			console.log('calling animated selected task!');
 			$element.animate({backgroundColor : targetBackgroundColor}, ANIMATION_FADE_TIME);
 			$element.animate({color : targetFontColor}, ANIMATION_FADE_TIME);
 			$element.css({borderColor : targetBorderColor});

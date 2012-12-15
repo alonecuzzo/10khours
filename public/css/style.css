@@ -48,12 +48,12 @@ body {
     background-color: #FFF;
     margin-top: 3px;
     border: 1px solid #cccccc;
-    color: #AAA;
+    color: #666;
     -moz-border-radius: 15px;
     border-radius: 15px; }
     #task-list li #task-title {
       margin-left: 15px;
-      color: #666; }
+      /*color: #666;*/ }
     #task-list li #task-display-time {
       float: right;
       font-size: 27px;
