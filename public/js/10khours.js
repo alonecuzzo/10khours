@@ -219,7 +219,7 @@ $(function(){
 		animateSelectedTask: function($element, out) {
 			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 			var targetBackgroundColor = '#FFF',
-				targetBorderColor = '#EEE',
+				targetBorderColor = '#CCC',
 				targetFontColor = '#CCC';
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
