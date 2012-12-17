@@ -1,9 +1,9 @@
 Today:
-   ✔ activate progress bars @ui @done (12-12-17 13:18)
    ☐ have most recent item appear at top of list @ui
    ☐ cell hover state @ui @design
    ☐ handle item deletion @ui @functionality
    ☐ go through and add docblockr comments @documentation @code
+   ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
 
 --- ✄ -----------------------
 
@@ -12,4 +12,5 @@ Tomorrow:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ activate progress bars @ui @done (12-12-17 13:18)
  ✔ fix drag and drop issue @ui @done (12-12-17 11:29)

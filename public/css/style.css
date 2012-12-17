@@ -1,40 +1,77 @@
-/*
-Syntax error: Invalid CSS after "...ar-height: 8px;": expected selector or at-rule, was "<<<<<<< HEAD"
-        on line 12 of style.scss
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7; }
 
-7: $h1-color: #F7F7F7;
-8: 
-9: // task list stuff
-10: $selected-task-background-color: #FF0000;
-11: $progress-bar-height: 8px;
-12: <<<<<<< HEAD
-13: $task-border-color: #CCC;
-14: =======
-15: $task-border-color: #CCC; 
-16: >>>>>>> master
-17: 
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  color: #333333;
+  -webkit-font-smoothing: antialiased; }
 
-Backtrace:
-style.scss:12
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/scss/parser.rb:1134:in `expected'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/scss/parser.rb:1070:in `expected'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/scss/parser.rb:28:in `parse'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/engine.rb:342:in `_to_tree'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/engine.rb:315:in `_render'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/engine.rb:262:in `render'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/plugin/compiler.rb:201:in `each'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/lib/sass/plugin/compiler.rb:299:in `block in watch'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/multi_listener.rb:86:in `call'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/multi_listener.rb:86:in `on_change'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/multi_listener.rb:95:in `block in initialize_adapter'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/adapters/polling.rb:55:in `call'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/adapters/polling.rb:55:in `poll'
-/Users/cuzzo/.rvm/gems/ruby-1.9.3-p327/gems/sass-3.2.3/vendor/listen/lib/listen/adapters/polling.rb:31:in `block in start'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"...ar-height: 8px;\": expected selector or at-rule, was \"<<<<<<< HEAD\"\A         on line 12 of style.scss\A \A 7: $h1-color: #F7F7F7;\A 8: \A 9: // task list stuff\A 10: $selected-task-background-color: #FF0000;\A 11: $progress-bar-height: 8px;\A 12: <<<<<<< HEAD\A 13: $task-border-color: #CCC;\A 14: =======\A 15: $task-border-color: #CCC; \A 16: >>>>>>> master\A 17: "; }
+#header {
+  width: 100%;
+  height: 70px;
+  background-image: url("../img/backgrounds/header-background.png");
+  background-size: 70px 70px;
+  position: relative;
+  z-index: 3;
+  border-bottom: 12px solid #9a63f5; }
+  #header h1 {
+    font-size: 35px;
+    text-align: center;
+    margin: 0;
+    padding-top: 25px;
+    color: #f7f7f7; }
+
+#tenKhoursapp {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 40px;
+  width: 520px;
+  margin: 0 auto; }
+  #tenKhoursapp input[type='text'] {
+    width: 502px;
+    border: 0;
+    font-size: 23px;
+    border: 1px solid #999;
+    padding: 8px; }
+
+#task-list {
+  list-style: none;
+  margin: 30px 0;
+  padding: 0; }
+  #task-list li {
+    padding: 18px 20px 18px 0;
+    font-size: 24px;
+    background-color: #FFF;
+    margin-top: 3px;
+    border: 1px solid #cccccc;
+    color: #666;
+    -moz-border-radius: 15px;
+    border-radius: 15px; }
+    #task-list li #task-title {
+      margin-left: 15px;
+      /*color: #666;*/ }
+    #task-list li #task-display-time {
+      float: right;
+      font-size: 27px;
+      margin-top: -20px; }
+    #task-list li #task-total-time {
+      display: none; }
+    #task-list li .ui-progress-bar {
+      height: 10px;
+      width: 30%;
+      margin-left: 15px;
+      margin-top: 10px; }
+    #task-list li .ui-progress {
+      width: 80%;
+      height: 8px; }
+
+.task-holder-state-highlight {
+  background-color: #FF0000;
+  border: 1px solid #EEE; }
+
+.edit {
+  display: none; }
