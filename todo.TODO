@@ -1,9 +1,9 @@
 Today:
-   ☐ activate progress bars @ui
-   ☐ go through and add docblockr comments @documentation @code
+   ✔ activate progress bars @ui @done (12-12-17 13:18)
    ☐ have most recent item appear at top of list @ui
    ☐ cell hover state @ui @design
    ☐ handle item deletion @ui @functionality
+   ☐ go through and add docblockr comments @documentation @code
 
 --- ✄ -----------------------
 

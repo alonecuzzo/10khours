@@ -55,7 +55,7 @@ $(function(){
 				
 				totalTime: 0,
 
-				startDate: new Date(),
+				startDate: new Date().getTime(),
 
 				endDate: Number.MAX_VALUE,
 
@@ -83,25 +83,36 @@ $(function(){
 			sessions.push(session);
 		},
 		
-		// stops the current session
+		/**
+		 * Stops current active session.  Sets an end date for the session and also updates the displayTime, isRecording, and totalTime variables.  The getTotalTime() function should be passed different start dates/times depending upon which mode (day/week/total 10k time) that the app is currently in
+		 */
 		stopSession: function() {
+			var	currentSession = this.get('currentSession'),
+				sinceDate = Date.today().getTime();
+				// sinceDate = Date.today().last().sunday().getTime();
 			this.set({'justStopped' : true});
-			var	currentSession = this.get('currentSession');
 			currentSession.endDate = new Date().getTime();
 			currentSession.stopSession();
-			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
+			this.set('totalTime', this.getTotalTime(sinceDate));
 			this.set({'isRecording' : false});
 			this.set('displayTime', '0:00:00');
 			this.save();
-			console.log('total time for this activity: ' + this.getTotalTime());
+			console.log('total time for this activity: ' + this.getTotalTime(sinceDate));
 			console.log('weekly percentage: ' + this.getWeeklyPercentage());
+			console.log('daily percentage: ' + this.getDailyPercentage());
+			console.log('right now: ' + new Date().getTime());
+			console.log('since date: ' + sinceDate);
 		},
 
-		// returns total time of all sesssions stored in task
-		// passes 'sinceDate' variable that checks to see that the session being pulled
-		// is within the specified date range...
+		/**
+		 * Returns the total number of seconds stored in the sessions array.
+		 * @param  {int} sinceDate The date (Unix formatted) that the total time should be measured since.
+		 * @return {int}
+		 */
 		getTotalTime: function(sinceDate) {
-			var i, sd = 0, sum = 0,
+			var i,
+				sd = 0,
+				sum = 0,
 				sessions = this.get('sessions'),
 				sessionsLen = sessions.length;
 			if(sinceDate > 0) sd = sinceDate;
@@ -110,14 +121,27 @@ $(function(){
 			}
 			return sum;
 		},
+
+		/**
+		 * Returns the percentage of 10,800 seconds logged today for a given task.
+		 * @return {float}
+		 */
+		getDailyPercentage: function() {
+			var dailyTotalSeconds = 10800, // 10800 seconds in 3 hours which is daily amount needed
+				totalDailyTime = this.getTotalTime(Date.today().getTime()),
+				returnPercentage = Math.round((totalDailyTime / dailyTotalSeconds) * 100) / 100;
+			if(returnPercentage < 0.05) returnPercentage = 0.05;
+			if(returnPercentage > 1.0) returnPercentage = 1.0;
+			return returnPercentage * 100;
+		},
 		
-		// gets weekly percentage of seconds completed, the weekly goal amount will be hardcoded for now
-		// but eventually there will be functions for getting daily, weekly, and total percentage of the set
-		// goal time
+		/**
+		 * Returns the percentage of 68,400 seconds logged this week for a given task.
+		 * @return {float}
+		 */
 		getWeeklyPercentage: function() {
 			var weeklyTotalSeconds = 68400, // 19 hours per week to hit 10,000 hours in 10 years
 				totalWeeklyTime = this.getTotalTime(Date.today().last().sunday().getTime());
-				// totalWeeklyTime = 30000;
 			return Math.round((totalWeeklyTime / weeklyTotalSeconds) * 100) / 100;
 		}
 	});
@@ -188,9 +212,13 @@ $(function(){
 
 		// re render titles of the task item
 		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
+			var $element = this.$el;
+			$element.html(this.template(this.model.toJSON()));
+			var $uiProgressBar = $($element).find('.ui-progress'),
+				barPercentage = this.model.getDailyPercentage();
+			$uiProgressBar.width(barPercentage + '%');
 			if(this.model.get('justStopped') === true) {
-				var $element = this.$el;
+				// $element.find('#item.#item-template.ui-progress-bar').css('width', '10%');
 				this.animateSelectedTask($element, false);
 				this.model.set({'justStopped' : false});
 			}
