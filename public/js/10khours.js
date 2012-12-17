@@ -172,19 +172,18 @@ $(function(){
 
 		// events to listen to
 		events: {
-			// 'click' : 'startSession',
-			'mousemove' : 'onViewDrag',
-			'mousedown' : 'setDraggingTrue',
-			// 'mouseup' : 'setDraggingFalse'
+			'mousemove' : 'onMouseMove',
+			'mousedown' : 'onMouseDown',
 			'mouseup' : 'startSession',
 			'mouseenter' : 'onMouseOver',
 			'mouseleave' : 'onMouseOut'
-			// 'click' : 'stopSession'
 		},
 
 		//init
 		initialize: function() {
 			this.model.on('change', this.render, this);
+			this.hasBeenDragged = false;
+			this.mousedown = false;
 		},
 
 		// re render titles of the task item
@@ -206,18 +205,16 @@ $(function(){
 			// console.log('mouse over');
 		},
 
-		onViewDrag: function() {
-			if((this.isDragging) === true){
-				this.undelegateEvents();
-				this.delegateEvents({'mouseup' : 'setDraggingFalse'});
-				console.log('draaaaaging!');
-			} else {
-				// this.delegateEvents({'click' : 'startSession'});
-			}
+		onMouseMove: function() {
+			if(this.mousedown === true) this.hasBeenDragged = true;
+		},
+
+		onMouseDown: function() {
+			console.log('onMouseDown called');
+			this.mousedown = true;
 		},
 
 		animateSelectedTask: function($element, out) {
-			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
 			var targetBackgroundColor = '#FFFFFF',
 				targetBorderColor = '#CCCCCC',
 				targetFontColor = '#666';
@@ -232,20 +229,16 @@ $(function(){
 			$element.css({borderColor : targetBorderColor});
 		},
 
-		setDraggingTrue: function() {
-			console.log('start');
-			this.isDragging = true;
-		},
-
 		setDraggingFalse: function() {
 			this.isDragging = false;
 			this.undelegateEvents();
-			console.log('stop');
+			console.log('setDraggingFalse called');
 			this.delegateEvents(this.events);
+			this.hasBeenDragged = true;
 		},
 
 		startSession: function() {
-			if(this.model.get('isRecording') !== true) {
+			if(this.model.get('isRecording') !== true && this.hasBeenDragged !== true) {
 				// if there is a current session running, we need to stop it
 				this.undelegateEvents();
 				this.delegateEvents({'mouseup' : 'stopSession'});
@@ -258,13 +251,14 @@ $(function(){
 				animateSelectedTaskToTop($element.index(), 0);
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			}
+			this.hasBeenDragged = false;
+			this.mousedown = false;
 		},
 
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {
-				this.isDragging = false;
 				this.undelegateEvents();
-				this.delegateEvents({'mouseup' : 'startSession'});
+				this.delegateEvents(this.events);
 				Tasks.logStopSession();
 				this.model.stopSession();
 				var $element = $(this.$el);
