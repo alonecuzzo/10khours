@@ -8,6 +8,8 @@ Tomorrow:
  ☐ update list order property on list item order change @ui @functionality
  ☐ handle item deletion @ui @functionality
  ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
+ ☐ when you click an active item and it stops, the transition between the old color of the copy and the new color takes too long... there's too much of a delay @ui @functionality 
+ ☐ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

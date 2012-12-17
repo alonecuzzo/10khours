@@ -216,6 +216,7 @@ $(function(){
 				barPercentage = this.model.getDailyPercentage();
 			$uiProgressBar.width(barPercentage + '%');
 			if(this.model.get('justStopped') === true) {
+				this.onMouseOut();
 				this.animateSelectedTask($element, false);
 				this.model.set({'justStopped' : false});
 				this.stopSession();
@@ -257,7 +258,7 @@ $(function(){
 			}
 			console.log('calling animated selected task!');
 			$element.animate({backgroundColor : targetBackgroundColor}, ANIMATION_FADE_TIME);
-			$element.animate({color : targetFontColor}, ANIMATION_FADE_TIME);
+			$element.animate({color : targetFontColor}, 10);
 			$element.css({borderColor : targetBorderColor});
 		},
 
