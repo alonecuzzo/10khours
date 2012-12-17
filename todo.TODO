@@ -1,16 +1,18 @@
 Today:
-   ☐ cell hover state @ui @design
-   ☐ handle item deletion @ui @functionality
    ☐ go through and add docblockr comments @documentation @code
    ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
+   ☐ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality
 
 --- ✄ -----------------------
 
 Tomorrow:
-
+ ☐ update list order property on list item order change @ui @functionality
+ ☐ handle item deletion @ui @functionality
+ ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ cell hover state @ui @design @done (12-12-17 15:31)
  ✔ have most recent item appear at top of list @ui @done (12-12-17 15:04)
  ✔ activate progress bars @ui @done (12-12-17 13:18)
  ✔ fix drag and drop issue @ui @done (12-12-17 11:29)

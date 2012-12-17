@@ -162,6 +162,7 @@ $(function(){
 			return task.get('order');
 		},
 
+
 		// keeps track of the presence of an active session
 		logStartSession: function(task) {
 			this.activeSession = task;
@@ -222,11 +223,18 @@ $(function(){
 
 		onMouseOut: function() {
 			// console.log('mouse out');
+			var $element = $(this.$el);
+			$element.animate({backgroundColor : '#FFFFFF'}, 100);
+			$element.animate({borderColor : '#CCCCCC'}, 100);
+			$element.css({color : '#666666'}, 100);
 		},
 
 		onMouseOver: function() {
 			// console.log('mouse over');
-			console.log('order: ' + this.model.get('order'));
+			var $element = $(this.$el);
+			// $element.animate({borderColor : '#9a63f5'}, 100);
+			// $element.animate({backgroundColor : '#418fdc'}, 100);
+			$element.css({borderColor : '#9a63f5', backgroundColor : '#418fdc', color : '#F7F7F7'});
 		},
 
 		onMouseMove: function() {
