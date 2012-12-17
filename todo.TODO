@@ -1,5 +1,4 @@
 Today:
-   ☐ have most recent item appear at top of list @ui
    ☐ cell hover state @ui @design
    ☐ handle item deletion @ui @functionality
    ☐ go through and add docblockr comments @documentation @code
@@ -12,5 +11,6 @@ Tomorrow:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ have most recent item appear at top of list @ui @done (12-12-17 15:04)
  ✔ activate progress bars @ui @done (12-12-17 13:18)
  ✔ fix drag and drop issue @ui @done (12-12-17 11:29)

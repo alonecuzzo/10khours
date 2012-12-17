@@ -154,7 +154,7 @@ $(function(){
 		localStorage: new Backbone.LocalStorage("tasks-backbone"),
 
 		nextOrder: function() {
-			if (!this.length) return 1;
+			if (!this.length) return 0;
 			return this.last().get('order') + 1;
 		},
 		
@@ -176,11 +176,6 @@ $(function(){
 		stopActiveSession: function() {
 			if(this.activeSession) this.activeSession.stopSession();
 		}
-	});
-
-	$('animateSelectedTask').on('click', '$("selector")', function(event) {
-		event.preventDefault();
-		// Act on the event
 	});
 
 	var Tasks = new TaskList();
@@ -231,6 +226,7 @@ $(function(){
 
 		onMouseOver: function() {
 			// console.log('mouse over');
+			console.log('order: ' + this.model.get('order'));
 		},
 
 		onMouseMove: function() {
@@ -336,7 +332,7 @@ $(function(){
 
 		addOne: function(task) {
 			var view = new TaskView({model : task});
-			this.$('#task-list').append(view.render().el);
+			this.$('#task-list').prepend(view.render().el);
 		},
 
 		addAll: function() {
