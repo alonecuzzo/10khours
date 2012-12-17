@@ -9,10 +9,11 @@
 /*
  *    Waits for jquery ready event.
  */
-
 $(function(){
 
-	// Timing constants
+	/**
+	 * Constants for animation.
+	 */
 	var ANIMATION_FADE_TIME = 150,
 		DURATION = 100,
 		JQUERYUI_EASING = "easeInQuart";
@@ -20,7 +21,11 @@ $(function(){
 	// Task Model
 	// -----------
 	Task = Backbone.Model.extend({
-		// defaults set for a task
+
+		/**
+		 * Sets default variables for the model.
+		 * @return {object}
+		 */
 		defaults: function() {
 			return {
 				title: 'default value',
@@ -31,12 +36,19 @@ $(function(){
 			};
 		},
 
+		/**
+		 * Gets called once the Model is initialized.
+		 */
 		initialize: function() {
 			this.set({'isRecording' : false});
 			this.set('displayTime', '0:00:00');
 			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
 		},
 
+		/**
+		 * Updates the display time that's displayed in a task view.
+		 * @param  {string} stringToPrint The string to print.
+		 */
 		updateDisplayTime: function(stringToPrint) {
 			this.set('displayTime', stringToPrint);
 			this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
@@ -44,6 +56,9 @@ $(function(){
 		},
 
 		// when start is called, add a new session to the sessions array and then call play() on it
+		/**
+		 * Creates a session object and adds it to the sessions array.  It also starts the session.
+		 */
 		startSession: function() {
 			this.set({'isRecording' : true});
 			this.set({'justStopped' : false});
@@ -62,6 +77,9 @@ $(function(){
 				// this is the setInterval function that runs the timer
 				timerInterval: null,
 
+				/**
+				 * Starts the timer for the session and formats the string that needs to be printed.
+				 */
 				startSession: function() {
 					var seconds = 0;
 					var instance = this;
@@ -74,6 +92,9 @@ $(function(){
 					}, 1000);
 				},
 
+				/**
+				 * Stops session.
+				 */
 				stopSession: function() {
 					clearInterval(this.timerInterval);
 				}
@@ -149,26 +170,40 @@ $(function(){
 	// Tasks Collection
 	// ----------------
 	var TaskList = Backbone.Collection.extend({
+
 		model: Task,
 
 		localStorage: new Backbone.LocalStorage("tasks-backbone"),
 
+		/**
+		 * Assigns order to Task object.
+		 * @return {Number}
+		 */
 		nextOrder: function() {
 			if (!this.length) return 0;
 			return this.last().get('order') + 1;
 		},
 		
+		/**
+		 * Function that assigns value for ordering.
+		 * @return {Number} Returns Task's order value.
+		 */
 		comparator: function(task) {
 			return task.get('order');
 		},
 
-
 		// keeps track of the presence of an active session
+		/**
+		 * Keeps track of the presence of an active session.
+		 * @param  {Task} task The current Task object that has a session recording.
+		 */
 		logStartSession: function(task) {
 			this.activeSession = task;
 		},
 
-		// logs the stopping of an active session, in other words setting it to null
+		/**
+		 * Sets the active session to null since there is no longer a session playing.
+		 */
 		logStopSession: function() {
 			this.activeSession = null;
 		},
@@ -181,6 +216,7 @@ $(function(){
 		}
 	});
 
+	// Instantiate collection.
 	var Tasks = new TaskList();
 
 	// Task Item View
@@ -194,21 +230,26 @@ $(function(){
 
 		// events to listen to
 		events: {
-			'mousemove' : 'onMouseMove',
-			'mousedown' : 'onMouseDown',
-			'mouseup' : 'startSession',
-			'mouseenter' : 'onMouseOver',
-			'mouseleave' : 'onMouseOut'
+			'mousemove'     : 'onMouseMove',
+			'mousedown'     : 'onMouseDown',
+			'mouseup'       : 'startSession',
+			'mouseenter'    : 'onMouseOver',
+			'mouseleave'    : 'onMouseOut'
 		},
 
-		//init
+		/**
+		 * Initialize view.
+		 */
 		initialize: function() {
 			this.model.on('change', this.render, this);
 			this.hasBeenDragged = false;
 			this.mousedown = false;
 		},
 
-		// re render titles of the task item
+		/**
+		 * Renders the view.
+		 * @return {Backbone.View}
+		 */
 		render: function() {
 			var $element = this.$el;
 			$element.html(this.template(this.model.toJSON()));
@@ -224,6 +265,9 @@ $(function(){
 			return this;
 		},
 
+		/**
+		 * Fades rollover effect out.
+		 */
 		onMouseOut: function() {
 			// console.log('mouse out');
 			var $element = $(this.$el);
@@ -232,21 +276,35 @@ $(function(){
 			$element.css({color : '#666666'}, 100);
 		},
 
+		/**
+		 * Fades rollover effect in.
+		 */
 		onMouseOver: function() {
 			// console.log('mouse over');
 			var $element = $(this.$el);
 			$element.css({borderColor : '#9a63f5', backgroundColor : '#418fdc', color : '#F7F7F7'});
 		},
 
+		/**
+		 * Determines if the mouse is down and the Task is being dragged in the list.
+		 */
 		onMouseMove: function() {
 			if(this.mousedown === true) this.hasBeenDragged = true;
 		},
 
+		/**
+		 * Tracks the this.mousedown variable.  This is neccessary to see if a Task has been just dragged & dropped.  If it has then we don't want it to fire off the startSession() function once it's released.
+		 */
 		onMouseDown: function() {
 			console.log('onMouseDown called');
 			this.mousedown = true;
 		},
 
+		/**
+		 * Animates the Task View between its default state and the active recording state.
+		 * @param  {object} $element The current $el object.
+		 * @param  {boolean} out      Whether the task needs to be faded out or not.
+		 */
 		animateSelectedTask: function($element, out) {
 			var targetBackgroundColor = '#FFFFFF',
 				targetBorderColor = '#CCCCCC',
@@ -262,6 +320,9 @@ $(function(){
 			$element.css({borderColor : targetBorderColor});
 		},
 
+		/**
+		 * Keeps track of dragging state for TaskView.
+		 */
 		setDraggingFalse: function() {
 			this.isDragging = false;
 			this.undelegateEvents();
@@ -270,6 +331,9 @@ $(function(){
 			this.hasBeenDragged = true;
 		},
 
+		/**
+		 * Starts the session recording for the current model associated with this TaskView.  Checks to see if the current model is recording, and if it has just been dragged.  If it's just been dragged and then dropped, we don't want it to start recording.
+		 */
 		startSession: function() {
 			if(this.model.get('isRecording') !== true && this.hasBeenDragged !== true) {
 				// if there is a current session running, we need to stop it
@@ -288,6 +352,9 @@ $(function(){
 			this.mousedown = false;
 		},
 
+		/**
+		 * If the TaskView is currently recording then stop the recording.
+		 */
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {
 				this.undelegateEvents();
@@ -299,21 +366,16 @@ $(function(){
 			}
 		},
 
-		undelegate: function() {
-			console.log('undelegating');
-			this.undelegateEvents();
-		},
-
-		// close and save values to the model
+		/**
+		 * Close and save values to the model.
+		 */
 		close: function() {
 			
 		},
 
-		updateOnEnter: function(e) {
-			if (e.keyCode == 13) this.close();
-		},
-
-		// remove the item and then destroy the model
+		/**
+		 * Remove the TaskView and destroy the model.
+		 */
 		clear: function() {
 			this.model.destroy();
 		}
@@ -325,6 +387,9 @@ $(function(){
 		
 		el: $('#tenKhoursapp'),
 
+		/**
+		 * Initialize.
+		 */
 		initialize: function() {
 			this.input = this.$('#new-task');
 			Tasks.on('add', this.addOne, this);
@@ -332,6 +397,9 @@ $(function(){
 			Tasks.fetch();
 		},
 
+		/**
+		 * Render View
+		 */
 		render: function() {
 		},
 
@@ -339,15 +407,26 @@ $(function(){
 			'keypress #new-task': 'createOnEnter'
 		},
 
+		/**
+		 * Adds a TaskView to the AppView
+		 * @param {Backbone.Model} task The current model that should be rendered to a view.
+		 */
 		addOne: function(task) {
 			var view = new TaskView({model : task});
 			this.$('#task-list').prepend(view.render().el);
 		},
 
+		/**
+		 * Add all of the models in the Collection to the View.
+		 */
 		addAll: function() {
 			Tasks.each(this.addOne);
 		},
 
+		/**
+		 * Creates a new Task when the enter key is pressed.
+		 * @param  {Event} e Keyboard event.
+		 */
 		createOnEnter: function(e) {
 			if (e.keyCode != 13) return;
 			if (!this.input.val()) return;
@@ -361,6 +440,12 @@ $(function(){
     
     // List Manipulation
 	// -----------------
+	
+	/**
+	 * Handles bumping the TaskViews up the list so that the current recording Task is always at the top of the list.
+	 * @param  {Number} startIndex       The starting index of the TaskView that needs to be moved.
+	 * @param  {Number} destinationIndex The index where the TaskView should be moved to.
+	 */
     function animateSelectedTaskToTop(startIndex, destinationIndex) {
         // The number of swaps done so far
         var numberOfSwapsDone = 0;
@@ -379,6 +464,13 @@ $(function(){
     }
     
     // The actual function which gets the job done
+    /**
+     * Swaps the TaskViews.
+     * @param  {Number} numberOfSwapsDone Number of swaps that have been done thus far.
+     * @param  {Number} numberOfSwapsToDo Number of swaps left.
+     * @param  {Number} startIndex        The TaskView's starting index.
+     * @param  {Number} destinationIndex  The TaskView's destination index.
+     */
     function doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex) {
         
         console.debug(">>>> Do swapping");
@@ -415,7 +507,17 @@ $(function(){
             doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
         });
     }
-    
+   
+   /**
+    * Swaps the actual <li> items.
+    * @param  {[type]}  $northLi         [description]
+    * @param  {[type]}  $southLi         [description]
+    * @param  {Boolean} isPushingDown    [description]
+    * @param  {[type]}  duration         [description]
+    * @param  {[type]}  easing           [description]
+    * @param  {[type]}  callbackFunction [description]
+    * @return {[type]}
+    */
     function swapLiElements($northLi, $southLi, isPushingDown, duration, easing, callbackFunction) {
         
         var movement = $northLi.outerHeight();
@@ -453,7 +555,10 @@ $(function(){
         
     }
     
-    // Reset the positioning of a li element to the default one
+    /**
+     * Reset the position of the <li> element to the default one.
+     * @param  {object} $liElement The element that needs to be reset.
+     */
     function resetLiCssPosition($liElement) {
         $liElement.css({'position': 'static', 'top': '0'});
         $liElement.css('z-index', '0');

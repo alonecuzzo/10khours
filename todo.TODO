@@ -1,6 +1,5 @@
 Today:
-   ☐ go through and add docblockr comments @documentation @code
-   ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
+   ☐ deploy to heroku
 
 --- ✄ -----------------------
 
@@ -10,9 +9,11 @@ Tomorrow:
  ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
  ☐ when you click an active item and it stops, the transition between the old color of the copy and the new color takes too long... there's too much of a delay @ui @functionality 
  ☐ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality
+ ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ go through and add docblockr comments @documentation @code @done (12-12-17 18:40)
  ✔ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality @done (12-12-17 16:12)
  ✔ cell hover state @ui @design @done (12-12-17 15:31)
  ✔ have most recent item appear at top of list @ui @done (12-12-17 15:04)
