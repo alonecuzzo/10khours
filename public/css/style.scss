@@ -9,7 +9,11 @@ $h1-color: #F7F7F7;
 // task list stuff
 $selected-task-background-color: #FF0000;
 $progress-bar-height: 8px;
+<<<<<<< HEAD
 $task-border-color: #CCC;
+=======
+$task-border-color: #CCC; 
+>>>>>>> master
 
 html,
 body {
@@ -72,7 +76,11 @@ body {
 		background-color: #FFF;
 		margin-top: 3px;
 		border: 1px solid $task-border-color;
+<<<<<<< HEAD
 		color: #666;
+=======
+		color: #AAA;
+>>>>>>> master
 		-moz-border-radius: 15px;
 		border-radius: 15px;
 

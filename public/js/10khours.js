@@ -1,7 +1,7 @@
 /*
  *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
  *
- *    Jabari Bell jabari.bell@23b.it some
+ *    Jabari Bell jabari.bell@23b.it
  *    27-11-12
  */
 
@@ -243,9 +243,16 @@ $(function(){
 		},
 
 		animateSelectedTask: function($element, out) {
+<<<<<<< HEAD
 			var targetBackgroundColor = '#FFFFFF',
 				targetBorderColor = '#CCCCCC',
 				targetFontColor = '#666';
+=======
+			// color animation plugin taken from: http://www.bitstorm.org/jquery/color-animation/
+			var targetBackgroundColor = '#FFF',
+				targetBorderColor = '#CCC',
+				targetFontColor = '#AAA';
+>>>>>>> master
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
 				targetBorderColor = '#773fd3';
