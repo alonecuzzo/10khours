@@ -173,7 +173,9 @@ $(function(){
 			this.activeSession = null;
 		},
 
-		// this function will stop the active session if one exists
+		/**
+		 * Stops the active function if one exists.
+		 */
 		stopActiveSession: function() {
 			if(this.activeSession) this.activeSession.stopSession();
 		}
@@ -214,9 +216,9 @@ $(function(){
 				barPercentage = this.model.getDailyPercentage();
 			$uiProgressBar.width(barPercentage + '%');
 			if(this.model.get('justStopped') === true) {
-				// $element.find('#item.#item-template.ui-progress-bar').css('width', '10%');
 				this.animateSelectedTask($element, false);
 				this.model.set({'justStopped' : false});
+				this.stopSession();
 			}
 			return this;
 		},
@@ -232,8 +234,6 @@ $(function(){
 		onMouseOver: function() {
 			// console.log('mouse over');
 			var $element = $(this.$el);
-			// $element.animate({borderColor : '#9a63f5'}, 100);
-			// $element.animate({backgroundColor : '#418fdc'}, 100);
 			$element.css({borderColor : '#9a63f5', backgroundColor : '#418fdc', color : '#F7F7F7'});
 		},
 

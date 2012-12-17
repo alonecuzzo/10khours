@@ -1,7 +1,6 @@
 Today:
    ☐ go through and add docblockr comments @documentation @code
    ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
-   ☐ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality
 
 --- ✄ -----------------------
 
@@ -12,6 +11,7 @@ Tomorrow:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality @done (12-12-17 16:12)
  ✔ cell hover state @ui @design @done (12-12-17 15:31)
  ✔ have most recent item appear at top of list @ui @done (12-12-17 15:04)
  ✔ activate progress bars @ui @done (12-12-17 13:18)
