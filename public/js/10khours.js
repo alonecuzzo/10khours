@@ -164,6 +164,15 @@ $(function(){
 			var weeklyTotalSeconds = 68400, // 19 hours per week to hit 10,000 hours in 10 years
 				totalWeeklyTime = this.getTotalTime(Date.today().last().sunday().getTime());
 			return Math.round((totalWeeklyTime / weeklyTotalSeconds) * 100) / 100;
+		},
+
+		/**
+		 * Matches model's order property to the proper index in the view.
+		 * @param  {Number} index Index of View in list.
+		 */
+		matchOrderIndex: function(index) {
+			this.set('order', index);
+			this.save();
 		}
 	});
 
@@ -172,6 +181,9 @@ $(function(){
 	var TaskList = Backbone.Collection.extend({
 
 		model: Task,
+
+		// hack to keep track of location of currently dragging item
+		currentPlaceholderIndex: Number.MAX_VALUE,
 
 		localStorage: new Backbone.LocalStorage("tasks-backbone"),
 
@@ -213,6 +225,28 @@ $(function(){
 		 */
 		stopActiveSession: function() {
 			if(this.activeSession) this.activeSession.stopSession();
+		},
+
+		/**
+		 * Removes model at updateModelAtOrder value, reinserts it at updateModelWithOrder in the this.models array, and then it scrolls through them and updates the orders of the models.
+		 * @param  {Number} updateModelAtOrder   The order that the model of interest contains that needs to be updated.
+		 * @param  {Number} updateModelWithOrder The new order of the model given its repositioning in the list.
+		 */
+		updateListOrder: function(updateModelAtOrder, updateModelWithOrder) {
+			var modelToChange;
+			_.each(this.models, function(task) {
+				if(task.get('order') === updateModelAtOrder) modelToChange = task;
+			});
+			if(modelToChange) {
+				this.models.splice(_.indexOf(this.models, modelToChange), 1);
+				this.models.splice(this.models.length - updateModelWithOrder, 0, modelToChange);
+				var i;
+				for(i = 0; i <= this.models.length - 1; i++) {
+					this.models[i].set('order', i);
+					this.models[i].save();
+				}
+			}
+			// console.log(JSON.stringify(this));
 		}
 	});
 
@@ -283,6 +317,8 @@ $(function(){
 			// console.log('mouse over');
 			var $element = $(this.$el);
 			$element.css({borderColor : '#9a63f5', backgroundColor : '#418fdc', color : '#F7F7F7'});
+			// console.log('onMouseOver index(): ' + $element.index());
+			// console.log('onMouseOver get(order): ' + this.model.get('order'));
 		},
 
 		/**
@@ -296,7 +332,7 @@ $(function(){
 		 * Tracks the this.mousedown variable.  This is neccessary to see if a Task has been just dragged & dropped.  If it has then we don't want it to fire off the startSession() function once it's released.
 		 */
 		onMouseDown: function() {
-			console.log('onMouseDown called');
+			// console.log('onMouseDown called');
 			this.mousedown = true;
 		},
 
@@ -347,7 +383,14 @@ $(function(){
 				console.log('my index is: ' + $element.index());
 				animateSelectedTaskToTop($element.index(), 0);
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
+			} else if(this.hasBeenDragged === true){
+				//need to update the order of the items starting with this one in the models
+				var newIndex = Tasks.currentPlaceholderIndex,
+					currentOrder = this.model.get('order');
+				console.log('current order: ' + currentOrder + ' new index: ' + newIndex);
+				Tasks.updateListOrder(currentOrder, newIndex);
 			}
+			Tasks.currentPlaceholderIndex = Number.MAX_VALUE;
 			this.hasBeenDragged = false;
 			this.mousedown = false;
 		},
@@ -572,12 +615,18 @@ $(function(){
 			// was looking to fix that index not updating properly issue here: http://stackoverflow.com/questions/4956039/jquery-sortable-change-event-element-position
 			var start_pos = ui.item.index();
 			ui.item.data('start_pos', start_pos);
+			console.log('ui.item.index(): ' + start_pos);
 		},
 		stop: function(e, ui){
 		},
 		forcePlaceholderSize: true,
 		change: function (e,ui){
 			$(ui.placeholder).hide().show(100);
+			// console.log('new index via the placeholder: ' + ui.placeholder.index());
+			var start_pos = ui.item.data('start_pos'),
+				newIndex = ui.placeholder.index();
+			if(start_pos < newIndex) newIndex -= 1;
+			Tasks.currentPlaceholderIndex = newIndex;
 		},
 		// will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder
 		// using this hack to customize look of placeholder: http://stackoverflow.com/questions/2150002/jquery-ui-sortable-how-can-i-change-the-appearance-of-the-placeholder-object
