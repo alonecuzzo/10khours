@@ -15,8 +15,8 @@ $(function(){
 	 * Constants for animation.
 	 */
 	var ANIMATION_FADE_TIME = 150,
-		DURATION = 100,
-		JQUERYUI_EASING = "easeInQuart";
+		DURATION            = 100,
+		JQUERYUI_EASING     = "easeInQuart";
 
 	// Task Model
 	// -----------
@@ -63,8 +63,8 @@ $(function(){
 			this.set({'isRecording' : true});
 			this.set({'justStopped' : false});
 			this.set('displayTime', '0:00:00');
-			var sessions = this.get('sessions');
-			var self = this;
+			var sessions = this.get('sessions'),
+				self     = this;
 			// instead of keeping a session model, let's just create a session object and keep it in an array
 			var session = {
 				
@@ -108,8 +108,8 @@ $(function(){
 		 * Stops current active session.  Sets an end date for the session and also updates the displayTime, isRecording, and totalTime variables.  The getTotalTime() function should be passed different start dates/times depending upon which mode (day/week/total 10k time) that the app is currently in
 		 */
 		stopSession: function() {
-			var	currentSession = this.get('currentSession'),
-				sinceDate = Date.today().getTime();
+			var	currentsession = this.get('currentsession'),
+				sincedate      = date.today().gettime();
 				// sinceDate = Date.today().last().sunday().getTime();
 			this.set({'justStopped' : true});
 			currentSession.endDate = new Date().getTime();
@@ -132,9 +132,9 @@ $(function(){
 		 */
 		getTotalTime: function(sinceDate) {
 			var i,
-				sd = 0,
-				sum = 0,
-				sessions = this.get('sessions'),
+				sd          = 0,
+				sum         = 0,
+				sessions    = this.get('sessions'),
 				sessionsLen = sessions.length;
 			if(sinceDate > 0) sd = sinceDate;
 			for(i = 0; i <= sessionsLen - 1; i++) {
@@ -149,7 +149,7 @@ $(function(){
 		 */
 		getDailyPercentage: function() {
 			var dailyTotalSeconds = 10800, // 10800 seconds in 3 hours which is daily amount needed
-				totalDailyTime = this.getTotalTime(Date.today().getTime()),
+				totalDailyTime    = this.getTotalTime(Date.today().getTime()),
 				returnPercentage = Math.round((totalDailyTime / dailyTotalSeconds) * 100) / 100;
 			if(returnPercentage < 0.05) returnPercentage = 0.05;
 			if(returnPercentage > 1.0) returnPercentage = 1.0;
@@ -162,7 +162,7 @@ $(function(){
 		 */
 		getWeeklyPercentage: function() {
 			var weeklyTotalSeconds = 68400, // 19 hours per week to hit 10,000 hours in 10 years
-				totalWeeklyTime = this.getTotalTime(Date.today().last().sunday().getTime());
+				totalWeeklyTime    = this.getTotalTime(Date.today().last().sunday().getTime());
 			return Math.round((totalWeeklyTime / weeklyTotalSeconds) * 100) / 100;
 		},
 
