@@ -1,6 +1,4 @@
 Today:
- ✔ redesign Task cell, need to be more specific about how cell looks when active and deactive... what do we want shown in the deactive state and what do we need to see in the active state? displayTime? totalTime? @done (12-12-18 11:00)
- ☐ update list order property on list item order change @ui @functionality
  ☐ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality
 
 
@@ -21,6 +19,8 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ redesign Task cell, need to be more specific about how cell looks when active and deactive... what do we want shown in the deactive state and what do we need to see in the active state? displayTime? totalTime? @done (12-12-18 11:00)
+ ✔ update list order property on list item order change @ui @functionality @done (12-12-18 14:47)
  ✔ deploy to heroku @done (12-12-17 19:11)
  ✔ go through and add docblockr comments @documentation @code @done (12-12-17 18:40)
  ✔ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality @done (12-12-17 16:12)

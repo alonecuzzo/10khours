@@ -474,6 +474,10 @@ $(function(){
 			if (e.keyCode != 13) return;
 			if (!this.input.val()) return;
 			Tasks.create({title: this.input.val()});
+			if(Tasks.activeSession) {
+				//if there's an active session, bump that session up
+				animateSelectedTaskToTop(1, 0);
+			}
 			this.input.val('');
 		}
 	});
