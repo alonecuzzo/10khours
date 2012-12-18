@@ -371,6 +371,8 @@ $(function(){
 		 * Starts the session recording for the current model associated with this TaskView.  Checks to see if the current model is recording, and if it has just been dragged.  If it's just been dragged and then dropped, we don't want it to start recording.
 		 */
 		startSession: function() {
+			var newIndex = Tasks.currentPlaceholderIndex,
+					currentOrder = this.model.get('order');
 			if(this.model.get('isRecording') !== true && this.hasBeenDragged !== true) {
 				// if there is a current session running, we need to stop it
 				this.undelegateEvents();
@@ -382,12 +384,10 @@ $(function(){
 				this.animateSelectedTask($element, true);
 				console.log('my index is: ' + $element.index());
 				animateSelectedTaskToTop($element.index(), 0);
+				Tasks.updateListOrder(currentOrder, 0);
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			} else if(this.hasBeenDragged === true){
-				//need to update the order of the items starting with this one in the models
-				var newIndex = Tasks.currentPlaceholderIndex,
-					currentOrder = this.model.get('order');
-				console.log('current order: ' + currentOrder + ' new index: ' + newIndex);
+				//just update the order on the list models
 				Tasks.updateListOrder(currentOrder, newIndex);
 			}
 			Tasks.currentPlaceholderIndex = Number.MAX_VALUE;
