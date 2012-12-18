@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra/base'
-require 'sinatra/backbone'
 
 class App < Sinatra::Base
 	
