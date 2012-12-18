@@ -1,5 +1,4 @@
 Today:
-   ☐ deploy to heroku
 
 --- ✄ -----------------------
 
@@ -13,6 +12,7 @@ Tomorrow:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ deploy to heroku @done (12-12-17 19:11)
  ✔ go through and add docblockr comments @documentation @code @done (12-12-17 18:40)
  ✔ when you click an item and it starts a session, and then you click another item to start another session, the first item that was activated appears to have its listeners deactivated @ui @functionality @done (12-12-17 16:12)
  ✔ cell hover state @ui @design @done (12-12-17 15:31)
