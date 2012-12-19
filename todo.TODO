@@ -18,6 +18,7 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ BUG!!! when you activate an item, the stop button breaks!!! @bug @done (12-12-19 12:37)
  ✔ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality @done (12-12-18 15:03)
  ✔ redesign Task cell, need to be more specific about how cell looks when active and deactive... what do we want shown in the deactive state and what do we need to see in the active state? displayTime? totalTime? @done (12-12-18 11:00)
  ✔ update list order property on list item order change @ui @functionality @done (12-12-18 14:47)

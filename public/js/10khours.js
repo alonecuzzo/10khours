@@ -108,8 +108,8 @@ $(function(){
 		 * Stops current active session.  Sets an end date for the session and also updates the displayTime, isRecording, and totalTime variables.  The getTotalTime() function should be passed different start dates/times depending upon which mode (day/week/total 10k time) that the app is currently in
 		 */
 		stopSession: function() {
-			var	currentsession = this.get('currentsession'),
-				sincedate      = date.today().gettime();
+			var	currentSession = this.get('currentSession'),
+				sinceDate      = Date.today().getTime();
 				// sinceDate = Date.today().last().sunday().getTime();
 			this.set({'justStopped' : true});
 			currentSession.endDate = new Date().getTime();
@@ -400,6 +400,7 @@ $(function(){
 		 */
 		stopSession: function() {
 			if(this.model.get('isRecording') === true) {
+				console.log('im in!');
 				this.undelegateEvents();
 				this.delegateEvents(this.events);
 				Tasks.logStopSession();
