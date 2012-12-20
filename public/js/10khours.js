@@ -275,6 +275,7 @@ $(function(){
 		 * Initialize view.
 		 */
 		initialize: function() {
+			var $element     = $(this.$el);
 			this.model.on('change', this.render, this);
 			this.hasBeenDragged = false;
 			this.mousedown = false;
@@ -285,16 +286,22 @@ $(function(){
 		 * @return {Backbone.View}
 		 */
 		render: function() {
-			var $element = this.$el;
+			var $element        = this.$el;
 			$element.html(this.template(this.model.toJSON()));
-			var $uiProgressBar = $($element).find('.ui-progress'),
-				barPercentage = this.model.getDailyPercentage();
+			var $uiProgressBar  = $($element).find('.ui-progress'),
+				$displayTime    = $($element).find('#task-display-time'),
+				barPercentage   = this.model.getDailyPercentage();
 			$uiProgressBar.width(barPercentage + '%');
 			if(this.model.get('justStopped') === true) {
-				this.onMouseOut();
-				this.animateSelectedTask($element, false);
 				this.model.set({'justStopped' : false});
-				this.stopSession();
+				this.delegateEvents(this.events);
+				this.onMouseOut();
+			}
+
+			if(this.model.get('isRecording') === true) {
+				$displayTime.show();
+			} else {
+				$displayTime.hide();
 			}
 			return this;
 		},
@@ -304,7 +311,8 @@ $(function(){
 		 */
 		onMouseOut: function() {
 			// console.log('mouse out');
-			var $element = $(this.$el);
+			var $element = $(this.$el),
+				$displayTime = $element.find('#task-display-time');
 			$element.animate({backgroundColor : '#FFFFFF'}, 100);
 			$element.animate({borderColor : '#CCCCCC'}, 100);
 			$element.css({color : '#666666'}, 100);
@@ -343,14 +351,14 @@ $(function(){
 		 */
 		animateSelectedTask: function($element, out) {
 			var targetBackgroundColor = '#FFFFFF',
-				targetBorderColor = '#CCCCCC',
-				targetFontColor = '#666';
+				targetBorderColor     = '#CCCCCC',
+				targetFontColor       = '#666',
+				targetDisplay         = 'inline';
 			if(out === true) {
 				targetBackgroundColor = '#9a63f5';
-				targetBorderColor = '#773fd3';
-				targetFontColor = '#FFFFFF';
+				targetBorderColor     = '#773fd3';
+				targetFontColor       = '#FFFFFF';
 			}
-			console.log('calling animated selected task!');
 			$element.animate({backgroundColor : targetBackgroundColor}, ANIMATION_FADE_TIME);
 			$element.animate({color : targetFontColor}, 10);
 			$element.css({borderColor : targetBorderColor});
@@ -383,8 +391,8 @@ $(function(){
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, true);
 				console.log('my index is: ' + $element.index());
-				animateSelectedTaskToTop($element.index(), 0);
 				Tasks.updateListOrder(currentOrder, 0);
+				animateSelectedTaskToTop($element.index(), 0);
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			} else if(this.hasBeenDragged === true){
 				//just update the order on the list models

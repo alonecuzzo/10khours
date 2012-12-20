@@ -1,6 +1,5 @@
 Today:
  ☐ handle item deletion @ui @functionality
- ☐ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality 
  
 --- ✄ -----------------------
 
@@ -14,10 +13,11 @@ Future:
  ☐ allow manual addition of Tasks/time @functionality
  ☐ also allow addition of time separate of tasks @functionality
  ☐ gamification, leveling up etc for logging your hours @functionality
- ☐ align all = signs, instructions here: http://wbond.net/sublime_packages/alignment @code
+ ☐ align all = signs, instructions here: http://wbond.net/sublime_packages/alignment @code **seems to be buggy, was uncamel-casing my variables !!!
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality @done (12-12-20 13:56)
  ✔ BUG!!! when you activate an item, the stop button breaks!!! @bug @done (12-12-19 12:37)
  ✔ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality @done (12-12-18 15:03)
  ✔ redesign Task cell, need to be more specific about how cell looks when active and deactive... what do we want shown in the deactive state and what do we need to see in the active state? displayTime? totalTime? @done (12-12-18 11:00)
