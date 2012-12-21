@@ -12,11 +12,10 @@
             title: "Task title",  
             displayTime: '0:00:00',
             order: 0,
-            totalTime: 0,
+            totalSeconds: 0,
             creationDate: new Date(),
             sessions: [
                 Session: {
-                            totalTime: 0,
                             startDate: new Date(),
                             endDate: new Date()
                         },

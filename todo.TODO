@@ -1,5 +1,4 @@
 Today:
- ☐ start documentation: document the models' needs and backends, maybe views @documentation  
 --- ✄ -----------------------
 
 Tomorrow:
@@ -17,6 +16,7 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ start documentation: document the models' needs and backends, maybe views @documentation @done (12-12-21 16:28)
  ✔ create media queries / breakpoints for different devices... phone first, then maybe ipad @interface @done (12-12-21 13:36)
  ✔ integrate html5boilerplate - did initializr instead @done (12-12-21 12:50)
  ✔ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality @done (12-12-20 13:56)
