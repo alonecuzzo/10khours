@@ -1,9 +1,11 @@
 Today:
- ☐ handle item deletion @ui @functionality
- 
+ ☐ start documentation: document the models' needs and backends, maybe views @documentation  
+ ☐ create media queries / breakpoints for different devices... phone first, then maybe ipad @interface
+ ☐ integrate html5boilerplate
 --- ✄ -----------------------
 
 Tomorrow:
+ ☐ handle item deletion @ui @functionality
  ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
  ☐ when you click an active item and it stops, the transition between the old color of the copy and the new color takes too long... there's too much of a delay @ui @functionality 
 
