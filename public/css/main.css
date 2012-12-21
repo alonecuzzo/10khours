@@ -154,10 +154,11 @@ body {
   background: #f7f7f7;
   padding: 20px;
   margin-bottom: 40px;
-  width: 520px;
+  /*width: 520px;*/
+  width: 90%;
   margin: 0 auto; }
   #tenKhoursapp input[type='text'] {
-    width: 100px;
+    width: 94%;
     border: 0;
     font-size: 23px;
     border: 1px solid #999;
@@ -257,8 +258,10 @@ body {
     float: left;
     width: 57%; }
 
-  #tenKhoursapp input[type="text"] {
-    width: 502px; }
+  #tenKhoursapp {
+    width: 522px; }
+    #tenKhoursapp input[type="text"] {
+      width: 502px; }
 
   .main aside {
     float: right;

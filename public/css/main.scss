@@ -205,11 +205,12 @@ body {
     background: $bg-color;
     padding: 20px;
     margin-bottom: 40px;
-    width: 520px;
+    /*width: 520px;*/
+    width: 90%;
     margin: 0 auto;
 
     input[type='text'] {
-        width: 100px;
+        width: 94%;
         border: 0;
         font-size: 23px;
         border: 1px solid #999;
@@ -345,8 +346,12 @@ body {
         width: 57%;
     }
 
-    #tenKhoursapp input[type="text"] {
-        width: 502px;
+    #tenKhoursapp {
+        width: 522px;
+
+        input[type="text"] {
+            width: 502px;
+        }
     }
 
     .main aside {
