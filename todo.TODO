@@ -1,7 +1,6 @@
 Today:
  ☐ start documentation: document the models' needs and backends, maybe views @documentation  
  ☐ create media queries / breakpoints for different devices... phone first, then maybe ipad @interface
- ☐ integrate html5boilerplate
 --- ✄ -----------------------
 
 Tomorrow:
@@ -19,6 +18,7 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ integrate html5boilerplate - did initializr instead @done (12-12-21 12:50)
  ✔ have displayTime default set to invisible... should only toggle on when the task is active @ui @functionality @done (12-12-20 13:56)
  ✔ BUG!!! when you activate an item, the stop button breaks!!! @bug @done (12-12-19 12:37)
  ✔ when you add a new item while a current item is recording, the recording item should stay at top @ui @functionality @done (12-12-18 15:03)
