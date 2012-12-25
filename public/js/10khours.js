@@ -19,7 +19,7 @@ $(function(){
 	/**
 	 * Constants for animation.
 	 */
-	var ANIMATION_FADE_TIME = 300,
+	var ANIMATION_FADE_TIME = 150,
 		DURATION            = 100,
 		JQUERYUI_EASING     = "easeInQuart";
 
@@ -29,7 +29,7 @@ $(function(){
 
 		/**
 		 * Sets default variables for the model.
-		 * @return {object}
+		 * @return {Backbone.Model}
 		 */
 		defaults: function() {
 			return {
@@ -271,10 +271,9 @@ $(function(){
 		events: {
 			'mousemove'     : 'onMouseMove',
 			'mousedown'     : 'onMouseDown',
-			'mouseup'       : 'startSession',
+			'mouseup'       : 'onMouseClick',
 			'mouseenter'    : 'onMouseOver',
-			'mouseleave'    : 'onMouseOut',
-			'dblclick'      : 'onDoubleClick'
+			'mouseleave'    : 'onMouseOut'
 		},
 
 		/**
@@ -315,8 +314,9 @@ $(function(){
 		/**
 		 * Handles showing edit view.
 		 */
-		onDoubleClick: function() {
+		onMouseDoubleClick: function() {
 			console.log('dblclick');
+			this.undelegateEvents();
 			$(App.el).hide();
 		},
 
@@ -344,6 +344,29 @@ $(function(){
 		},
 
 		/**
+		 * Need to create our own custom double-click detector
+		 */
+		onMouseClick: function() {
+			var instance = this;
+			this.mousedown = false;
+			if(this.alreadyClicked) {
+				// handle double click
+				this.alreadyClicked = false;
+				clearTimeout(this.alreadyClickedTimeout);
+				this.onMouseDoubleClick();
+			} else {
+				// handle single click business
+				// wait 300ms, if no second click reset everything
+				this.alreadyClicked = true;
+				this.alreadyClickedTimeout = setTimeout(function(){
+					console.log('single click');
+					instance.alreadyClicked = false;
+					instance.startSession();
+				}, 300);
+			}
+		},
+
+		/**
 		 * Determines if the mouse is down and the Task is being dragged in the list.
 		 */
 		onMouseMove: function() {
@@ -354,8 +377,16 @@ $(function(){
 		 * Tracks the this.mousedown variable.  This is neccessary to see if a Task has been just dragged & dropped.  If it has then we don't want it to fire off the startSession() function once it's released.
 		 */
 		onMouseDown: function() {
-			// console.log('onMouseDown called');
+			console.log('onMouseDown called');
 			this.mousedown = true;
+		},
+
+		/**
+		 * Clear the double click interval.
+		 * @return {[type]} [description]
+		 */
+		clearDoubleClickInterval: function() {
+			clearInterval(this.alreadyClickedTimeout);
 		},
 
 		/**
@@ -393,6 +424,7 @@ $(function(){
 		 * Starts the session recording for the current model associated with this TaskView.  Checks to see if the current model is recording, and if it has just been dragged.  If it's just been dragged and then dropped, we don't want it to start recording.
 		 */
 		startSession: function() {
+			console.log('starting session');
 			var newIndex = Tasks.currentPlaceholderIndex,
 					currentOrder = this.model.get('order');
 			if(this.model.get('isRecording') !== true && this.hasBeenDragged !== true) {
@@ -497,10 +529,6 @@ $(function(){
 			if (e.keyCode != 13) return;
 			if (!this.input.val()) return;
 			Tasks.create({title: this.input.val()});
-			if(Tasks.activeSession) {
-				//if there's an active session, bump that session up
-				animateSelectedTaskToTop(1, 0);
-			}
 			this.input.val('');
 		}
 	});
