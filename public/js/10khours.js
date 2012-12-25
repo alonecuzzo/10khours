@@ -1,7 +1,7 @@
 /*
  *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
  *
- *    Jabari Bell jabari.bell@23b.it a 
+ *    Jabari Bell jabari.bell@23b.it a
  *    27-11-12
  */
 
@@ -19,7 +19,7 @@ $(function(){
 	/**
 	 * Constants for animation.
 	 */
-	var ANIMATION_FADE_TIME = 150,
+	var ANIMATION_FADE_TIME = 100,
 		DURATION            = 100,
 		JQUERYUI_EASING     = "easeInQuart";
 
