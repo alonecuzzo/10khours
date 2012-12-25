@@ -19,7 +19,7 @@ $(function(){
 	/**
 	 * Constants for animation.
 	 */
-	var ANIMATION_FADE_TIME = 100,
+	var ANIMATION_FADE_TIME = 300,
 		DURATION            = 100,
 		JQUERYUI_EASING     = "easeInQuart";
 
