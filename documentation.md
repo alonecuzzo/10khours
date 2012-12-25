@@ -21,7 +21,7 @@
                         },
                 Session: {
                             etc...
-                }
+                        }
             ],
             tags: [
                 "family",

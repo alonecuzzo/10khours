@@ -11,6 +11,11 @@
  */
 $(function(){
 
+	// $('#tenKhoursapp').on('touchmove', false);
+		
+
+	// $('#tenKhoursapp').on('touchmove', true);
+
 	/**
 	 * Constants for animation.
 	 */
@@ -268,7 +273,8 @@ $(function(){
 			'mousedown'     : 'onMouseDown',
 			'mouseup'       : 'startSession',
 			'mouseenter'    : 'onMouseOver',
-			'mouseleave'    : 'onMouseOut'
+			'mouseleave'    : 'onMouseOut',
+			'dblclick'      : 'onDoubleClick'
 		},
 
 		/**
@@ -304,6 +310,14 @@ $(function(){
 				$displayTime.hide();
 			}
 			return this;
+		},
+
+		/**
+		 * Handles showing edit view.
+		 */
+		onDoubleClick: function() {
+			console.log('dblclick');
+			$(App.el).hide();
 		},
 
 		/**
@@ -391,9 +405,9 @@ $(function(){
 				var $element = $(this.$el);
 				this.animateSelectedTask($element, true);
 				console.log('my index is: ' + $element.index());
-				Tasks.updateListOrder(currentOrder, 0);
-				animateSelectedTaskToTop($element.index(), 0);
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				//Tasks.updateListOrder(currentOrder, 0);
+				// animateSelectedTaskToTop($element.index(), 0);
+				//$('html, body').animate({ scrollTop: 0 }, 'slow');
 			} else if(this.hasBeenDragged === true){
 				//just update the order on the list models
 				Tasks.updateListOrder(currentOrder, newIndex);
@@ -656,5 +670,6 @@ $(function(){
 			}
 		}
 	});
+
     $('#task-list').disableSelection();
 });

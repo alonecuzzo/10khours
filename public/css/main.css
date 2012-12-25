@@ -10,7 +10,9 @@ textarea {
 
 body {
   font-size: 1em;
-  line-height: 1.4; }
+  line-height: 1.4;
+  overflow-x: hidden;
+  width: 100%; }
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -53,13 +55,16 @@ body {
 
 .wrapper {
   width: 100%;
-  margin: 0 0; }
+  margin: 0 -7% 0; }
 
 /* ===================
     ALL: Orange Theme
    =================== */
 .header-container {
-  /*border-bottom: 20px solid #e44d26;*/ }
+  /*border-bottom: 20px solid #e44d26;*/
+  border-bottom: 12px solid #9a63f5;
+  background-image: url("../img/backgrounds/header-background.png");
+  background-size: 70px 70px; }
 
 .footer-container,
 .main aside {
@@ -68,7 +73,9 @@ body {
 .header-container,
 .footer-container,
 .main aside {
-  /*background: #f16529;*/ }
+  /*background: #f16529;*/
+  overflow-x: hidden;
+  width: 100%; }
 
 .title {
   color: white; }
@@ -125,8 +132,6 @@ nav a:hover {
    ========================================================================== */
 html,
 body {
-  margin: 0;
-  padding: 0;
   background-color: #f7f7f7; }
 
 body {
@@ -138,36 +143,36 @@ body {
 #header {
   width: 100%;
   height: 70px;
-  background-image: url("../img/backgrounds/header-background.png");
-  background-size: 70px 70px;
   position: relative;
   z-index: 3;
-  border-bottom: 12px solid #9a63f5; }
+  overflow-x: hidden; }
   #header h1 {
     font-size: 35px;
     text-align: center;
     margin: 0;
+    margin-left: 55px;
     padding-top: 25px;
     color: #f7f7f7; }
 
 #tenKhoursapp {
   background: #f7f7f7;
-  padding: 20px;
   margin-bottom: 40px;
-  /*width: 520px;*/
   width: 90%;
   margin: 0 auto; }
   #tenKhoursapp input[type='text'] {
-    width: 94%;
+    width: 95%;
     border: 0;
-    font-size: 23px;
+    font-size: 24px;
     border: 1px solid #999;
-    padding: 8px; }
+    padding: 8px;
+    margin-left: 20px; }
 
 #task-list {
   list-style: none;
   margin: 30px 0;
-  padding: 0; }
+  margin-left: 20px;
+  padding: 0;
+  width: 101%; }
   #task-list li {
     padding: 18px 20px 18px 0;
     font-size: 24px;
@@ -259,7 +264,7 @@ body {
     width: 57%; }
 
   #tenKhoursapp {
-    width: 522px; }
+    width: 516px; }
     #tenKhoursapp input[type="text"] {
       width: 502px; }
 
