@@ -1,0 +1,14 @@
+{
+  "name": "10k",
+  "version": "0.0.1",
+  "private": true,
+  "homepage" : "http:23b.it",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-mocha": "<0.4.7",
+    "grunt-css" : "0.4.1"
+  },
+  "author" : {
+  	"name" : "Jabari Bell"
+  }
+}
