@@ -9,6 +9,7 @@ To run in Sinatra use the #sudo rackup -p 4567# from the **/dist** directory.
 
 10k is built following a mochajs/gruntjs directory structure:
 
+```bash
 ├── README.md
 ├── build
 │   ├── 10k
@@ -60,6 +61,7 @@ To run in Sinatra use the #sudo rackup -p 4567# from the **/dist** directory.
 ├── tests
 │   └── app
 └── tmp
+```
 
 ## Directories
 
