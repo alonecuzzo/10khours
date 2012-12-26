@@ -17,14 +17,18 @@ module.exports = function(grunt) {
 		},
 		min : {
 			dist : {
-				src : [ root + 'src/app/js/10khours.js'],
+				src : [root + 'src/app/js/10khours.js'],
 				dest : root + 'dist/app/public/js/<%= pkg.name %>.min.js'
+			},
+			lib : {
+				src : [root + 'lib/<%= pkg.name =>-lib.js'],
+				dest : root + 'dist/app/public/lib/<%= pkg.name %>-lib.min.js'
 			}
 		},
 		concat : {
 			dist : {
-				src : ['<banner>', root + 'lib/modernizr-2.6.2-respond-1.1.0.min.js', root + 'lib/json2.min.js', root + 'lib/jquery-1.8.3.min.js', root + 'lib/jquery-ui-1.9.2.custom.min.js', root + 'lib/underscore-min.js', root + 'lib/backbone-min.js', root + 'lib/backbone-localStorage-min.js', root + 'lib/date.min.js', root + 'lib/plugins.js', '<config:min.dist.dest>'],
-				dest : root + 'dist/app/public/lib/<%= pkg.name %>-lib.min.js'
+				src : [root + 'lib/*.js'],
+				dest : root + 'dist/app/public/lib/<%= pkg.name %>-lib.js'
 			}
 		},
 		cssmin : {
