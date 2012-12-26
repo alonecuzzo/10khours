@@ -37,6 +37,10 @@ module.exports = function(grunt) {
 				dest : root + 'dist/app/public/css/<%= pkg.name %>.min.css'
 			}
 		},
+		clean : {
+			//hack: there needs to be a way to access pkg.name from here as well, it works as is, but should probably try a different plugin than this grunt-clean
+			folder : root + 'tmp/10k-lib.js'
+		},
 		jshint : {
 			options : {
 				curly : true,
@@ -78,5 +82,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-clean');
 
 	// default task lulz
-	grunt.registerTask('default', 'concat min');
+	grunt.registerTask('default', 'concat min clean');
 };
