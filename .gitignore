@@ -4,4 +4,4 @@
 .sass-cache/
 *.sublime-project
 *.sublime-workspace
-./build/10k/node_modules
+node_modules/
