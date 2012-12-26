@@ -317,7 +317,8 @@ $(function(){
 		onMouseDoubleClick: function() {
 			console.log('dblclick');
 			this.undelegateEvents();
-			$(App.el).hide();
+			// $(App.el).hide();
+			window.location = 'http://localhost:4567/#tasks/3';
 		},
 
 		/**
@@ -344,7 +345,7 @@ $(function(){
 		},
 
 		/**
-		 * Need to create our own custom double-click detector
+		 * Catches mouse click and handles whether it should listen for a double click or treat the click as a single click.
 		 */
 		onMouseClick: function() {
 			var instance = this;
@@ -535,6 +536,21 @@ $(function(){
 	
 	// create the app
 	var App = new AppView();
+
+	// app router stuff
+	// note that the router catches anything past the # sign, http://localhost:4567/#tasks/3 for example
+	var AppRouter = Backbone.Router.extend({
+		routes: {
+			'tasks/:id' : 'getTask'
+		}
+	});
+
+	var appRouter = new AppRouter();
+	appRouter.on('route:getTask', function(id){
+		console.log('get task number: ' + id);
+	});
+
+	Backbone.history.start();
     
     // List Manipulation
 	// -----------------
