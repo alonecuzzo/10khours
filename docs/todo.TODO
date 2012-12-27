@@ -4,7 +4,8 @@ Today:
  ☐ show the DetailView when the Task is double clicked, basic /task route is already set up- backbone routing
  ☐ have a detail view for double-click of a task in mobile view @interface 
  ☐ add some code in the applescript that creates the ln for the git hook automatically
- ☐ need to format our githook output, look into unix utils nl, sed, awk and grep aosfijhpwe
+ ☐ need to format our githook output, look into unix utils nl, sed, awk and grep aosfijhpwe @githooks
+ ☐ the jsbeautifier is beautifying the js, but it doesn't get added to the repo @githooks
 
 --- ✄ -----------------------
 

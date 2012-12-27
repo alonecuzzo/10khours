@@ -222,6 +222,21 @@ body {
     }
 }
 
+.task-detail-view-container {
+   /*background: red;*/
+   width: 90%;
+   height: 500px;
+   margin: 0 auto;
+   display: none;
+
+   #task-detail-view {
+        background: blue;
+        width: 95%;
+        height: 200px;
+        margin-left: 35px;
+   }
+}
+
 #task-list {
     list-style: none;
     margin: 30px 0;
@@ -358,6 +373,10 @@ body {
         input[type="text"] {
             width: 502px;
         }
+    }
+
+    .task-detail-view-container {
+        width: 520px;
     }
 
     .main aside {

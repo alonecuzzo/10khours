@@ -43,7 +43,6 @@ $(function() {
             this.set({
                 'isRecording': false
             });
-            console.log('omfgd');
             this.set('displayTime', '0:00:00');
             this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
         },
@@ -330,9 +329,7 @@ $(function() {
          * Handles showing edit view.
          */
         onMouseDoubleClick: function() {
-            this.undelegateEvents();
-            // $(App.el).hide();
-            window.location = 'http://localhost:4567/#tasks/3';
+            window.location = 'http://localhost:4567/#task/' + this.model.get('order');
         },
 
         /**
@@ -501,6 +498,36 @@ $(function() {
         }
     });
 
+    // TaskDetailView
+    // -----------
+    var TaskDetailView = Backbone.View.extend({
+
+        el: $('.task-detail-view-container'),
+
+        template: _.template('template'),
+    
+        events: {
+            // events
+        },
+    
+        /**
+        * Initialize view.
+        */
+        initialize: function() {
+            //init code here
+        },
+    
+        /**
+        * Renders the view.
+        * @return {Backbone.View}
+        */
+        render: function() {
+            //render code
+        }
+    });
+
+    var TaskDetail = new TaskDetailView();
+
     // Application
     // -----------
     var AppView = Backbone.View.extend({
@@ -564,21 +591,32 @@ $(function() {
 
     // create the app
     var App = new AppView();
+    // force url to /#tasks/?
+    window.location = '/#tasks';
 
     // app router stuff
     // note that the router catches anything past the # sign, http://localhost:4567/#tasks/3 for example
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'tasks/:id': 'getTask'
+            'task/:id': 'getTask',
+            'tasks' : 'getAllTasks'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
-
+        $(App.el).fadeOut(200, function(){
+            $(TaskDetail.el).fadeIn(200);
+        });
     });
 
-    //Backbone.history.start();
+    appRouter.on('route:getAllTasks', function(id){
+        $(TaskDetail.el).fadeOut(200, function(){
+            $(App.el).fadeIn(200);
+        });
+    });
+
+    Backbone.history.start();
 
     // List Manipulation
     // -----------------
