@@ -11,11 +11,6 @@
  */
 $(function() {
 
-    // $('#tenKhoursapp').on('touchmove', false);
-
-
-    // $('#tenKhoursapp').on('touchmove', true);
-
     /**
      * Constants for animation.
      */
@@ -48,6 +43,7 @@ $(function() {
             this.set({
                 'isRecording': false
             });
+            console.log('omfg');
             this.set('displayTime', '0:00:00');
             this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
         },
