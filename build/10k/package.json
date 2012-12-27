@@ -5,8 +5,10 @@
   "homepage" : "http:23b.it",
   "devDependencies": {
     "grunt": "latest",
-    "grunt-mocha": "<0.4.7",
-    "grunt-css" : "0.3.2"
+    "grunt-mocha": "0.1.7",
+    "grunt-css" : "0.3.2",
+    "grunt-compass" : "0.3.7",
+    "grunt-clean" : "0.3.0"
   },
   "author" : {
   	"name" : "Jabari Bell"
