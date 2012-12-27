@@ -86,7 +86,7 @@ $ rackup -p 4567
 │       │   └── ui-progress-bar.css
 │       └── js
 │           └── 10khours.js
-├── tests
+├── test
 │   └── app
 └── tmp
 ```
@@ -103,7 +103,7 @@ $ rackup -p 4567
 
 **src/**: These are the source files that get built for distribution.
 
-**tests/**: Mocha tests go here.
+**test/**: Mocha tests go here.
 
 **tmp/**: Temporary place to throw files during build process.
 

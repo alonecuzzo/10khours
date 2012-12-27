@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 			}
 		},
 		mocha : {
-			all : [root + 'tests/index.html']
+			all : [root + 'test/test.html']
 		},
 		compass : {
 			dev: {

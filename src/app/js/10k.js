@@ -43,7 +43,7 @@ $(function() {
             this.set({
                 'isRecording': false
             });
-            console.log('omfg');
+            console.log('omfgd');
             this.set('displayTime', '0:00:00');
             this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
         },
