@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 		},
 		min : {
 			dist : {
-				src : [root + 'src/app/js/10khours.js'],
+				src : [root + 'src/app/js/<%= pkg.name %>.js'],
 				dest : root + 'dist/app/public/js/<%= pkg.name %>.min.js'
 			},
 			lib : {
@@ -71,13 +71,29 @@ module.exports = function(grunt) {
 		mocha : {
 			all : [root + 'tests/index.html']
 		},
+		compass : {
+			dev: {
+				src : root + 'src/app/scss',
+				dest : root + 'src/app/css',
+				linecomments : true,
+				forcecompile : true,
+				debugsass : true
+			}
+		},
 		watch : {
-			files : '<config:lint.files>',
-			tasks : 'min'
+			min : {
+				files : '<config:lint.files>',
+				tasks : 'min'
+			},
+			compass : {
+				files : [root + 'src/app/scss/*.scss'],
+				tasks : ['compass:dev', 'cssmin']
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-css');
+	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-mocha');
 	grunt.loadNpmTasks('grunt-clean');
 

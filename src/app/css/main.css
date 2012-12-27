@@ -1,92 +1,125 @@
 /* ==========================================================================
    HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
    ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000321}}
 html,
 button,
 input,
 select,
 textarea {
-  color: #222; }
+  color: #222;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000325}}
 body {
   font-size: 1em;
   line-height: 1.4;
   overflow-x: hidden;
-  width: 100%; }
+  width: 100%;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000332}}
 ::-moz-selection {
   background: #b3d4fc;
-  text-shadow: none; }
+  text-shadow: none;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000337}}
 ::selection {
   background: #b3d4fc;
-  text-shadow: none; }
+  text-shadow: none;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000342}}
 hr {
   display: block;
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
   margin: 1em 0;
-  padding: 0; }
+  padding: 0;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000351}}
 img {
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000355}}
 fieldset {
   border: 0;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000361}}
 textarea {
-  resize: vertical; }
+  resize: vertical;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000365}}
 .chromeframe {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
-  padding: 0.2em 0; }
+  padding: 0.2em 0;
+}
 
 /* ===== Initializr Styles ==================================================
    Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
    ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000377}}
 body {
-  font: 16px/26px Helvetica, Helvetica Neue, Arial; }
+  font: 16px/26px Helvetica, Helvetica Neue, Arial;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000381}}
 .wrapper {
   width: 100%;
-  margin: 0 -7% 0; }
+  margin: 0 -7% 0;
+}
 
 /* ===================
     ALL: Orange Theme
    =================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000390}}
 .header-container {
   /*border-bottom: 20px solid #e44d26;*/
   border-bottom: 12px solid #9a63f5;
   background-image: url("../img/backgrounds/header-background.png");
-  background-size: 70px 70px; }
+  background-size: 70px 70px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000398}}
 .footer-container,
 .main aside {
-  border-top: 20px solid #e44d26; }
+  border-top: 20px solid #e44d26;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003104}}
 .header-container,
 .footer-container,
 .main aside {
   /*background: #f16529;*/
   overflow-x: hidden;
-  width: 100%; }
+  width: 100%;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003110}}
 .title {
-  color: white; }
+  color: white;
+}
 
 /* ==============
     MOBILE: Menu
    ============== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003118}}
 nav ul {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003123}}
 nav a {
   display: block;
   margin-bottom: 10px;
@@ -95,118 +128,163 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   color: white;
-  background: #e44d26; }
+  background: #e44d26;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003137}}
 nav a:hover,
 nav a:visited {
-  color: white; }
+  color: white;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003141}}
 nav a:hover {
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 
 /* ==============
     MOBILE: Main
    ============== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003149}}
 .main {
-  padding: 30px 0; }
+  padding: 30px 0;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003153}}
 .main article h1 {
-  font-size: 2em; }
+  font-size: 2em;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003157}}
 .main aside {
   color: white;
-  padding: 0px 5% 10px; }
+  padding: 0px 5% 10px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003162}}
 .footer-container footer {
   color: white;
-  padding: 20px 0; }
+  padding: 20px 0;
+}
 
 /* ===============
     ALL: IE Fixes
    =============== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003171}}
 .ie7 .title {
-  padding-top: 20px; }
+  padding-top: 20px;
+}
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003180}}
 html,
 body {
-  background-color: #f7f7f7; }
+  background-color: #f7f7f0;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003184}}
 body {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   color: #333333;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003191}}
 #header {
   width: 100%;
   height: 70px;
   position: relative;
   z-index: 3;
-  overflow-x: hidden; }
-  #header h1 {
-    font-size: 35px;
-    text-align: center;
-    margin: 0;
-    margin-left: 55px;
-    padding-top: 25px;
-    color: #f7f7f7; }
+  overflow-x: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003199}}
+#header h1 {
+  font-size: 35px;
+  text-align: center;
+  margin: 0;
+  margin-left: 55px;
+  padding-top: 25px;
+  color: #f7f7f7;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003209}}
 #tenKhoursapp {
-  background: #f7f7f7;
+  background: #f7f7f0;
   margin-bottom: 40px;
   width: 90%;
-  margin: 0 auto; }
-  #tenKhoursapp input[type='text'] {
-    width: 95%;
-    border: 0;
-    font-size: 24px;
-    border: 1px solid #999;
-    padding: 8px;
-    margin-left: 20px; }
+  margin: 0 auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003215}}
+#tenKhoursapp input[type='text'] {
+  width: 95%;
+  border: 0;
+  font-size: 24px;
+  border: 1px solid #999;
+  padding: 8px;
+  margin-left: 20px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003225}}
 #task-list {
   list-style: none;
   margin: 30px 0;
   margin-left: 20px;
   padding: 0;
-  width: 101%; }
-  #task-list li {
-    padding: 18px 20px 18px 0;
-    font-size: 24px;
-    background-color: #FFF;
-    margin-top: 3px;
-    border: 1px solid #cccccc;
-    color: #666;
-    -moz-border-radius: 15px;
-    border-radius: 15px; }
-    #task-list li #task-title {
-      margin-left: 15px;
-      /*color: #666;*/ }
-    #task-list li #task-display-time {
-      float: right;
-      font-size: 27px;
-      margin-top: -20px;
-      display: none; }
-    #task-list li #task-total-time {
-      display: none; }
-    #task-list li .ui-progress-bar {
-      height: 10px;
-      width: 30%;
-      margin-left: 15px;
-      margin-top: 10px; }
-    #task-list li .ui-progress {
-      width: 80%;
-      height: 8px; }
+  width: 101%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003232}}
+#task-list li {
+  padding: 18px 20px 18px 0;
+  font-size: 24px;
+  background-color: #FFF;
+  margin-top: 3px;
+  border: 1px solid #cccccc;
+  color: #666;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003242}}
+#task-list li #task-title {
+  margin-left: 15px;
+  /*color: #666;*/
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003247}}
+#task-list li #task-display-time {
+  float: right;
+  font-size: 27px;
+  margin-top: -20px;
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003254}}
+#task-list li #task-total-time {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003258}}
+#task-list li .ui-progress-bar {
+  height: 10px;
+  width: 30%;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003265}}
+#task-list li .ui-progress {
+  width: 80%;
+  height: 8px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003272}}
 .task-holder-state-highlight {
   background-color: #FF0000;
-  border: 1px solid #EEE; }
+  border: 1px solid #EEE;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003277}}
 .edit {
-  display: none; }
+  display: none;
+}
 
 /* ==========================================================================
    Media Queries
@@ -215,89 +293,125 @@ body {
   /* ====================
       INTERMEDIATE: Menu
      ==================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003291}}
   nav a {
     float: left;
     width: 27%;
     margin: 0 1.7%;
     padding: 25px 2%;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003299}}
   nav li:first-child a {
-    margin-left: 0; }
+    margin-left: 0;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003303}}
   nav li:last-child a {
-    margin-right: 0; }
+    margin-right: 0;
+  }
 
   /* ========================
       INTERMEDIATE: IE Fixes
      ======================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003311}}
   nav ul li {
-    display: inline; }
+    display: inline;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003315}}
   .oldie nav a {
-    margin: 0 0.7%; } }
+    margin: 0 0.7%;
+  }
+}
 @media only screen and (min-width: 768px) {
   /* ====================
       WIDE: CSS3 Effects
      ==================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003327}}
   .header-container,
   .main aside {
     -webkit-box-shadow: 0 5px 10px #aaa;
     -moz-box-shadow: 0 5px 10px #aaa;
-    box-shadow: 0 5px 10px #aaa; }
+    box-shadow: 0 5px 10px #aaa;
+  }
 
   /* ============
       WIDE: Menu
      ============ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003337}}
   .title {
-    float: left; }
+    float: left;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003341}}
   nav {
     float: right;
-    width: 38%; }
+    width: 38%;
+  }
 
   /* ============
       WIDE: Main
      ============ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003350}}
   .main article {
     float: left;
-    width: 57%; }
+    width: 57%;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003355}}
   #tenKhoursapp {
-    width: 516px; }
-    #tenKhoursapp input[type="text"] {
-      width: 502px; }
+    width: 516px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003358}}
+  #tenKhoursapp input[type="text"] {
+    width: 502px;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003363}}
   .main aside {
     float: right;
-    width: 28%; } }
+    width: 28%;
+  }
+}
 @media only screen and (min-width: 1140px) {
   /* ===============
       Maximal Width
      =============== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003375}}
   .wrapper {
     /*width: 1026px;  1140px - 10% for margins */
     width: 100%;
-    margin: 0 auto; } }
+    margin: 0 auto;
+  }
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003386}}
 .ir {
   background-color: transparent;
   border: 0;
   overflow: hidden;
-  *text-indent: -9999px; }
+  *text-indent: -9999px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003393}}
 .ir:before {
   content: "";
   display: block;
   width: 0;
-  height: 100%; }
+  height: 100%;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003400}}
 .hidden {
   display: none !important;
-  visibility: hidden; }
+  visibility: hidden;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003405}}
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -306,8 +420,10 @@ body {
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 1px; }
+  width: 1px;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003417}}
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -315,76 +431,109 @@ body {
   margin: 0;
   overflow: visible;
   position: static;
-  width: auto; }
+  width: auto;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003426}}
 .invisible {
-  visibility: hidden; }
+  visibility: hidden;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003431}}
 .clearfix:before,
 .clearfix:after {
   content: " ";
-  display: table; }
+  display: table;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003436}}
 .clearfix:after {
-  clear: both; }
+  clear: both;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003440}}
 .clearfix {
-  *zoom: 1; }
+  *zoom: 1;
+}
 
 /* ==========================================================================
    Print styles
    ========================================================================== */
 @media print {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003449}}
   * {
     background: transparent !important;
     color: #000 !important;
     /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
-    text-shadow: none !important; }
+    text-shadow: none !important;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003457}}
   a,
   a:visited {
-    text-decoration: underline; }
+    text-decoration: underline;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003461}}
   a[href]:after {
-    content: " (" attr(href) ")"; }
+    content: " (" attr(href) ")";
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003465}}
   abbr[title]:after {
-    content: " (" attr(title) ")"; }
+    content: " (" attr(title) ")";
+  }
 
   /*
    * Don't show links for images, or javascript/internal links
    */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003475}}
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
-    content: ""; }
+    content: "";
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003480}}
   pre,
   blockquote {
     border: 1px solid #999;
-    page-break-inside: avoid; }
+    page-break-inside: avoid;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003485}}
   thead {
     display: table-header-group;
-    /* h5bp.com/t */ }
+    /* h5bp.com/t */
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003490}}
   tr,
   img {
-    page-break-inside: avoid; }
+    page-break-inside: avoid;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003494}}
   img {
-    max-width: 100% !important; }
+    max-width: 100% !important;
+  }
 
   @page {
-    margin: 0.5cm; }
+    margin: 0.5cm;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003504}}
   p,
   h2,
   h3 {
     orphans: 3;
-    widows: 3; }
+    widows: 3;
+  }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003510}}
   h2,
   h3 {
-    page-break-after: avoid; } }
+    page-break-after: avoid;
+  }
+}

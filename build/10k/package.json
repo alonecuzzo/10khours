@@ -6,7 +6,7 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-mocha": "<0.4.7",
-    "grunt-css" : "0.4.1"
+    "grunt-css" : "0.3.2"
   },
   "author" : {
   	"name" : "Jabari Bell"
