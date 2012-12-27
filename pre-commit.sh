@@ -2,6 +2,7 @@
 
 # makes sure that code that isn't part of the current commit gets stashed
 git stash -q --keep-index
+# checks to see if there are any console.logs out there
 FILES_PATTERN='\.(js|coffee)(\..+)?$'
 FORBIDDEN='console.log'
 git diff --cached --name-only | \
