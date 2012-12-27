@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 		watch : {
 			min : {
 				files : '<config:lint.files>',
-				tasks : 'min'
+				tasks : 'min:dist'
 			},
 			compass : {
 				files : [root + 'src/app/scss/*.scss'],
