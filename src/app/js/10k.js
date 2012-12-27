@@ -1,7 +1,7 @@
 /*
- *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
+ *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft. lul
  *
- *    Jabari Bell jabari.bell@23b.it a
+ *    Jabari Bell jabari.bell@23b.it
  *    27-11-12
  */
 
@@ -99,7 +99,6 @@ $(function() {
                         instance.totalTime = seconds;
                         var stringToPrint = (new Date()).clearTime().addSeconds(seconds).toString('H:mm:ss');
                         self.updateDisplayTime(stringToPrint);
-                        console.log(stringToPrint);
                     }, 1000);
                 },
 
@@ -133,11 +132,6 @@ $(function() {
             });
             this.set('displayTime', '0:00:00');
             this.save();
-            console.log('total time for this activity: ' + this.getTotalTime(sinceDate));
-            console.log('weekly percentage: ' + this.getWeeklyPercentage());
-            console.log('daily percentage: ' + this.getDailyPercentage());
-            console.log('right now: ' + new Date().getTime());
-            console.log('since date: ' + sinceDate);
         },
 
         /**
@@ -261,7 +255,6 @@ $(function() {
                     this.models[i].save();
                 }
             }
-            // console.log(JSON.stringify(this));
         }
     });
 
@@ -327,7 +320,6 @@ $(function() {
          * Handles showing edit view.
          */
         onMouseDoubleClick: function() {
-            console.log('dblclick');
             this.undelegateEvents();
             // $(App.el).hide();
             window.location = 'http://localhost:4567/#tasks/3';
@@ -337,7 +329,6 @@ $(function() {
          * Fades rollover effect out.
          */
         onMouseOut: function() {
-            // console.log('mouse out');
             var $element = $(this.$el),
                 $displayTime = $element.find('#task-display-time');
             $element.animate({
@@ -355,15 +346,12 @@ $(function() {
          * Fades rollover effect in.
          */
         onMouseOver: function() {
-            // console.log('mouse over');
             var $element = $(this.$el);
             $element.css({
                 borderColor: '#9a63f5',
                 backgroundColor: '#418fdc',
                 color: '#F7F7F7'
             });
-            // console.log('onMouseOver index(): ' + $element.index());
-            // console.log('onMouseOver get(order): ' + this.model.get('order'));
         },
 
         /**
@@ -382,7 +370,6 @@ $(function() {
                 // wait 300ms, if no second click reset everything
                 this.alreadyClicked = true;
                 this.alreadyClickedTimeout = setTimeout(function() {
-                    console.log('single click');
                     instance.alreadyClicked = false;
                     instance.startSession();
                 }, 300);
@@ -400,7 +387,6 @@ $(function() {
          * Tracks the this.mousedown variable.  This is neccessary to see if a Task has been just dragged & dropped.  If it has then we don't want it to fire off the startSession() function once it's released.
          */
         onMouseDown: function() {
-            console.log('onMouseDown called');
             this.mousedown = true;
         },
 
@@ -444,7 +430,6 @@ $(function() {
         setDraggingFalse: function() {
             this.isDragging = false;
             this.undelegateEvents();
-            console.log('setDraggingFalse called');
             this.delegateEvents(this.events);
             this.hasBeenDragged = true;
         },
@@ -453,7 +438,6 @@ $(function() {
          * Starts the session recording for the current model associated with this TaskView.  Checks to see if the current model is recording, and if it has just been dragged.  If it's just been dragged and then dropped, we don't want it to start recording.
          */
         startSession: function() {
-            console.log('starting session');
             var newIndex = Tasks.currentPlaceholderIndex,
                 currentOrder = this.model.get('order');
             if (this.model.get('isRecording') !== true && this.hasBeenDragged !== true) {
@@ -467,10 +451,6 @@ $(function() {
                 this.model.startSession();
                 var $element = $(this.$el);
                 this.animateSelectedTask($element, true);
-                console.log('my index is: ' + $element.index());
-                //Tasks.updateListOrder(currentOrder, 0);
-                // animateSelectedTaskToTop($element.index(), 0);
-                //$('html, body').animate({ scrollTop: 0 }, 'slow');
             } else if (this.hasBeenDragged === true) {
                 //just update the order on the list models
                 Tasks.updateListOrder(currentOrder, newIndex);
@@ -485,7 +465,6 @@ $(function() {
          */
         stopSession: function() {
             if (this.model.get('isRecording') === true) {
-                console.log('im in!');
                 this.undelegateEvents();
                 this.delegateEvents(this.events);
                 Tasks.logStopSession();
@@ -524,7 +503,6 @@ $(function() {
             Tasks.on('add', this.addOne, this);
             Tasks.on('reset', this.addAll, this);
             Tasks.fetch();
-            console.log('Tasks! : ' + Tasks.length);
         },
 
         /**
@@ -581,7 +559,7 @@ $(function() {
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
-        console.log('get task number: ' + id);
+
     });
 
     //Backbone.history.start();
@@ -719,13 +697,11 @@ $(function() {
             // was looking to fix that index not updating properly issue here: http://stackoverflow.com/questions/4956039/jquery-sortable-change-event-element-position
             var start_pos = ui.item.index();
             ui.item.data('start_pos', start_pos);
-            console.log('ui.item.index(): ' + start_pos);
         },
         stop: function(e, ui) {},
         forcePlaceholderSize: true,
         change: function(e, ui) {
             $(ui.placeholder).hide().show(100);
-            // console.log('new index via the placeholder: ' + ui.placeholder.index());
             var start_pos = ui.item.data('start_pos'),
                 newIndex = ui.placeholder.index();
             if (start_pos < newIndex) { newIndex -= 1; }
