@@ -89,12 +89,32 @@ module.exports = function(grunt) {
 				files : [root + 'src/app/scss/*.scss'],
 				tasks : ['compass:dev', 'cssmin']
 			}
+		},
+		'jsbeautifier' : {
+			files : [root + 'src/app/js/**/*.js'],
+			options : {
+				"indent_size": 4,
+				"indent_char": " ",
+				"indent_level": 0,
+				"indent_with_tabs": false,
+				"preserve_newlines": true,
+				"max_preserve_newlines": 10,
+				"jslint_happy": false,
+				"brace_style": "collapse",
+				"keep_array_indentation": false,
+				"keep_function_indentation": false,
+				"space_before_conditional": true,
+				"eval_code": false,
+				"indent_case": false,
+				"unescape_strings": false
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-mocha');
+	grunt.loadNpmTasks('grunt-jsbeautifier');
 	grunt.loadNpmTasks('grunt-clean');
 
 	// default task lulz

@@ -7,7 +7,16 @@ To run, you'll need Ruby installed, and then need to install the Sinatra gem.
 
 ```bash
 $ sudo gem install sinatra
+$ sudo gem install rerun
 ```
+
+If you're using os x you can run the applescript in the home directory to fire things off fancily:
+
+```bash
+$ osascript boot.scpt
+```
+
+Or the old-fashioned way...
 
 To start Sinatra server:
 

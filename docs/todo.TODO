@@ -1,5 +1,4 @@
 Today:
- ☐ update documentation- in terms of stuff that needs to be downloaded etc to set up the project @documentation
  ☐ create tests to run through mocha @tests
  ☐ write git hook to run tests before pushing to repo @tests
  ☐ create a DetailView for the Task
@@ -36,6 +35,7 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ update documentation- in terms of stuff that needs to be downloaded etc to set up the project @documentation @done (12-12-26 23:20)
  ✔ on refresh, the tasklist is showing double the amount of tasks that are stored... the tasklist array is populated correctly @bug @functionality @done (12-12-26 17:52)
  ✔ integrate grunt and mocha @tests @done (12-12-26 17:50)
  ✔ start documentation: document the models' needs and backends, maybe views @documentation @done (12-12-21 16:28)
