@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # makes sure that code that isn't part of the current commit gets stashed
 git stash -q --keep-index

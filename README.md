@@ -20,7 +20,7 @@ $ osascript boot.scpt
 So we're all running the same tests:
 
 ```bash
-$ ln -s pre-commit.sh .git/hooks/pre-commit
+$ ln -s ../../pre-commit.sh .git/hooks/pre-commit
 ```
 
 Or the old-fashioned way...
