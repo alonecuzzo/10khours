@@ -1,5 +1,5 @@
 /*
- *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft. lulz
+ *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
  *
  *    Jabari Bell jabari.bell@23b.it
  *    27-11-12
