@@ -10,15 +10,16 @@ $ sudo gem install sinatra
 ```
 
 To start Sinatra server:
- 
+
 ```bash
-$ cd dist/
+$ cd dist/app/
 $ rackup -p 4567
 ```
 
 [url on heroku](http://bit23-alonecuzzo-10k.herokuapp.com/)
 
-10k is built following a mochajs/gruntjs directory structure:
+### File Structure 
+10k is built following a [mochajs](http://visionmedia.github.com/mocha/)/[gruntjs](http://gruntjs.com) directory structure:
 
 ```bash
 ├── README.md
