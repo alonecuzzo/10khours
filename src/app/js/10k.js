@@ -145,9 +145,13 @@ $(function() {
                 sum = 0,
                 sessions = this.get('sessions'),
                 sessionsLen = sessions.length;
-            if (sinceDate > 0) { sd = sinceDate; }
+            if (sinceDate > 0) {
+                sd = sinceDate;
+            }
             for (i = 0; i <= sessionsLen - 1; i++) {
-                if (sessions[i].endDate > sd) { sum += parseInt(sessions[i].totalTime, 10); }
+                if (sessions[i].endDate > sd) {
+                    sum += parseInt(sessions[i].totalTime, 10);
+                }
             }
             return sum;
         },
@@ -160,8 +164,12 @@ $(function() {
             var dailyTotalSeconds = 10800, // 10800 seconds in 3 hours which is daily amount needed
                 totalDailyTime = this.getTotalTime(Date.today().getTime()),
                 returnPercentage = Math.round((totalDailyTime / dailyTotalSeconds) * 100) / 100;
-            if (returnPercentage < 0.05) { returnPercentage = 0.05; }
-            if (returnPercentage > 1.0) { returnPercentage = 1.0; }
+            if (returnPercentage < 0.05) {
+                returnPercentage = 0.05;
+            }
+            if (returnPercentage > 1.0) {
+                returnPercentage = 1.0;
+            }
             return returnPercentage * 100;
         },
 
@@ -201,7 +209,9 @@ $(function() {
          * @return {Number}
          */
         nextOrder: function() {
-            if (!this.length) { return 0; }
+            if (!this.length) {
+                return 0;
+            }
             return this.last().get('order') + 1;
         },
 
@@ -233,7 +243,9 @@ $(function() {
          * Stops the active function if one exists.
          */
         stopActiveSession: function() {
-            if (this.activeSession) { this.activeSession.stopSession(); }
+            if (this.activeSession) {
+                this.activeSession.stopSession();
+            }
         },
 
         /**
@@ -244,7 +256,9 @@ $(function() {
         updateListOrder: function(updateModelAtOrder, updateModelWithOrder) {
             var modelToChange;
             _.each(this.models, function(task) {
-                if (task.get('order') === updateModelAtOrder) { modelToChange = task; }
+                if (task.get('order') === updateModelAtOrder) {
+                    modelToChange = task;
+                }
             });
             if (modelToChange) {
                 this.models.splice(_.indexOf(this.models, modelToChange), 1);
@@ -380,7 +394,9 @@ $(function() {
          * Determines if the mouse is down and the Task is being dragged in the list.
          */
         onMouseMove: function() {
-            if (this.mousedown === true) { this.hasBeenDragged = true; }
+            if (this.mousedown === true) {
+                this.hasBeenDragged = true;
+            }
         },
 
         /**
@@ -537,8 +553,12 @@ $(function() {
          * @param  {Event} e Keyboard event.
          */
         createOnEnter: function(e) {
-            if (e.keyCode !== 13) { return; }
-            if (!this.input.val()) { return; }
+            if (e.keyCode !== 13) {
+                return;
+            }
+            if (!this.input.val()) {
+                return;
+            }
             Tasks.create({
                 title: this.input.val()
             });
@@ -578,9 +598,13 @@ $(function() {
         var numberOfSwapsToDo = 0;
 
         // Determine the number of swaps to do
-        if (startIndex < destinationIndex) { numberOfSwapsToDo = destinationIndex - startIndex; }
-        else if (destinationIndex < startIndex) { numberOfSwapsToDo = startIndex - destinationIndex; }
-        else if (destinationIndex === startIndex) { return; }
+        if (startIndex < destinationIndex) {
+            numberOfSwapsToDo = destinationIndex - startIndex;
+        } else if (destinationIndex < startIndex) {
+            numberOfSwapsToDo = startIndex - destinationIndex;
+        } else if (destinationIndex === startIndex) {
+            return;
+        }
 
         // Let's start
         doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
@@ -623,7 +647,9 @@ $(function() {
             numberOfSwapsDone++;
 
             // End point of the recursive function
-            if (numberOfSwapsDone >= numberOfSwapsToDo) { return; }
+            if (numberOfSwapsDone >= numberOfSwapsToDo) {
+                return;
+            }
 
             // Recursive call
             doSwapping(numberOfSwapsDone, numberOfSwapsToDo, startIndex, destinationIndex);
@@ -645,8 +671,11 @@ $(function() {
         var movement = $northLi.outerHeight();
 
         // Set the z-index of the moved item to 999 to it appears on top of the other elements
-        if (isPushingDown) { $northLi.css('z-index', '999'); }
-        else { $southLi.css('z-index', '999'); }
+        if (isPushingDown) {
+            $northLi.css('z-index', '999');
+        } else {
+            $southLi.css('z-index', '999');
+        }
 
         // Move down the first li
         $northLi.animate({
@@ -657,8 +686,11 @@ $(function() {
             easing: easing,
             complete: function() {
                 // Swap the li in the DOM
-                if (isPushingDown) { $northLi.insertAfter($southLi); }
-                else { $southLi.insertBefore($northLi); }
+                if (isPushingDown) {
+                    $northLi.insertAfter($southLi);
+                } else {
+                    $southLi.insertBefore($northLi);
+                }
 
                 resetLiCssPosition($northLi);
                 resetLiCssPosition($southLi);
@@ -704,7 +736,9 @@ $(function() {
             $(ui.placeholder).hide().show(100);
             var start_pos = ui.item.data('start_pos'),
                 newIndex = ui.placeholder.index();
-            if (start_pos < newIndex) { newIndex -= 1; }
+            if (start_pos < newIndex) {
+                newIndex -= 1;
+            }
             Tasks.currentPlaceholderIndex = newIndex;
         },
         // will need to style the highlight, check this link for reference: http://jqueryui.com/sortable/#placeholder

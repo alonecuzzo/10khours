@@ -15,6 +15,10 @@ then
 	cd build/10k/ && grunt lint
 	RESULT=$?
 	[ $RESULT -ne 0 ] && exit 1
+	#beautify js
+	grunt jsbeautifier
+	RESULT=$?
+	[ $RESULT -ne 0 ] && exit 1
 	cd ../../
 else
 	echo "no js to be committed"
