@@ -1,4 +1,5 @@
 $bg-color: #F7F7F0;
+$task-font-grey: #666;
 
 // header stuff
 $header-background-url: '../img/backgrounds/header-background.png';
@@ -206,7 +207,7 @@ body {
     }
 }
 
-#tenKhoursapp {
+#tasks-list-view {
     background: $bg-color;
     margin-bottom: 40px;
     width: 90%;
@@ -230,10 +231,15 @@ body {
    display: none;
 
    #task-detail-view {
-        background: blue;
+        /*background: blue;*/
         width: 95%;
         height: 200px;
         margin-left: 35px;
+        color: $task-font-grey;
+
+        .task-detail-view-title {
+            font-size: 30px;
+        }
    }
 }
 
@@ -250,7 +256,7 @@ body {
         background-color: #FFF;
         margin-top: 3px;
         border: 1px solid $task-border-color;
-        color: #666;
+        color: $task-font-grey;
         -moz-border-radius: 15px;
         border-radius: 15px;
 
@@ -367,7 +373,7 @@ body {
         width: 57%;
     }
 
-    #tenKhoursapp {
+    #tasks-list-view {
         width: 516px;
 
         input[type="text"] {

@@ -23,7 +23,7 @@ Future:
  ☐ align all = signs, instructions here: http://wbond.net/sublime_packages/alignment @code **seems to be buggy, was uncamel-casing my variables !!!
 
  Release 1 Requirements:
- ☐ add a new task
+ ✔ add a new task @done (12-12-28 20:08)
  ☐ remove a task
  ☐ see details about a task
  ☐ modify a task

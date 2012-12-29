@@ -502,37 +502,41 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        el: $('.task-detail-view-container'),
+        template: _.template('<div class="task-detail-view-title"><%- title %></div>'),
 
-        template: _.template('template'),
-    
         events: {
             // events
         },
-    
+
         /**
-        * Initialize view.
-        */
+         * Initialize view.
+         */
         initialize: function() {
-            //init code here
         },
-    
+
         /**
-        * Renders the view.
-        * @return {Backbone.View}
-        */
+         * Renders the view.
+         * @return {Backbone.View}
+         */
         render: function() {
-            //render code
+            var $element = this.$el;
+            $element.html(this.template(this.model.toJSON()));
+            return this;
+        },
+
+        setModel: function(model) {
+            this.model = model;
+            this.render();
         }
     });
 
-    var TaskDetail = new TaskDetailView();
+    var TaskDetail;
 
     // Application
     // -----------
     var AppView = Backbone.View.extend({
 
-        el: $('#tenKhoursapp'),
+        el: $('#tasks-list-view'),
 
         /**
          * Initialize.
@@ -599,19 +603,29 @@ $(function() {
     var AppRouter = Backbone.Router.extend({
         routes: {
             'task/:id': 'getTask',
-            'tasks' : 'getAllTasks'
+            'tasks': 'getAllTasks'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
-        $(App.el).fadeOut(200, function(){
-            $(TaskDetail.el).fadeIn(200);
+        $(App.el).fadeOut(200, function() {
+            _.each(Tasks.models, function(model) {
+                if(parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                    if(!TaskDetail){
+                        TaskDetail = new TaskDetailView({ model : model });
+                        $('#task-detail-view').append(TaskDetail.render().el);
+                    } else {
+                        TaskDetail.setModel(model);
+                    }
+                }
+            });
+            $('.task-detail-view-container').fadeIn(200);
         });
     });
 
-    appRouter.on('route:getAllTasks', function(id){
-        $(TaskDetail.el).fadeOut(200, function(){
+    appRouter.on('route:getAllTasks', function(id) {
+        $('.task-detail-view-container').fadeOut(200, function() {
             $(App.el).fadeIn(200);
         });
     });
