@@ -29,6 +29,11 @@ module.exports = function(grunt) {
 			lib : {
 				src : [root + 'lib/modernizr-2.6.2-respond-1.1.0.min.js', root + 'lib/json2.min.js', root + 'lib/underscore-min.js', root + 'lib/jquery-1.8.3.min.js', root + 'lib/jquery-ui-1.9.2.custom.min.js', root + 'lib/backbone-min.js', root + 'lib/backbone-localStorage-min.js', root + 'lib/date.min.js', root + 'lib/plugins.js'],
 				dest : root + 'tmp/<%= pkg.name %>-lib.js'
+			},
+			// backup task just incase we want to break out the js files apart
+			jssrc : {
+				src : [root + 'src/app/js/01-Header.js', root + 'src/app/js/02-Declarations.js', root + 'src/app/js/03-Task.js', root + 'src/app/js/04-Tasks.js', root + 'src/app/js/Footer.js'],
+				dest : root + 'src/app/js/10k.js'
 			}
 		},
 		cssmin : {
@@ -39,7 +44,7 @@ module.exports = function(grunt) {
 		},
 		clean : {
 			//hack: there needs to be a way to access pkg.name from here as well, it works as is, but should probably try a different plugin than this grunt-clean
-			folder : root + 'tmp/10k-lib.js'
+			folder : [root + 'tmp/10k-lib.js']
 		},
 		jshint : {
 			options : {
@@ -91,7 +96,7 @@ module.exports = function(grunt) {
 			}
 		},
 		'jsbeautifier' : {
-			files : [root + 'src/app/js/**/*.js'],
+			files : [root + 'src/app/js/**/*.js', root + 'test/spec/**/*.js'],
 			options : {
 				"indent_size": 4,
 				"indent_char": " ",

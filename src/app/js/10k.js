@@ -10,7 +10,6 @@
  *    Waits for jquery ready event.
  */
 $(function() {
-
     /**
      * Constants for animation.
      */
@@ -18,9 +17,10 @@ $(function() {
         DURATION = 100,
         JQUERYUI_EASING = "easeInQuart";
 
+
     // Task Model
     // -----------
-    var Task = Backbone.Model.extend({
+    window.Task = Backbone.Model.extend({
 
         /**
          * Sets default variables for the model.
@@ -126,6 +126,7 @@ $(function() {
                 'isRecording': false
             });
             this.set('displayTime', '0:00:00');
+            this.set('currentSession', null);
             this.save();
         },
 
@@ -270,6 +271,7 @@ $(function() {
     // Instantiate collection.
     var Tasks = new TaskList();
 
+
     // Task Item View
     // --------------
     var TaskView = Backbone.View.extend({
@@ -296,6 +298,7 @@ $(function() {
             this.model.on('change', this.render, this);
             this.hasBeenDragged = false;
             this.mousedown = false;
+            console.log('our model: ' + JSON.stringify(this.model));
         },
 
         /**
@@ -329,7 +332,7 @@ $(function() {
          * Handles showing edit view.
          */
         onMouseDoubleClick: function() {
-            window.location = 'http://localhost:4567/#task/' + this.model.get('order');
+            // window.location = 'http://localhost:4567/#task/' + this.model.get('order');
         },
 
         /**
@@ -511,8 +514,7 @@ $(function() {
         /**
          * Initialize view.
          */
-        initialize: function() {
-        },
+        initialize: function() {},
 
         /**
          * Renders the view.
@@ -596,41 +598,43 @@ $(function() {
     // create the app
     var App = new AppView();
     // force url to /#tasks/?
-    window.location = '/#tasks';
+    //window.location = '/#tasks';
 
     // app router stuff
     // note that the router catches anything past the # sign, http://localhost:4567/#tasks/3 for example
-    var AppRouter = Backbone.Router.extend({
-        routes: {
-            'task/:id': 'getTask',
-            'tasks': 'getAllTasks'
-        }
-    });
+    // var AppRouter = Backbone.Router.extend({
+    //     routes: {
+    //         'task/:id': 'getTask',
+    //         'tasks': 'getAllTasks'
+    //     }
+    // });
 
-    var appRouter = new AppRouter();
-    appRouter.on('route:getTask', function(id) {
-        $(App.el).fadeOut(200, function() {
-            _.each(Tasks.models, function(model) {
-                if(parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if(!TaskDetail){
-                        TaskDetail = new TaskDetailView({ model : model });
-                        $('#task-detail-view').append(TaskDetail.render().el);
-                    } else {
-                        TaskDetail.setModel(model);
-                    }
-                }
-            });
-            $('.task-detail-view-container').fadeIn(200);
-        });
-    });
+    // var appRouter = new AppRouter();
+    // appRouter.on('route:getTask', function(id) {
+    //     $(App.el).fadeOut(200, function() {
+    //         _.each(Tasks.models, function(model) {
+    //             if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+    //                 if (!TaskDetail) {
+    //                     TaskDetail = new TaskDetailView({
+    //                         model: model
+    //                     });
+    //                     $('#task-detail-view').append(TaskDetail.render().el);
+    //                 } else {
+    //                     TaskDetail.setModel(model);
+    //                 }
+    //             }
+    //         });
+    //         $('.task-detail-view-container').fadeIn(200);
+    //     });
+    // });
 
-    appRouter.on('route:getAllTasks', function(id) {
-        $('.task-detail-view-container').fadeOut(200, function() {
-            $(App.el).fadeIn(200);
-        });
-    });
+    // appRouter.on('route:getAllTasks', function(id) {
+    //     $('.task-detail-view-container').fadeOut(200, function() {
+    //         $(App.el).fadeIn(200);
+    //     });
+    // });
 
-    Backbone.history.start();
+    // Backbone.history.start();
 
     // List Manipulation
     // -----------------
