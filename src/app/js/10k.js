@@ -27,7 +27,6 @@ $(function() {
          * @return {Backbone.Model}
          */
         defaults: function() {
-            console.log('lulz');
             return {
                 title: 'default value',
                 displayTime: '0:00:00',
