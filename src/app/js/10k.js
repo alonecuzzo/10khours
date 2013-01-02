@@ -505,7 +505,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template : _.template('<div class="task-detail-view-title"><%- title %></div><div id="calendar"></div>'),
+        template: _.template('<div class="task-detail-view-title"><%- title %></div><div id="calendar"></div>'),
 
         events: {
             // events
@@ -515,7 +515,7 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            
+
         },
 
         /**
