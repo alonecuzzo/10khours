@@ -1,3 +1,10 @@
+immediate:
+ ☐ on item double click, load calendar screen @interface @ux @ui
+ ☐ create tab for calendar and chart, look for tab styles in twitter bootstrap @interface @ux @ui
+ ☐ from that screen have a link for task settings @interface @ux @ui
+
+
+
 Today:
  ☐ create tests to run through mocha @tests
  ☐ create a DetailView for the Task

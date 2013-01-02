@@ -1,5 +1,5 @@
 /*
- *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.
+ *    My Backbone application that will log the number of hours spent on a task, habit, hobby or craft.!
  *
  *    Jabari Bell jabari.bell@23b.it
  *    27-11-12
@@ -27,6 +27,7 @@ $(function() {
          * @return {Backbone.Model}
          */
         defaults: function() {
+            console.log('lulz');
             return {
                 title: 'default value',
                 displayTime: '0:00:00',
@@ -193,7 +194,7 @@ $(function() {
     // ----------------
     var TaskList = Backbone.Collection.extend({
 
-        model: Task,
+        model: window.Task,
 
         // hack to keep track of location of currently dragging item
         currentPlaceholderIndex: Number.MAX_VALUE,
@@ -298,7 +299,6 @@ $(function() {
             this.model.on('change', this.render, this);
             this.hasBeenDragged = false;
             this.mousedown = false;
-            console.log('our model: ' + JSON.stringify(this.model));
         },
 
         /**
@@ -332,7 +332,7 @@ $(function() {
          * Handles showing edit view.
          */
         onMouseDoubleClick: function() {
-            // window.location = 'http://localhost:4567/#task/' + this.model.get('order');
+            window.location = 'http://localhost:4567/#task/' + this.model.get('order');
         },
 
         /**
@@ -505,7 +505,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-title"><%- title %></div>'),
+        template : _.template('<div class="task-detail-view-title"><%- title %></div><div id="calendar"></div>'),
 
         events: {
             // events
@@ -514,15 +514,24 @@ $(function() {
         /**
          * Initialize view.
          */
-        initialize: function() {},
+        initialize: function() {
+            
+        },
 
         /**
          * Renders the view.
          * @return {Backbone.View}
          */
         render: function() {
-            var $element = this.$el;
+            var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
+
+            $element.find('#calendar').datepicker({
+                inline: true,
+                firstDay: 1,
+                showOtherMonths: true,
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            });
             return this;
         },
 
@@ -599,42 +608,41 @@ $(function() {
     var App = new AppView();
     // force url to /#tasks/?
     //window.location = '/#tasks';
-
     // app router stuff
     // note that the router catches anything past the # sign, http://localhost:4567/#tasks/3 for example
-    // var AppRouter = Backbone.Router.extend({
-    //     routes: {
-    //         'task/:id': 'getTask',
-    //         'tasks': 'getAllTasks'
-    //     }
-    // });
+    var AppRouter = Backbone.Router.extend({
+        routes: {
+            'task/:id': 'getTask',
+            '': 'getAllTasks'
+        }
+    });
 
-    // var appRouter = new AppRouter();
-    // appRouter.on('route:getTask', function(id) {
-    //     $(App.el).fadeOut(200, function() {
-    //         _.each(Tasks.models, function(model) {
-    //             if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-    //                 if (!TaskDetail) {
-    //                     TaskDetail = new TaskDetailView({
-    //                         model: model
-    //                     });
-    //                     $('#task-detail-view').append(TaskDetail.render().el);
-    //                 } else {
-    //                     TaskDetail.setModel(model);
-    //                 }
-    //             }
-    //         });
-    //         $('.task-detail-view-container').fadeIn(200);
-    //     });
-    // });
+    var appRouter = new AppRouter();
+    appRouter.on('route:getTask', function(id) {
+        $(App.el).fadeOut(200, function() {
+            _.each(Tasks.models, function(model) {
+                if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                    if (!TaskDetail) {
+                        TaskDetail = new TaskDetailView({
+                            model: model
+                        });
+                        $('#task-detail-view').append(TaskDetail.render().el);
+                    } else {
+                        TaskDetail.setModel(model);
+                    }
+                }
+            });
+            $('.task-detail-view-container').fadeIn(200);
+        });
+    });
 
-    // appRouter.on('route:getAllTasks', function(id) {
-    //     $('.task-detail-view-container').fadeOut(200, function() {
-    //         $(App.el).fadeIn(200);
-    //     });
-    // });
+    appRouter.on('route:getAllTasks', function(id) {
+        $('.task-detail-view-container').fadeOut(200, function() {
+            $(App.el).fadeIn(200);
+        });
+    });
 
-    // Backbone.history.start();
+    Backbone.history.start();
 
     // List Manipulation
     // -----------------

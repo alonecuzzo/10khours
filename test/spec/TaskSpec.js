@@ -72,8 +72,8 @@ describe('Task', function() {
     });
 
     it('should be able to start a Session', function() {
-		this.taskModel.startSession();
-		expect(this.taskModel.get('currentSession')).toBeTruthy();
+        this.taskModel.startSession();
+        expect(this.taskModel.get('currentSession')).toBeTruthy();
     });
 
 });
