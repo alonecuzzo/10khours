@@ -1,9 +1,11 @@
 $bg-color: #F7F7F0;
-$task-font-grey: #666;
+$task-font-grey: #616161;
+$site-purple: #9a63f5;
+$site-dark-blue: #257dbf;
 
 // header stuff
 $header-background-url: '../img/backgrounds/header-background.png';
-$header-bottom-border-color: #9a63f5;
+$header-bottom-border-color: $site-purple;
 $h1-color: #F7F7F7;
 
 // task list stuff
@@ -207,7 +209,7 @@ body {
 .ui-datepicker {
     display: none;
     width: 500px;
-    padding: 35px;
+    padding: 20px;
     cursor: default;
  
     text-transform: uppercase;
@@ -356,18 +358,101 @@ body {
    #task-detail-view {
         /*background: blue;*/
         width: 95%;
-        height: 200px;
-        margin-left: 35px;
+        height: 225px;
+        margin-left: 10px;
+        margin-top: 0;
         color: $task-font-grey;
 
-        .task-detail-view-title {
-            font-size: 50px;
-            margin-top: 30px;
+        .task-detail-view-header-wrapper {
+
+            .task-detail-view-title {
+                font-size: 50px;
+                background-image: url(../img/stopwatch.png);
+                background-position: 0px 19px;
+                background-repeat: no-repeat;
+                background-size: 31px 31px;
+                padding-left: 40px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                float: left;
+                width: 300px;
+                margin-top: -10px;
+            }
+
+            .task-detail-stats {
+
+                text-align: right;
+                margin-left: 337px;
+                width: 180px;
+                height: 84px;
+
+                background: #f7f7f7;
+
+                padding: 12px;
+     
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+             
+                border: 1px solid #d6d6d6;
+
+                .header-text {
+                    position: relative;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #d6d6d6;
+                    font-weight: bold;
+                    font-size: 13px;
+                    text-align: left;
+                    background-image: url(../img/graphbars.png);
+                    background-position: 0px 5px;
+                    background-repeat: no-repeat;
+                    background-size: 15px 15px;
+                    padding-left: 19px;
+                    padding-top: 5px;
+                    margin-top: -5px;
+                }
+
+                .task-frequency, .current-streak, .longest-streak {
+                    text-align: left;
+                }
+
+                .task-frequency-text, .current-streak-text, .longest-streak-text {
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: $site-dark-blue;
+                }
+
+                .stat-text, .label-text {
+                    margin-top: 5px;
+                }
+
+                .stat-text{
+                    float:left;
+                }
+
+                .label-text{
+                    float:right;
+                }
+            }
         }
 
-        #calendar {
-            margin-top: 60px;
+        .detail-btn-bar-calendar {
+            padding-top: 50px;
+
+            #calendar {
+                margin-top: 20px;
+            }
+
+            #task-detail-btn-bar {
+                margin-left: 170px;
+
+                .btn {
+                    color: $task-font-grey;
+                }
+            }
         }
+
+        
    }
 }
 

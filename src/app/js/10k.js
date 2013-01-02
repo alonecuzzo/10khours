@@ -279,7 +279,7 @@ $(function() {
         tagName: 'li',
 
         // cache the template function for a single item
-        template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><div class='ui-progress-bar blue ui-container'><div class='ui-progress'></div></div><a class='destroy'></a></div><input type='text' class='edit' value='' name='' /></div></div>"),
+        template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><div class='ui-progress-bar blue ui-container'><div class='ui-progress'></div></div><a class='destroy'></a></div></div></div>"),
 
         // events to listen to
         events: {
@@ -504,7 +504,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-title"><%- title %></div><div id="calendar"></div>'),
+        template: _.template('<dvi class="task-detail-view-header-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
             // events

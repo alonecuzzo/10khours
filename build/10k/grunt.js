@@ -123,5 +123,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-clean');
 
 	// default task lulz
-	grunt.registerTask('default', 'concat min clean');
+	grunt.registerTask('default', 'concat min cssmin');
 };
