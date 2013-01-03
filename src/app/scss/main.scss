@@ -1,6 +1,7 @@
 $bg-color: #F7F7F0;
-$task-font-grey: #616161;
+$task-font-grey: #464646;
 $site-purple: #9a63f5;
+$site-dark-purple: #321a5d;
 $site-dark-blue: #257dbf;
 
 // header stuff
@@ -95,6 +96,10 @@ body {
     border-bottom: 12px solid $header-bottom-border-color;
     background-image: url($header-background-url);
     background-size: 70px 70px;
+}
+
+.header-container a{
+    text-decoration: none;
 }
 
 .footer-container,
@@ -376,18 +381,31 @@ body {
 
         .task-detail-view-header-wrapper {
 
+            .title-wrapper {
+                float: left;
+            }
+
             .task-detail-view-title {
-                font-size: 50px;
-                background-image: url(../img/stopwatch.png);
-                background-position: 0px 19px;
-                background-repeat: no-repeat;
-                background-size: 31px 31px;
-                padding-left: 40px;
+                font-size: 45px;
                 padding-top: 20px;
                 padding-bottom: 20px;
-                float: left;
                 width: 300px;
                 margin-top: -10px;
+            }
+
+            .task-actions {
+
+                .delete-task, .add-time, .modify-task {
+                    display: block;
+                    /*font-size: 14px;*/
+                    padding: 0;
+                    text-align: left;
+
+                    a {
+                        text-decoration: none;
+                        color: $site-dark-purple;
+                    }
+                }
             }
 
             .task-detail-stats {
@@ -395,7 +413,7 @@ body {
                 text-align: right;
                 margin-left: 337px;
                 width: 180px;
-                height: 84px;
+                height: 87px;
 
                 background: #f7f7f7;
 
