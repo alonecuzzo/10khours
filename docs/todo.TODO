@@ -3,6 +3,7 @@ immediate:
  ✔ create tab for calendar and chart, look for tab styles in twitter bootstrap @interface @ux @ui @done (13-01-02 22:38)
  ☐ from that screen have a link for task settings @interface @ux @ui
  ☐ add route checks, i.e. someone tries to delete or edit or view an invalid task @functionality
+ ☐ ANIMATE THE LOGO AT TEH TOP ON MOUSE ROLLOVER LIKE A REAL CLOCK!! @dopeness
 
 
 
