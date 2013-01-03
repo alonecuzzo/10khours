@@ -517,7 +517,7 @@ $(function() {
             window.location = '#/delete/' + this.model.get('order');
         },
 
-        onEdit: function(e){
+        onEdit: function(e) {
             e.preventDefault();
             window.location = '#/task/edit/' + this.model.get('order');
         },
@@ -556,26 +556,26 @@ $(function() {
 
     // EditTaskView
     // -----------
-    
+
     var EditTaskView = Backbone.View.extend({
-        
+
         template: _.template('<p class="section-heading">Edit Task</p><form><p class="form-label">Task Name:</p><input class="input-xlarge" type="text" placeholder="<%- title %>"><p class="form-label">How often would you like to repeat this task?</p><div class="btn-toolbar"><div class="btn-group"><button class="btn">S</button><button class="btn">M</button><button class="btn">T</button><button class="btn">W</button><button class="btn">T</button><button class="btn">F</button><button class="btn">S</button></div></div><p class="form-label">Intervals</p><div class="checkbox-section"><label class="checkbox"><input type="checkbox" id="intervalOption1">Every day</label><label class="checkbox"><input type="checkbox" id="intervalOption2">Every 2 days</label><label class="checkbox"><input type="checkbox" id="intervalOption3">Every 2-3 days</label><label class="checkbox"><input type="checkbox" id="intervalOption4">Every 3 days</label><label class="checkbox"><input type="checkbox" id="intervalOption5">Every 3-5 days</label></div><p class="form-label">Non-specific days</p><div class="checkbox-section nonspecific"><label class="checkbox"><input type="checkbox" id="nonSpecificOption1">1 day per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption2">2 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption3">3 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption4">4 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption5">5 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption6">6 days per week</label></div><p><button class="btn">Save</button><button class="btn">Cancel</button></p></form>'),
-    
+
         events: {
             // events
         },
-    
+
         /**
-        * Initialize view.
-        */
+         * Initialize view.
+         */
         initialize: function() {
             //init code here
         },
-    
+
         /**
-        * Renders the view.
-        * @return {Backbone.View}
-        */
+         * Renders the view.
+         * @return {Backbone.View}
+         */
         render: function() {
             var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
@@ -663,14 +663,14 @@ $(function() {
             '': 'getAllTasks',
             'task/:id': 'getTask',
             'delete/:id': 'deleteTask',
-            'task/edit/:id' : 'editTask'
+            'task/edit/:id': 'editTask'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
 
-         var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
+        var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
 
         $divToFade.fadeOut(200, function() {
             _.each(Tasks.models, function(model) {
@@ -687,8 +687,11 @@ $(function() {
             });
             $('.task-detail-view-container').fadeIn(200);
             $('#grey-bkgrnd').fadeIn(200);
+            $('#grey-bkgrnd').height($('.main').height());
         });
-        $('#grey-bkgrnd').animate({marginTop : 165}, 300);
+        $('#grey-bkgrnd').animate({
+            marginTop: 165
+        }, 300);
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
     });
@@ -739,8 +742,11 @@ $(function() {
             });
             $('.edit-task-view-container').fadeIn(200);
             $('#grey-bkgrnd').fadeIn(200);
+            $('#grey-bkgrnd').height($('.main').height());
         });
-        $('#grey-bkgrnd').animate({marginTop : 98}, 300);
+        $('#grey-bkgrnd').animate({
+            marginTop: 98
+        }, 300);
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
     });
