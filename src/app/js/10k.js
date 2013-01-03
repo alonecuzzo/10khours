@@ -296,6 +296,7 @@ $(function() {
         initialize: function() {
             var $element = $(this.$el);
             this.model.on('change', this.render, this);
+            this.model.on('destroy', this.remove, this);
             this.hasBeenDragged = false;
             this.mousedown = false;
         },
@@ -507,7 +508,12 @@ $(function() {
         template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="delete-task"><a href="#"><i class="icon-trash icon-dark-purple"></i>Delete</a></div><div class="modify-task"><a href="#"><i class="icon-edit icon-dark-purple"></i>Modify Task</a></div><div class="add-time"><a href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
-            // events
+            'click .delete-task a' : 'onDelete'
+        },
+
+        onDelete: function(e) {
+            e.preventDefault();
+            window.location = '#/delete/' + this.model.get('order');
         },
 
         /**
@@ -612,7 +618,8 @@ $(function() {
     var AppRouter = Backbone.Router.extend({
         routes: {
             'task/:id': 'getTask',
-            '': 'getAllTasks'
+            '': 'getAllTasks',
+            'delete/:id' : 'deleteTask'
         }
     });
 
@@ -634,12 +641,33 @@ $(function() {
             $('.task-detail-view-container').fadeIn(200);
             $('#grey-bkgrnd').fadeIn(200);
         });
+        $('.alerts').fadeOut(0);
+        $('.delete-task-alert').fadeOut(0);
     });
 
     appRouter.on('route:getAllTasks', function(id) {
         $('#grey-bkgrnd').fadeOut(200);
         $('.task-detail-view-container').fadeOut(200, function() {
             $(App.el).fadeIn(200);
+        });
+        $('.alerts').fadeOut(0);
+        $('.delete-task-alert').fadeOut(0);
+    });
+
+    appRouter.on('route:deleteTask', function(id) {
+        console.log('alerrting');
+        $('.alerts').fadeIn(0);
+        $('.delete-task-alert').fadeIn(200);
+        $('.delete-task-alert .confirm-deletion').on('click', function(e) {
+            e.preventDefault();
+            $('.delete-task-alert').fadeOut(200);
+            var model_to_delete = _.find(Tasks.models, function(model) { return parseInt(model.get('order'), 10) === parseInt(id, 10); });
+            model_to_delete.destroy();
+            window.location = '#';
+        });
+        $('.delete-task-alert .cancel-deletion').on('click', function(e) {
+            e.preventDefault();
+            $('.delete-task-alert').fadeOut(200);
         });
     });
 

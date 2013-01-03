@@ -319,6 +319,12 @@ body {
  
 .ui-datepicker-other-month .ui-state-default { color: #a8a8a8; }
 
+.alerts {
+    .delete-task-alert {
+        display: none;
+    }
+}
+
 #header {
     width: 100%;
     height: 70px;
