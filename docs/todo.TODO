@@ -1,7 +1,8 @@
 immediate:
- ☐ on item double click, load calendar screen @interface @ux @ui
- ☐ create tab for calendar and chart, look for tab styles in twitter bootstrap @interface @ux @ui
+ ✔ on item double click, load calendar screen @interface @ux @ui @done (13-01-02 22:38)
+ ✔ create tab for calendar and chart, look for tab styles in twitter bootstrap @interface @ux @ui @done (13-01-02 22:38)
  ☐ from that screen have a link for task settings @interface @ux @ui
+ ☐ add route checks, i.e. someone tries to delete or edit or view an invalid task @functionality
 
 
 
@@ -31,7 +32,7 @@ Future:
 
  Release 1 Requirements:
  ✔ add a new task @done (12-12-28 20:08)
- ☐ remove a task
+ ✔ remove a task @done (13-01-02 22:29)
  ✔ see details about a task @done (13-01-02 19:10)
  ☐ modify a task
  ☐ add a user specified amount of time to a task

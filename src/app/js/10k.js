@@ -505,15 +505,21 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="delete-task"><a href="#"><i class="icon-trash icon-dark-purple"></i>Delete</a></div><div class="modify-task"><a href="#"><i class="icon-edit icon-dark-purple"></i>Modify Task</a></div><div class="add-time"><a href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="delete-task"><a href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div><div class="modify-task"><a href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="add-time"><a href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
-            'click .delete-task a' : 'onDelete'
+            'click .delete-task a': 'onDelete',
+            'click .modify-task a': 'onEdit'
         },
 
         onDelete: function(e) {
             e.preventDefault();
             window.location = '#/delete/' + this.model.get('order');
+        },
+
+        onEdit: function(e){
+            e.preventDefault();
+            window.location = '#/task/edit/' + this.model.get('order');
         },
 
         /**
@@ -547,6 +553,43 @@ $(function() {
     });
 
     var TaskDetail;
+
+    // EditTaskView
+    // -----------
+    
+    var EditTaskView = Backbone.View.extend({
+        
+        template: _.template('<p class="section-heading">Edit Task</p><form><p class="form-label">Task Name:</p><input class="input-xlarge" type="text" placeholder="<%- title %>"><p class="form-label">How often would you like to repeat this task?</p><div class="btn-toolbar"><div class="btn-group"><button class="btn">S</button><button class="btn">M</button><button class="btn">T</button><button class="btn">W</button><button class="btn">T</button><button class="btn">F</button><button class="btn">S</button></div></div><p class="form-label">Intervals</p><div class="checkbox-section"><label class="checkbox"><input type="checkbox" id="intervalOption1">Every day</label><label class="checkbox"><input type="checkbox" id="intervalOption2">Every 2 days</label><label class="checkbox"><input type="checkbox" id="intervalOption3">Every 2-3 days</label><label class="checkbox"><input type="checkbox" id="intervalOption4">Every 3 days</label><label class="checkbox"><input type="checkbox" id="intervalOption5">Every 3-5 days</label></div><p class="form-label">Non-specific days</p><div class="checkbox-section nonspecific"><label class="checkbox"><input type="checkbox" id="nonSpecificOption1">1 day per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption2">2 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption3">3 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption4">4 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption5">5 days per week</label><label class="checkbox"><input type="checkbox" id="nonSpecificOption6">6 days per week</label></div><p><button class="btn">Save</button><button class="btn">Cancel</button></p></form>'),
+    
+        events: {
+            // events
+        },
+    
+        /**
+        * Initialize view.
+        */
+        initialize: function() {
+            //init code here
+        },
+    
+        /**
+        * Renders the view.
+        * @return {Backbone.View}
+        */
+        render: function() {
+            var $element = $(this.$el);
+            $element.html(this.template(this.model.toJSON()));
+            //render code
+            return this;
+        },
+
+        setModel: function(model) {
+            this.model = model;
+            this.render();
+        }
+    });
+
+    var EditTask;
 
     // Application
     // -----------
@@ -617,15 +660,19 @@ $(function() {
     // note that the router catches anything past the # sign, http://localhost:4567/#tasks/3 for example
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'task/:id': 'getTask',
             '': 'getAllTasks',
-            'delete/:id' : 'deleteTask'
+            'task/:id': 'getTask',
+            'delete/:id': 'deleteTask',
+            'task/edit/:id' : 'editTask'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
-        $(App.el).fadeOut(200, function() {
+
+         var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
+
+        $divToFade.fadeOut(200, function() {
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
                     if (!TaskDetail) {
@@ -641,13 +688,15 @@ $(function() {
             $('.task-detail-view-container').fadeIn(200);
             $('#grey-bkgrnd').fadeIn(200);
         });
+        $('#grey-bkgrnd').animate({marginTop : 165}, 300);
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
     });
 
     appRouter.on('route:getAllTasks', function(id) {
         $('#grey-bkgrnd').fadeOut(200);
-        $('.task-detail-view-container').fadeOut(200, function() {
+        var $divToFade = ($('.task-detail-view-container').is(':visible')) ? $('.task-detail-view-container') : $('.edit-task-view-container');
+        $divToFade.fadeOut(200, function() {
             $(App.el).fadeIn(200);
         });
         $('.alerts').fadeOut(0);
@@ -655,13 +704,14 @@ $(function() {
     });
 
     appRouter.on('route:deleteTask', function(id) {
-        console.log('alerrting');
         $('.alerts').fadeIn(0);
         $('.delete-task-alert').fadeIn(200);
         $('.delete-task-alert .confirm-deletion').on('click', function(e) {
             e.preventDefault();
             $('.delete-task-alert').fadeOut(200);
-            var model_to_delete = _.find(Tasks.models, function(model) { return parseInt(model.get('order'), 10) === parseInt(id, 10); });
+            var model_to_delete = _.find(Tasks.models, function(model) {
+                return parseInt(model.get('order'), 10) === parseInt(id, 10);
+            });
             model_to_delete.destroy();
             window.location = '#';
         });
@@ -669,6 +719,30 @@ $(function() {
             e.preventDefault();
             $('.delete-task-alert').fadeOut(200);
         });
+    });
+
+    appRouter.on('route:editTask', function(id) {
+        // right now only handling detailview -> edit view, will need to know which views to fade in/out dynamically eventually
+        var $divToFade = ($('.task-detail-view-container').is(':visible')) ? $('.task-detail-view-container') : $('#tasks-list-view');
+        $divToFade.fadeOut(200, function() {
+            _.each(Tasks.models, function(model) {
+                if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                    if (!EditTask) {
+                        EditTask = new EditTaskView({
+                            model: model
+                        });
+                        $('#edit-task-view').append(EditTask.render().el);
+                    } else {
+                        EditTask.setModel(model);
+                    }
+                }
+            });
+            $('.edit-task-view-container').fadeIn(200);
+            $('#grey-bkgrnd').fadeIn(200);
+        });
+        $('#grey-bkgrnd').animate({marginTop : 98}, 300);
+        $('.alerts').fadeOut(0);
+        $('.delete-task-alert').fadeOut(0);
     });
 
     Backbone.history.start();
@@ -844,6 +918,11 @@ $(function() {
                 return;
             }
         }
+    });
+
+    $('#grey-bkgrnd').height($('.main').height());
+    $(window).resize(function() {
+        $('#grey-bkgrnd').height($('.main').height());
     });
 
     $('#task-list').disableSelection();
