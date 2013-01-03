@@ -332,6 +332,16 @@ body {
     }
 }
 
+#grey-bkgrnd {
+    background: #e7e7e7;
+    width: 1542px;
+    height: 458px;
+    border-top: 1px solid #d6d6d6;
+    margin-top: 165px;
+    position: absolute;
+    display: none;
+}
+
 #tasks-list-view {
     background: $bg-color;
     margin-bottom: 40px;
@@ -350,10 +360,11 @@ body {
 
 .task-detail-view-container {
    /*background: red;*/
-   width: 90%;
    height: 500px;
    margin: 0 auto;
    display: none;
+   z-index: 6;
+   position: relative;
 
    #task-detail-view {
         /*background: blue;*/
@@ -437,7 +448,8 @@ body {
         }
 
         .detail-btn-bar-calendar {
-            padding-top: 50px;
+            margin-top: 50px;
+            padding-bottom: 40px;
 
             #calendar {
                 margin-top: 20px;
@@ -451,8 +463,6 @@ body {
                 }
             }
         }
-
-        
    }
 }
 

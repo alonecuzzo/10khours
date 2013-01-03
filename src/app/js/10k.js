@@ -504,7 +504,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<dvi class="task-detail-view-header-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
             // events
@@ -632,10 +632,12 @@ $(function() {
                 }
             });
             $('.task-detail-view-container').fadeIn(200);
+            $('#grey-bkgrnd').fadeIn(200);
         });
     });
 
     appRouter.on('route:getAllTasks', function(id) {
+        $('#grey-bkgrnd').fadeOut(200);
         $('.task-detail-view-container').fadeOut(200, function() {
             $(App.el).fadeIn(200);
         });
