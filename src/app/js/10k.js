@@ -505,11 +505,18 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="delete-task"><a href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div><div class="modify-task"><a href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="add-time"><a href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large active">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large active">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
             'click .delete-task a': 'onDelete',
-            'click .modify-task a': 'onEdit'
+            'click .modify-task a': 'onEdit',
+            'click .add-time a' : 'onAddTime'
+        },
+
+        onAddTime: function(e) {
+            e.preventDefault();
+            var $element = $(this.$el);
+            $element.find('.add-time-btn').popover('toggle');
         },
 
         onDelete: function(e) {
@@ -536,6 +543,8 @@ $(function() {
         render: function() {
             var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
+
+            $element.find('.add-time-btn').popover({content : 'OVERRIDE HOE!'});
 
             $element.find('#calendar').datepicker({
                 inline: true,
