@@ -505,15 +505,16 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large active">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="" href="#myModal" data-toggle="modal"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text">Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">Every 3 days</div><div class="current-streak-text">2 days</div><div class="longest-streak-text">21 days</div></div><div class="label-text"><div class="task-frequency">Goal</div><div class="current-streak">Current Streak</div><div class="longest-streak">Longest Streak</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button class="btn btn-large active">Calendar</button><button class="btn btn-large">Stats</button></div><div id="calendar"></div><div><div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Are you sure you want to delete this task?</h3></div><div class="modal-body"><p>This cannot be undone.</p></div><div class="modal-footer"><a href="#" class="btn delete-cancel-btn">Close</a><a href="#" class="btn btn-primary delete-confirm-btn">Save changes</a></div></div>'),
 
         events: {
-            'click .delete-task a': 'onDelete',
             'click .modify-task a': 'onEdit',
             'click .add-time a': 'onAddTime',
             'click .date-picker': 'onDatePicker',
             'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
-            'click #add-time-cancel-btn': 'onAddTimeCancelClick'
+            'click #add-time-cancel-btn': 'onAddTimeCancelClick',
+            'click .delete-confirm-btn': 'onDeleteConfirmationClick',
+            'click .delete-cancel-btn': 'onDeleteCancelClick'
         },
 
         onDatePicker: function(e) {
@@ -534,9 +535,16 @@ $(function() {
             $element.find('.add-time-btn').popover('toggle');
         },
 
-        onDelete: function(e) {
+        onDeleteConfirmationClick: function(e) {
             e.preventDefault();
-            window.location = '#/delete/' + this.model.get('order');
+            $('#myModal').modal('hide');
+            this.model.destroy();
+            window.location = '#';
+        },
+
+        onDeleteCancelClick: function(e) {
+            e.preventDefault();
+            $('#myModal').modal('hide');
         },
 
         onEdit: function(e) {
@@ -689,7 +697,6 @@ $(function() {
         routes: {
             '': 'getAllTasks',
             'task/:id': 'getTask',
-            'delete/:id': 'deleteTask',
             'task/edit/:id': 'editTask'
         }
     });
@@ -731,24 +738,6 @@ $(function() {
         });
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
-    });
-
-    appRouter.on('route:deleteTask', function(id) {
-        $('.alerts').fadeIn(0);
-        $('.delete-task-alert').fadeIn(200);
-        $('.delete-task-alert .confirm-deletion').on('click', function(e) {
-            e.preventDefault();
-            $('.delete-task-alert').fadeOut(200);
-            var model_to_delete = _.find(Tasks.models, function(model) {
-                return parseInt(model.get('order'), 10) === parseInt(id, 10);
-            });
-            model_to_delete.destroy();
-            window.location = '#';
-        });
-        $('.delete-task-alert .cancel-deletion').on('click', function(e) {
-            e.preventDefault();
-            $('.delete-task-alert').fadeOut(200);
-        });
     });
 
     appRouter.on('route:editTask', function(id) {
