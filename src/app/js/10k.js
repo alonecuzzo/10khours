@@ -332,7 +332,7 @@ $(function() {
          * Handles showing edit view.
          */
         onMouseDoubleClick: function() {
-            window.location = 'http://localhost:4567/#task/' + this.model.get('order');
+            window.location = '/#task/' + this.model.get('order');
         },
 
         /**
@@ -511,11 +511,21 @@ $(function() {
             'click .delete-task a': 'onDelete',
             'click .modify-task a': 'onEdit',
             'click .add-time a': 'onAddTime',
-            'click .date-picker': 'onDatePicker'
+            'click .date-picker': 'onDatePicker',
+            'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
+            'click #add-time-cancel-btn': 'onAddTimeCancelClick'
         },
 
         onDatePicker: function(e) {
             $('#dp').datepicker();
+        },
+
+        onAddTimeConfirmClick: function(e) {
+            $('.add-time-btn').popover('hide');
+        },
+
+        onAddTimeCancelClick: function(e) {
+            $('.add-time-btn').popover('hide');
         },
 
         onAddTime: function(e) {
@@ -550,7 +560,7 @@ $(function() {
             $element.html(this.template(this.model.toJSON()));
 
             $element.find('.add-time-btn').popover({
-                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div>',
+                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
                 html: true
             });
 
