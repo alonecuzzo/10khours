@@ -312,6 +312,8 @@ i {
 
         .task-detail-view-header-wrapper {
 
+            margin-left: -20px;
+
             .title-wrapper {
                 float: left;
             }
@@ -522,10 +524,11 @@ i {
 
             #calendar {
                 margin-top: 20px;
+                margin-left: -20px;
             }
 
             #task-detail-btn-bar {
-                margin-left: 170px;
+                margin-left: 120px;
 
                 .btn {
                     color: $task-font-grey;
