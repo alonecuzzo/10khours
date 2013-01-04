@@ -196,6 +196,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/*for icons*/
+i {
+    padding-right: 5px;
+}
+
 .alerts {
     .delete-task-alert {
         display: none;
@@ -358,11 +363,6 @@ body {
                     font-weight: bold;
                     font-size: 13px;
                     text-align: left;
-                    background-image: url(../img/graphbars.png);
-                    background-position: 0px 5px;
-                    background-repeat: no-repeat;
-                    background-size: 15px 15px;
-                    padding-left: 19px;
                     padding-top: 5px;
                     margin-top: -5px;
                 }
