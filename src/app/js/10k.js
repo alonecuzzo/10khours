@@ -510,7 +510,12 @@ $(function() {
         events: {
             'click .delete-task a': 'onDelete',
             'click .modify-task a': 'onEdit',
-            'click .add-time a' : 'onAddTime'
+            'click .add-time a': 'onAddTime',
+            'click .date-picker': 'onDatePicker'
+        },
+
+        onDatePicker: function(e) {
+            $('#dp').datepicker();
         },
 
         onAddTime: function(e) {
@@ -544,7 +549,10 @@ $(function() {
             var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
 
-            $element.find('.add-time-btn').popover({content : 'OVERRIDE HOE!'});
+            $element.find('.add-time-btn').popover({
+                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div>',
+                html: true
+            });
 
             $element.find('#calendar').datepicker({
                 inline: true,
