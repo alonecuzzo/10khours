@@ -515,18 +515,20 @@ $(function() {
             'click #add-time-cancel-btn': 'onAddTimeCancelClick',
             'click .delete-confirm-btn': 'onDeleteConfirmationClick',
             'click .delete-cancel-btn': 'onDeleteCancelClick',
-            'click #calendar-tab-btn' : 'onCalendarTabButtonClick',
-            'click #stats-tab-btn' : 'onStatsTabButtonClick'
+            'click #calendar-tab-btn': 'onCalendarTabButtonClick',
+            'click #stats-tab-btn': 'onStatsTabButtonClick'
         },
 
         onCalendarTabButtonClick: function(e) {
-             $('#stats-tab-btn').removeClass('active');
+            $('#stats-tab-btn').removeClass('active');
             $('#calendar-tab-btn').addClass('active');
+            $('#calendar').fadeIn(200);
         },
 
         onStatsTabButtonClick: function(e) {
             $('#stats-tab-btn').addClass('active');
             $('#calendar-tab-btn').removeClass('active');
+            $('#calendar').fadeOut(200);
         },
 
         onDatePicker: function(e) {
