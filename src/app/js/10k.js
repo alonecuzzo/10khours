@@ -505,16 +505,17 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="" href="#myModal" data-toggle="modal"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text"><i class="icon-signal"></i>Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">34 hours</div><div class="current-streak-text">3 sessions</div><div class="longest-streak-text">1.2 hours</div></div><div class="label-text"><div class="task-frequency">so far</div><div class="current-streak">recorded</div><div class="longest-streak">per session</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div><div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Are you sure you want to delete this task?</h3></div><div class="modal-body"><p>This cannot be undone.</p></div><div class="modal-footer"><a href="#" class="btn delete-cancel-btn">Close</a><a href="#" class="btn btn-primary delete-confirm-btn">Save changes</a></div></div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="delete-task-btn" el="popover" data-placement="right" data-original-title="Confirm Task Deletion" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text"><i class="icon-signal"></i>Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">34 hours</div><div class="current-streak-text">3 sessions</div><div class="longest-streak-text">1.2 hours</div></div><div class="label-text"><div class="task-frequency">so far</div><div class="current-streak">recorded</div><div class="longest-streak">per session</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div>'),
 
         events: {
             'click .modify-task a': 'onEdit',
             'click .add-time a': 'onAddTime',
+            'click .delete-task a': 'onDeleteClick',
             'click .date-picker': 'onDatePicker',
             'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
             'click #add-time-cancel-btn': 'onAddTimeCancelClick',
-            'click .delete-confirm-btn': 'onDeleteConfirmationClick',
-            'click .delete-cancel-btn': 'onDeleteCancelClick',
+            'click #delete-task-confirm-btn': 'onDeleteConfirmationClick',
+            'click #delete-task-cancel-btn': 'onDeleteCancelClick',
             'click #calendar-tab-btn': 'onCalendarTabButtonClick',
             'click #stats-tab-btn': 'onStatsTabButtonClick'
         },
@@ -549,16 +550,20 @@ $(function() {
             $element.find('.add-time-btn').popover('toggle');
         },
 
+        onDeleteClick: function(e) {
+            e.preventDefault();
+            $(this.$el).find('.delete-task-btn').popover('toggle');
+        },
+
         onDeleteConfirmationClick: function(e) {
             e.preventDefault();
-            $('#myModal').modal('hide');
             this.model.destroy();
             window.location = '#';
         },
 
         onDeleteCancelClick: function(e) {
             e.preventDefault();
-            $('#myModal').modal('hide');
+            $(this.$el).find('.delete-task-btn').popover('hide');
         },
 
         onEdit: function(e) {
@@ -583,6 +588,11 @@ $(function() {
 
             $element.find('.add-time-btn').popover({
                 content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
+                html: true
+            });
+
+            $element.find('.delete-task-btn').popover({
+                content: '<button id="delete-task-confirm-btn" class="btn btn-success">Confirm</button><button id="delete-task-cancel-btn" class="btn">Cancel</button>',
                 html: true
             });
 
