@@ -156,6 +156,7 @@ nav a:hover {
 
 .main {
     padding: 30px 100px;
+    overflow-x: hidden;
 }
 
 .main article h1 {
@@ -228,7 +229,7 @@ i {
 
 #grey-bkgrnd {
     background: #e7e7e7;
-    width: 1542px;
+    width: 10px;
     border-top: 1px solid #d6d6d6;
     margin-top: 165px;
     position: absolute;
@@ -301,6 +302,11 @@ i {
    margin: 0 auto;
    display: none;
    position: relative;
+
+    #charts-view {
+        display: none; 
+        margin-left: -125px;
+    }
 
    #task-detail-view {
         /*background: blue;*/

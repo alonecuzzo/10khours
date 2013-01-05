@@ -8,7 +8,7 @@ immediate:
 Today:
   DetailView:
   ☐ add graph view @ui @functionality
-  ☐ create popover for delete task similar to the add time popover @ui @functionality
+  ✔ create popover for delete task similar to the add time popover @ui @functionality @done (13-01-05 15:37)
   ☐ need rollover popovers for the calendar dates on the calendar @functionality
 
 --- ✄ -----------------------

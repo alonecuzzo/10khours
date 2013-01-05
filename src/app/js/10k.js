@@ -505,7 +505,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="delete-task-btn" el="popover" data-placement="right" data-original-title="Confirm Task Deletion" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text"><i class="icon-signal"></i>Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">34 hours</div><div class="current-streak-text">3 sessions</div><div class="longest-streak-text">1.2 hours</div></div><div class="label-text"><div class="task-frequency">so far</div><div class="current-streak">recorded</div><div class="longest-streak">per session</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="delete-task-btn" el="popover" data-placement="right" data-original-title="Confirm Task Deletion" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text"><i class="icon-signal"></i>Stats at a glance</div><div class="stat-text"><div class="task-frequency-text">34 hours</div><div class="current-streak-text">3 sessions</div><div class="longest-streak-text">1.2 hours</div></div><div class="label-text"><div class="task-frequency">so far</div><div class="current-streak">recorded</div><div class="longest-streak">per session</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
 
         events: {
             'click .modify-task a': 'onEdit',
@@ -524,12 +524,14 @@ $(function() {
             $('#stats-tab-btn').removeClass('active');
             $('#calendar-tab-btn').addClass('active');
             $('#calendar').fadeIn(200);
+            $('#charts-view').fadeOut(200);
         },
 
         onStatsTabButtonClick: function(e) {
             $('#stats-tab-btn').addClass('active');
             $('#calendar-tab-btn').removeClass('active');
             $('#calendar').fadeOut(200);
+            $('#charts-view').fadeIn(200);
         },
 
         onDatePicker: function(e) {
@@ -596,6 +598,9 @@ $(function() {
                 html: true
             });
 
+            var chartView = new ChartView();
+            $('#charts-view-inner').append(chartView.render().el);
+
             $element.find('#calendar').datepicker({
                 inline: true,
                 firstDay: 1,
@@ -612,6 +617,35 @@ $(function() {
     });
 
     var TaskDetail;
+
+    // ChartView
+    // -----------
+
+    var ChartView = Backbone.View.extend({
+            
+            el: $('#charts-view'),
+
+            events: {
+                // events
+            },
+        
+            /**
+            * Initialize view.
+            */
+            initialize: function() {
+                //init code here
+                this.r = Raphael(this.el, 620, 500);
+            },
+        
+            /**
+            * Renders the view.
+            * @return {Backbone.View}
+            */
+            render: function() {
+                this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {});
+                return this;
+            }
+        });
 
     // EditTaskView
     // -----------
@@ -967,8 +1001,10 @@ $(function() {
     });
 
     $('#grey-bkgrnd').height($('.main').height());
+    $('#grey-bkgrnd').width($('.main').width());
     $(window).resize(function() {
         $('#grey-bkgrnd').height($('.main').height());
+        $('#grey-bkgrnd').width($('.main').width());
     });
 
     $('#task-list').disableSelection();
