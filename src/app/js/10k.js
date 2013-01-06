@@ -598,8 +598,12 @@ $(function() {
                 html: true
             });
 
-            var chartView = new ChartView();
-            $('#charts-view-inner').append(chartView.render().el);
+            if(!this.chartView) {
+               this.chartView = new ChartView();
+                $('#charts-view-inner').append(this.chartView.render().el);
+            }
+
+            $('#charts-view').hide();
 
             $element.find('#calendar').datepicker({
                 inline: true,
