@@ -598,8 +598,8 @@ $(function() {
                 html: true
             });
 
-            if(!this.chartView) {
-               this.chartView = new ChartView();
+            if (!this.chartView) {
+                this.chartView = new ChartView();
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
 
@@ -631,7 +631,7 @@ $(function() {
 
             $element.find('#calendar td a').live('mouseenter', function() {
                 // el="popover" data-placement="right" data-original-title="Confirm Task Deletion"
-                console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' +$('.ui-datepicker-year').text());
+                console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
                 $(this).popover('show');
             });
 
@@ -650,30 +650,30 @@ $(function() {
     // -----------
 
     var ChartView = Backbone.View.extend({
-            
-            el: $('#charts-view'),
 
-            events: {
-                // events
-            },
-        
-            /**
-            * Initialize view.
-            */
-            initialize: function() {
-                //init code here
-                this.r = Raphael(this.el, 620, 500);
-            },
-        
-            /**
-            * Renders the view.
-            * @return {Backbone.View}
-            */
-            render: function() {
-                this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {});
-                return this;
-            }
-        });
+        el: $('#charts-view'),
+
+        events: {
+            // events
+        },
+
+        /**
+         * Initialize view.
+         */
+        initialize: function() {
+            //init code here
+            this.r = new Raphael(this.el, 620, 500);
+        },
+
+        /**
+         * Renders the view.
+         * @return {Backbone.View}
+         */
+        render: function() {
+            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {});
+            return this;
+        }
+    });
 
     // EditTaskView
     // -----------

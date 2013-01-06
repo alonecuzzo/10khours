@@ -70,7 +70,8 @@ module.exports = function(grunt) {
 				Backbone : true,
 				_ : true,
 				$ : true,
-				console : true
+				console : true,
+				Raphael : true
 			}
 		},
 		mocha : {
