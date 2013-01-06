@@ -7,13 +7,14 @@ immediate:
 
 Today:
   DetailView:
-  ☐ add graph view @ui @functionality
-  ✔ create popover for delete task similar to the add time popover @ui @functionality @done (13-01-05 15:37)
   ☐ need rollover popovers for the calendar dates on the calendar @functionality
 
 --- ✄ -----------------------
 
 Tomorrow:
+ ☐ need to fix the horizontal scrolling adsopifhoawe NO HORIZONTAL SCROLLING, already tried setting overflow-x:hidden but no dice @bug
+ ☐ there's a weird bug with the grey-background scrolling with oddly with the elements on the detail view @bug
+ ☐ if you click on detailview, then go back to the main list, then go back to the detail view and show the charts, the charts are off-center @bug
  ☐ have a detail view for double-click of a task in mobile view @interface 
  ☐ the jsbeautifier is beautifying the js, but it doesn't get added to the repo @githooks
  ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
@@ -42,6 +43,8 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ add graph view @ui @functionality @done (13-01-05 17:35)
+ ✔ create popover for delete task similar to the add time popover @ui @functionality @done (13-01-05 15:37)
  ✔ on item double click, load calendar screen @interface @ux @ui @done (13-01-02 22:38)
  ✔ create tab for calendar and chart, look for tab styles in twitter bootstrap @interface @ux @ui @done (13-01-02 22:38)
  ✔ create a DetailView for the Task @done (13-01-05 15:12)

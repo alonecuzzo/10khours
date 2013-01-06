@@ -605,8 +605,32 @@ $(function() {
                 inline: true,
                 firstDay: 1,
                 showOtherMonths: true,
-                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                isRolloverCalendar: true,
+                rolloverTitle: 'Stats'
             });
+
+            function setupCalendarPopovers() {
+                $element.find('#calendar').datepicker('refresh');
+                $element.find('#calendar td a').each(function() {
+                    $(this).attr('el', 'popover');
+                    $(this).attr('data-original-title', 'Stats');
+                    $(this).attr('data-placement', 'top');
+                });
+            }
+
+            setupCalendarPopovers();
+
+            $element.find('#calendar td a').live('mouseleave', function() {
+                $(this).popover('hide');
+            });
+
+            $element.find('#calendar td a').live('mouseenter', function() {
+                // el="popover" data-placement="right" data-original-title="Confirm Task Deletion"
+                console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' +$('.ui-datepicker-year').text());
+                $(this).popover('show');
+            });
+
             return this;
         },
 

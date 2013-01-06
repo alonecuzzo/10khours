@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 		},
 		concat : {
 			lib : {
-				src : [root + 'lib/modernizr-2.6.2-respond-1.1.0.min.js', root + 'lib/json2.min.js', root + 'lib/underscore-min.js', root + 'lib/jquery-1.8.3.min.js', root + 'lib/jquery-ui-1.9.2.custom.min.js', root + 'lib/backbone-min.js', root + 'lib/backbone-localStorage-min.js', root + 'lib/date.min.js', root + 'lib/plugins.js', root + 'lib/bootstrap.js', root + 'lib/raphael-min.js', root + 'lib/g.raphael-min.js', root + 'lib/g.bar-min.js'],
+				src : [root + 'lib/modernizr-2.6.2-respond-1.1.0.min.js', root + 'lib/json2.min.js', root + 'lib/underscore-min.js', root + 'lib/jquery-1.8.3.min.js', root + 'lib/jquery-ui.js', root + 'lib/backbone-min.js', root + 'lib/backbone-localStorage-min.js', root + 'lib/date.min.js', root + 'lib/plugins.js', root + 'lib/bootstrap.js', root + 'lib/raphael-min.js', root + 'lib/g.raphael-min.js', root + 'lib/g.bar-min.js'],
 				dest : root + 'tmp/<%= pkg.name %>-lib.js'
 			},
 			// backup task just incase we want to break out the js files apart
