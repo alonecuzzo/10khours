@@ -603,6 +603,11 @@ $(function() {
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
 
+            var totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
+
+            $element.find('.task-frequency-text').text(totalHours + ' hours');
+            $element.find('.current-streak-text').text(this.model.get('sessions').length + ' sessions');
+
             $('#charts-view').hide();
 
             $element.find('#calendar').datepicker({
@@ -620,31 +625,33 @@ $(function() {
             console.debug('model: ' + JSON.stringify(this.model));
 
             this.onCalendarRefresh($element, this.model);
-            
+
             return this;
         },
 
         onCalendarRefresh: function($element, model) {
             $('#calendar td').addClass('ui-datepicker-unselectable');
-            if(model !== undefined) {
+            if (model !== undefined) {
                 var sessionsRecordedThisMonth = [],
                     calendarMonth = Date.getMonthNumberFromName($('.ui-datepicker-month').text()),
                     calendarYear = parseInt($('.ui-datepicker-year').text(), 10),
                     i;
-                if(calendarMonth < 0) {
+                if (calendarMonth < 0) {
                     calendarMonth = new Date().getMonth();
                 }
-                if(!calendarYear) {
+                if (!calendarYear) {
                     calendarYear = new Date().getFullYear();
                 }
-                for(i = 0; i <= model.get('sessions').length -1; i++) {
+                for (i = 0; i <= model.get('sessions').length - 1; i++) {
                     var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
-                    if(startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear) {
+                    if (startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear) {
                         sessionsRecordedThisMonth.push(startDate);
                     }
                 }
-                for(i = 0; i <= sessionsRecordedThisMonth.length - 1; i++) {
-                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-placement', 'top');
+                for (i = 0; i <= sessionsRecordedThisMonth.length - 1; i++) {
+                    $element.find('#calendar td a').filter(function() {
+                        return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();
+                    }).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-placement', 'top');
                 }
 
                 $element.find('#calendar td a').on('mouseleave', function() {
@@ -658,20 +665,20 @@ $(function() {
                         calendarYear = parseInt($('.ui-datepicker-year').text(), 10),
                         calendarDate = parseInt($(this).text(), 10),
                         totalSeconds = 0;
-                    for(i = 0; i <= model.get('sessions').length - 1; i++) {
+                    for (i = 0; i <= model.get('sessions').length - 1; i++) {
                         var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
-                        if(startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
+                        if (startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
                             sessionsRecordedToday.push(startDate);
                             totalSeconds += model.get('sessions')[i].totalTime;
                         }
                     }
-                    if(sessionsRecordedToday.length > 0) {
+                    if (sessionsRecordedToday.length > 0) {
                         var totalHours = Math.round((totalSeconds / 3600) * 100) / 100;
                         $(this).popover({
-                                    title : $('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $('.ui-datepicker-year').text(),
-                                    content : '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
-                                    html : true
-                                });
+                            title: $('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $('.ui-datepicker-year').text(),
+                            content: '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
+                            html: true
+                        });
                         $(this).popover('show');
                     }
                 });
@@ -710,7 +717,9 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5']});
+            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {
+                colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5']
+            });
             return this;
         }
     });
