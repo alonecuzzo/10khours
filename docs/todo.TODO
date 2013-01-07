@@ -2,10 +2,10 @@ immediate:
  ☐ add route checks, i.e. someone tries to delete or edit or view an invalid task @functionality
  ☐ ANIMATE THE LOGO AT TEH TOP ON MOUSE ROLLOVER LIKE A REAL CLOCK!! @dopeness
 
-
-
 Today:
   DetailView:
+  ☐ calendar date should only have a rollover if there was a session recorded that day @ui
+  ☐ need state for calendar date when there has been a recording that day, like the stopwatch over the date or something @ui @functionality
 
 --- ✄ -----------------------
 
@@ -13,13 +13,10 @@ Tomorrow:
  ☐ need to fix the horizontal scrolling adsopifhoawe NO HORIZONTAL SCROLLING, already tried setting overflow-x:hidden but no dice @bug
  ☐ fix currentTarget popover bug that happens when using toggle function... doesn't appear to be happening on show/hide functions so maybe use those instead @bug
  ☐ maybe add a stats rollover for the month of the calendar
- ☐ there's a weird bug with the grey-background scrolling with oddly with the elements on the detail view @bug
  ☐ if you click on detailview, then go back to the main list, then go back to the detail view and show the charts, the charts are off-center @bug
- ☐ have a detail view for double-click of a task in mobile view @interface 
  ☐ the jsbeautifier is beautifying the js, but it doesn't get added to the repo @githooks
  ☐ the drag & drop seems to be a little buggy with the addition of the mouseOver / mouseOut states @ui @functionality
  ☐ need to format our githook output, look into unix utils nl, sed, awk and grep aosfijhpwe @githooks
- ☐ handle item deletion @ui @functionality
  ☐ add some code in the applescript that creates the ln for the git hook automatically
  ☐ when you click an active item and it stops, the transition between the old color of the copy and the new color takes too long... there's too much of a delay @ui @functionality 
 
@@ -43,6 +40,8 @@ Future:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ handle item deletion @ui @functionality @done (13-01-06 19:17)
+ ✔ there's a weird bug with the grey-background scrolling with oddly with the elements on the detail view @bug @done (13-01-06 19:17)
  ✔ from that screen have a link for task settings @interface @ux @ui @done (13-01-06 18:11)
  ✔ need rollover popovers for the calendar dates on the calendar @functionality @done (13-01-06 18:11)
  ✔ add graph view @ui @functionality @done (13-01-05 17:35)

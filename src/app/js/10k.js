@@ -611,7 +611,10 @@ $(function() {
                 showOtherMonths: true,
                 dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 isRolloverCalendar: true,
-                rolloverTitle: 'Stats'
+                rolloverTitle: 'Stats',
+                onRefreshFunction: this.onCalendarRefresh,
+                element: $element,
+                model: this.model
             });
 
             function setupCalendarPopovers() {
@@ -631,11 +634,41 @@ $(function() {
 
             $element.find('#calendar td a').live('mouseenter', function() {
                 // el="popover" data-placement="right" data-original-title="Confirm Task Deletion"
-                console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
+                // console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
                 $(this).popover('show');
             });
 
+            console.log('model: ' + JSON.stringify(this.model));
+
+            this.onCalendarRefresh($element, this.model);
+            
             return this;
+        },
+
+        onCalendarRefresh: function($element, model) {
+            if(model !== undefined) {
+                var sessionsRecordedThisMonth = [],
+                    calendarMonth = Date.getMonthNumberFromName($('.ui-datepicker-month').text()),
+                    calendarYear = parseInt($('.ui-datepicker-year').text(), 10),
+                    i;
+                if(calendarMonth < 0) {
+                    calendarMonth = new Date().getMonth();
+                }
+                if(!calendarYear) {
+                    calendarYear = new Date().getFullYear();
+                }
+                
+                for(i = 0; i <= model.get('sessions').length -1; i++) {
+                    var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
+                    if(startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear) {
+                        sessionsRecordedThisMonth.push(startDate);
+                    }
+                }
+
+                for(i = 0; i <= sessionsRecordedThisMonth.length - 1; i++) {
+                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch');
+                }
+            }
         },
 
         setModel: function(model) {
@@ -670,7 +703,7 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {});
+            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5']});
             return this;
         }
     });
