@@ -634,6 +634,8 @@ $(function() {
         },
 
         onCalendarRefresh: function($element, model) {
+            console.log('calling rrefresh!');
+            $('#calendar td').addClass('ui-datepicker-unselectable');
             if(model !== undefined) {
                 var sessionsRecordedThisMonth = [],
                     calendarMonth = Date.getMonthNumberFromName($('.ui-datepicker-month').text()),
