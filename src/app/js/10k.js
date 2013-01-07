@@ -617,16 +617,7 @@ $(function() {
                 model: this.model
             });
 
-            $element.find('#calendar td a').live('mouseleave', function() {
-                $(this).popover('hide');
-            });
-
-            $element.find('#calendar td a').live('mouseenter', function() {
-                // console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
-                $(this).popover('show');
-            });
-
-            console.log('model: ' + JSON.stringify(this.model));
+            console.debug('model: ' + JSON.stringify(this.model));
 
             this.onCalendarRefresh($element, this.model);
             
@@ -653,8 +644,37 @@ $(function() {
                     }
                 }
                 for(i = 0; i <= sessionsRecordedThisMonth.length - 1; i++) {
-                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-original-title', 'Stats').attr('data-placement', 'top');
+                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-placement', 'top');
                 }
+
+                $element.find('#calendar td a').on('mouseleave', function() {
+                    $(this).popover('hide');
+                });
+
+                $element.find('#calendar td a').on('mouseenter', function() {
+                    //console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
+                    var sessionsRecordedToday = [],
+                        calendarMonth = Date.getMonthNumberFromName($('.ui-datepicker-month').text()),
+                        calendarYear = parseInt($('.ui-datepicker-year').text(), 10),
+                        calendarDate = parseInt($(this).text(), 10),
+                        totalSeconds = 0;
+                    for(i = 0; i <= model.get('sessions').length - 1; i++) {
+                        var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
+                        if(startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
+                            sessionsRecordedToday.push(startDate);
+                            totalSeconds += model.get('sessions')[i].totalTime;
+                        }
+                    }
+                    if(sessionsRecordedToday.length > 0) {
+                        var totalHours = Math.round((totalSeconds / 3600) * 100) / 100;
+                        $(this).popover({
+                                    title : $('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $('.ui-datepicker-year').text(),
+                                    content : '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
+                                    html : true
+                                });
+                        $(this).popover('show');
+                    }
+                });
             }
         },
 
