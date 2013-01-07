@@ -617,23 +617,11 @@ $(function() {
                 model: this.model
             });
 
-            function setupCalendarPopovers() {
-                $element.find('#calendar').datepicker('refresh');
-                $element.find('#calendar td a').each(function() {
-                    $(this).attr('el', 'popover');
-                    $(this).attr('data-original-title', 'Stats');
-                    $(this).attr('data-placement', 'top');
-                });
-            }
-
-            setupCalendarPopovers();
-
             $element.find('#calendar td a').live('mouseleave', function() {
                 $(this).popover('hide');
             });
 
             $element.find('#calendar td a').live('mouseenter', function() {
-                // el="popover" data-placement="right" data-original-title="Confirm Task Deletion"
                 // console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
                 $(this).popover('show');
             });
@@ -657,16 +645,14 @@ $(function() {
                 if(!calendarYear) {
                     calendarYear = new Date().getFullYear();
                 }
-                
                 for(i = 0; i <= model.get('sessions').length -1; i++) {
                     var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
                     if(startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear) {
                         sessionsRecordedThisMonth.push(startDate);
                     }
                 }
-
                 for(i = 0; i <= sessionsRecordedThisMonth.length - 1; i++) {
-                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch');
+                    $element.find('#calendar td a').filter(function(){ return parseInt($(this).text(), 10) === sessionsRecordedThisMonth[i].getDate();}).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-original-title', 'Stats').attr('data-placement', 'top');
                 }
             }
         },
