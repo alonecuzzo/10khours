@@ -298,14 +298,17 @@ i {
 
 .task-detail-view-container {
    /*background: red;*/
-   height: 500px;
+   height: 700px;
    margin: 0 auto;
    display: none;
    position: relative;
+   z-index:10;
+
 
     #charts-view {
         display: none; 
         margin-left: -125px;
+        position: relative;
     }
 
    #task-detail-view {
