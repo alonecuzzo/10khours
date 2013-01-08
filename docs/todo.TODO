@@ -4,6 +4,9 @@ Today:
   ☐ add daily goal time to stats @ a glance - just holder, hook up later
   ☐ add time should work
   ☐ stats should show days and total time for each day above them for the current week, don't worry about scrolling through weeks just yet
+EditView:
+ ☐ remove all streak tracking stuff  
+ ☐ just allow user to edit name and daily goal amount- may need to remove the editView and just have it done in a popover
 
 --- ✄ -----------------------
 
@@ -21,9 +24,7 @@ Tomorrow:
 
 Future:
  ☐ allow manual addition of Tasks/time @functionality
- ☐ also allow addition of time separate of tasks @functionality
  ☐ gamification, leveling up etc for logging your hours @functionality
- ☐ align all = signs, instructions here: http://wbond.net/sublime_packages/alignment @code **seems to be buggy, was uncamel-casing my variables !!!
 
 enhancements:
  ☐ ANIMATE THE LOGO AT TEH TOP ON MOUSE ROLLOVER LIKE A REAL CLOCK!! @dopeness

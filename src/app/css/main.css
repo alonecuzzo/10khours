@@ -385,11 +385,11 @@ i {
   margin-top: -5px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003388}}
-.task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .task-frequency, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .current-streak, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .longest-streak {
+.task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .total-hours, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .sessions-recorded, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .daily-goal {
   text-align: left;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003392}}
-.task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .task-frequency-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .current-streak-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .longest-streak-text {
+.task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .total-hours-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .sessions-recorded-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .daily-goal-text {
   font-size: 13px;
   font-weight: bold;
   color: #257dbf;
