@@ -624,7 +624,7 @@ $(function() {
                 html: true
             });
 
-            if (!this.chartView) {
+            if (typeof this.chartView === 'undefined') {
                 this.chartView = new ChartView();
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
@@ -695,9 +695,6 @@ $(function() {
                 totalSeconds = 0;
             for (i = 0; i <= e.data.model.get('sessions').length - 1; i++) {
                 var startDate = new Date(parseInt(e.data.model.get('sessions')[i].startDate, 10));
-                console.log('startdate.getmonth: ' + startDate.getMonth() + ' calendarmonth: ' + calendarMonth);
-                console.log('startdate.getFullYear: ' + startDate.getFullYear() + ' calendaryear: ' + calendarYear);
-                console.log('startdate.getDate: ' + startDate.getDate() + ' calendardate: ' + calendarDate);
                 if (startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
                     sessionsRecordedToday.push(startDate);
                     totalSeconds += e.data.model.get('sessions')[i].totalTime;
@@ -720,7 +717,7 @@ $(function() {
 
         setModel: function(model) {
             this.model = model;
-            this.render();
+            // this.render();
         },
 
         close: function() {
@@ -730,6 +727,8 @@ $(function() {
             $element.find('#calendar td a').unbind('mouseenter', {
                 model: this.model
             }, this.onCalendarDateMouseEnter);
+            this.chartView.close();
+            this.chartView = null;
             this.remove();
             this.unbind();
             this.model.unbind('change', this.modelChanged);
@@ -766,6 +765,11 @@ $(function() {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5']
             });
             return this;
+        },
+
+        close: function() {
+            this.r.remove();
+            this.r = null;
         }
     });
 
@@ -895,7 +899,6 @@ $(function() {
                     $('#task-detail-view').append(TaskDetail.render().el);
                 }
             });
-
             return;
         }
 
