@@ -771,7 +771,7 @@ $(function() {
         render: function() {
             var $element = $(this.$el).parent(),
                 firstDayOfWeek = Date.today().setWeek(this.weekNumber),
-                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div></div></div>',
+                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div></div><div id="chart-footer"></div></div>',
                 instance = this,
                 fin = function() {
                     this.flag = instance.r.popup(this.bar.x, this.bar.y, this.bar.value || '0').insertBefore(this);
@@ -787,7 +787,10 @@ $(function() {
 
             // need to grab sessions for this week and the totals for each day and apply them to array for chart!
             var sessions = this.model.get('sessions'),
-                i, j, sessionsWeekTotals = [];
+                i,
+                j,
+                sessionsWeekTotals = [],
+                totalTimeForWeek = 0;
 
             for (i = 0; i <= 6; i++) {
                 var currentDate = Date.today().setWeek(this.weekNumber).add(i).days(),
@@ -798,8 +801,10 @@ $(function() {
                         totalTime += sessions[j].totalTime;
                     }
                 }
+                totalTimeForWeek += totalTime;
                 sessionsWeekTotals.push(totalTime);
             }
+            totalTimeForWeek = Math.floor(totalTimeForWeek / 3600);
 
             this.r.barchart(0, 0, 542, 260, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
@@ -807,6 +812,8 @@ $(function() {
             }).hover(fin, fout);
 
             $element.append(labelDiv);
+            $element.find('#chart-footer').text(totalTimeForWeek + ((totalTimeForWeek !== 1) ? ' hours this week' : ' hour this week'));
+
             return this;
         },
 
