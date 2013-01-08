@@ -551,9 +551,13 @@ $(function() {
             var $element = $(this.$el),
                 numSecondsToAdd = ($element.find('.add-time-hours').val() * 3600) + ($element.find('.add-time-minutes').val() * 60),
                 dateToAddTo = Date.parse($element.find('.add-time-date').val()),
-                session = { totalTime : numSecondsToAdd, startDate : dateToAddTo.getTime(), endDate : dateToAddTo.getTime() + numSecondsToAdd};
+                session = {
+                    totalTime: numSecondsToAdd,
+                    startDate: dateToAddTo.getTime(),
+                    endDate: dateToAddTo.getTime() + numSecondsToAdd
+                };
 
-            if(session) {
+            if (session) {
                 this.model.addSession(session);
             }
             $('.add-time-btn').popover('hide');
@@ -674,7 +678,10 @@ $(function() {
                 }
 
                 $element.find('#calendar td a').on('mouseleave', view.onCalendarDateMouseLeave);
-                $element.find('#calendar td a').on('mouseenter', {model: model, view: view}, view.onCalendarDateMouseEnter);
+                $element.find('#calendar td a').on('mouseenter', {
+                    model: model,
+                    view: view
+                }, view.onCalendarDateMouseEnter);
             }
         },
 
@@ -720,7 +727,9 @@ $(function() {
             var $element = $(this.$el);
             $element.find('#calendar').datepicker('destroy');
             $element.find('#calendar td a').unbind('mouseleave', this.onCalendarDateMouseLeave);
-            $element.find('#calendar td a').unbind('mouseenter', {model: this.model}, this.onCalendarDateMouseEnter);
+            $element.find('#calendar td a').unbind('mouseenter', {
+                model: this.model
+            }, this.onCalendarDateMouseEnter);
             this.remove();
             this.unbind();
             this.model.unbind('change', this.modelChanged);
@@ -867,14 +876,14 @@ $(function() {
             '': 'getAllTasks',
             'task/:id': 'getTask',
             'task/edit/:id': 'editTask',
-            'task/refresh-detail/:id' : 'refreshDetail'
+            'task/refresh-detail/:id': 'refreshDetail'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
 
-        if($('.task-detail-view-container').is(':visible')) {
+        if ($('.task-detail-view-container').is(':visible')) {
             TaskDetail.close();
             TaskDetail = null;
             _.each(Tasks.models, function(model) {
@@ -894,7 +903,7 @@ $(function() {
         $divToFade.fadeOut(200, function() {
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if(typeof TaskDetail !== 'undefined') {
+                    if (typeof TaskDetail !== 'undefined') {
                         TaskDetail.close();
                         TaskDetail = null;
                     }
@@ -914,7 +923,7 @@ $(function() {
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
     });
-    
+
     /**
      * Catches detail id and forces it to refresh from model.  Wasn't able to get calendar to refresh from just a plain change event... a bit of a hack to get it working. jb 8.1.13
      * @param  {[type]} id) {                   window.location = '#/task/' + id;    } [description]
