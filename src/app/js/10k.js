@@ -627,7 +627,9 @@ $(function() {
             });
 
             if (typeof this.chartView === 'undefined') {
-                this.chartView = new ChartView();
+                this.chartView = new ChartView({
+                    model: this.model
+                });
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
 
@@ -647,7 +649,7 @@ $(function() {
                 view: this
             });
 
-            //console.debug('model: ' + JSON.stringify(this.model));
+            console.debug('model: ' + JSON.stringify(this.model));
 
             this.onCalendarRefresh($element, this.model, this);
 
@@ -759,7 +761,7 @@ $(function() {
             //init code here
             this.r = new Raphael(this.el, 542, 260);
             //set the week number
-            this.weekNumber = Date.today().getWeekOfYear();
+            this.weekNumber = Date.today().getWeek();
         },
 
         /**
@@ -768,17 +770,49 @@ $(function() {
          */
         render: function() {
             var $element = $(this.$el).parent(),
-                firstDayOfWeek = Date.today().last().monday(),
-                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div></div></div>';
-            this.r.barchart(0, 0, 542, 260, [76, 0, 67, 71, 69, 21, 33], {
+                firstDayOfWeek = Date.today().setWeek(this.weekNumber),
+                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div></div></div>',
+                instance = this,
+                fin = function() {
+                    this.flag = instance.r.popup(this.bar.x, this.bar.y, this.bar.value || '0').insertBefore(this);
+                    console.log('this.flag.y: ' + this.flag.y);
+                },
+                fout = function() {
+                    this.flag.animate({
+                        opacity: 0
+                    }, 300, function() {
+                        this.remove();
+                    });
+                };
+
+            // need to grab sessions for this week and the totals for each day and apply them to array for chart!
+            var sessions = this.model.get('sessions'),
+                i, j, sessionsWeekTotals = [];
+
+            for (i = 0; i <= 6; i++) {
+                var currentDate = Date.today().setWeek(this.weekNumber).add(i).days(),
+                    totalTime = 0;
+                for (j = 0; j <= sessions.length - 1; j++) {
+                    var startDate = new Date(parseInt(sessions[j].startDate, 10));
+                    if (startDate.getMonth() === currentDate.getMonth() && startDate.getFullYear() === currentDate.getFullYear() && startDate.getDate() === currentDate.getDate()) {
+                        totalTime += sessions[j].totalTime;
+                    }
+                }
+                sessionsWeekTotals.push(totalTime);
+            }
+
+            this.r.barchart(0, 0, 542, 260, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
                 type: 'soft'
-            });
+            }).hover(fin, fout);
+
             $element.append(labelDiv);
             return this;
         },
 
         close: function() {
+            var $element = $(this.$el).parent();
+            $element.find('#chart-label-div').remove();
             this.r.remove();
             this.r = null;
         }
