@@ -130,6 +130,16 @@ $(function() {
             this.save();
         },
 
+        addSession: function(session) {
+            var newSessions = this.get('sessions');
+            newSessions.push(session);
+            // this.get('sessions').push(session);
+            this.set('sessions', newSessions);
+            this.set('lastSessionAdded', session);
+            this.set('lastSessionAdded', null);
+            this.save();
+        },
+
         /**
          * Returns the total number of seconds stored in the sessions array.
          * @param  {int} sinceDate The date (Unix formatted) that the total time should be measured since.
@@ -294,7 +304,6 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            var $element = $(this.$el);
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
             this.hasBeenDragged = false;
@@ -539,6 +548,14 @@ $(function() {
         },
 
         onAddTimeConfirmClick: function(e) {
+            var $element = $(this.$el),
+                numSecondsToAdd = ($element.find('.add-time-hours').val() * 3600) + ($element.find('.add-time-minutes').val() * 60),
+                dateToAddTo = Date.parse($element.find('.add-time-date').val()),
+                session = { totalTime : numSecondsToAdd, startDate : dateToAddTo.getTime(), endDate : dateToAddTo.getTime() + numSecondsToAdd};
+
+            if(session) {
+                this.model.addSession(session);
+            }
             $('.add-time-btn').popover('hide');
         },
 
@@ -577,7 +594,11 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
+            this.model.on('change', this.modelChanged, this);
+        },
 
+        modelChanged: function() {
+            window.location = '#task/refresh-detail/' + this.model.get('order');
         },
 
         /**
@@ -585,11 +606,13 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            var $element = $(this.$el);
+            console.log('render!');
+            var $element = $(this.$el),
+                totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
             $element.html(this.template(this.model.toJSON()));
 
             $element.find('.add-time-btn').popover({
-                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
+                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2 add-time-date" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2 add-time-hours" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2 add-time-minutes" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
                 html: true
             });
 
@@ -603,13 +626,10 @@ $(function() {
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
 
-            var totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
-
             $element.find('.total-hours-text').text(totalHours + ' hours');
             $element.find('.sessions-recorded-text').text(this.model.get('sessions').length + ' sessions');
-
             $('#charts-view').hide();
-
+            $element.find('#calendar').datepicker('destroy');
             $element.find('#calendar').datepicker({
                 inline: true,
                 firstDay: 1,
@@ -688,6 +708,12 @@ $(function() {
         setModel: function(model) {
             this.model = model;
             this.render();
+        },
+
+        close: function() {
+            this.remove();
+            this.unbind();
+            this.model.unbind('change', this.modelChanged);
         }
     });
 
@@ -830,26 +856,42 @@ $(function() {
         routes: {
             '': 'getAllTasks',
             'task/:id': 'getTask',
-            'task/edit/:id': 'editTask'
+            'task/edit/:id': 'editTask',
+            'task/refresh-detail/:id' : 'refreshDetail'
         }
     });
 
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
 
-        var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
+        if($('.task-detail-view-container').is(':visible')) {
+            TaskDetail.close();
+            TaskDetail = null;
+            _.each(Tasks.models, function(model) {
+                if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                    console.log('found model');
+                    TaskDetail = new TaskDetailView({
+                        model: model
+                    });
+                    $('#task-detail-view').append(TaskDetail.render().el);
+                }
+            });
 
+            return;
+        }
+
+        var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
         $divToFade.fadeOut(200, function() {
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if (!TaskDetail) {
-                        TaskDetail = new TaskDetailView({
-                            model: model
-                        });
-                        $('#task-detail-view').append(TaskDetail.render().el);
-                    } else {
-                        TaskDetail.setModel(model);
+                    if(typeof TaskDetail !== 'undefined') {
+                        TaskDetail.close();
+                        TaskDetail = null;
                     }
+                    TaskDetail = new TaskDetailView({
+                        model: model
+                    });
+                    $('#task-detail-view').append(TaskDetail.render().el);
                 }
             });
             $('.task-detail-view-container').fadeIn(200);
@@ -861,6 +903,15 @@ $(function() {
         }, 300);
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
+    });
+    
+    /**
+     * Catches detail id and forces it to refresh from model.  Wasn't able to get calendar to refresh from just a plain change event... a bit of a hack to get it working. jb 8.1.13
+     * @param  {[type]} id) {                   window.location = '#/task/' + id;    } [description]
+     * @return {[type]}     [description]
+     */
+    appRouter.on('route:refreshDetail', function(id) {
+        window.location = '#/task/' + id;
     });
 
     appRouter.on('route:getAllTasks', function(id) {
