@@ -744,7 +744,9 @@ $(function() {
 
     var ChartView = Backbone.View.extend({
 
-        el: $('#charts-view'),
+        el: $('#charts-view #chart-holder'),
+
+        template: _.template(''),
 
         events: {
             // events
@@ -755,7 +757,7 @@ $(function() {
          */
         initialize: function() {
             //init code here
-            this.r = new Raphael(this.el, 620, 500);
+            this.r = new Raphael(this.el, 542, 260);
         },
 
         /**
@@ -763,9 +765,13 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            this.r.barchart(0, 0, 620, 260, [76, 70, 67, 71, 69, 21, 33], {
-                colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5']
+            var $element = $(this.$el).parent(),
+                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of 1/23/13</div></div>';
+            this.r.barchart(0, 0, 542, 260, [76, 0, 67, 71, 69, 21, 33], {
+                colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
+                type: 'soft'
             });
+            $element.append(labelDiv);
             return this;
         },
 

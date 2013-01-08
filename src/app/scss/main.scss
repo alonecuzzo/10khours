@@ -314,8 +314,27 @@ i {
 
     #charts-view {
         display: none; 
-        margin-left: -125px;
-        position: relative;
+        margin-left: -110px;
+        position: absolute;
+
+        #chart-label-div {
+            z-index: 12;
+            position: absolute;
+            width: 542px;
+        }
+
+        #chart-header {
+            margin-left: 200px;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #chart-holder {
+            margin-top: 65px;
+            margin-left: 10px;
+            position: absolute;
+        }
     }
 
    #task-detail-view {
