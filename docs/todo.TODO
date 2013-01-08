@@ -1,7 +1,6 @@
 
 Today:
   DetailView:
-  ☐ add time should work
   ☐ stats should show days and total time for each day above them for the current week, don't worry about scrolling through weeks just yet
 EditView:
  ☐ remove all streak tracking stuff  
@@ -45,6 +44,7 @@ enhancements:
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 Archive:
+ ✔ add time should work @done (13-01-08 11:28)
  ✔ add daily goal time to stats @ a glance - just holder, hook up later @done (13-01-08 09:29)
  ✔ maybe add a stats rollover for the month of the calendar @done (13-01-08 09:05)
  ✔ if you click on detailview, then go back to the main list, then go back to the detail view and show the charts, the charts are off-center @bug @done (13-01-08 09:05)

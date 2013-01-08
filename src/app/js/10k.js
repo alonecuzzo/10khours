@@ -606,7 +606,6 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            console.log('render!');
             var $element = $(this.$el),
                 totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
             $element.html(this.template(this.model.toJSON()));
@@ -629,7 +628,6 @@ $(function() {
             $element.find('.total-hours-text').text(totalHours + ' hours');
             $element.find('.sessions-recorded-text').text(this.model.get('sessions').length + ' sessions');
             $('#charts-view').hide();
-            $element.find('#calendar').datepicker('destroy');
             $element.find('#calendar').datepicker({
                 inline: true,
                 firstDay: 1,
@@ -639,17 +637,18 @@ $(function() {
                 rolloverTitle: 'Stats',
                 onRefreshFunction: this.onCalendarRefresh,
                 element: $element,
-                model: this.model
+                model: this.model,
+                view: this
             });
 
-            console.debug('model: ' + JSON.stringify(this.model));
+            //console.debug('model: ' + JSON.stringify(this.model));
 
-            this.onCalendarRefresh($element, this.model);
+            this.onCalendarRefresh($element, this.model, this);
 
             return this;
         },
 
-        onCalendarRefresh: function($element, model) {
+        onCalendarRefresh: function($element, model, view) {
             $('#calendar td').addClass('ui-datepicker-unselectable');
             if (model !== undefined) {
                 var sessionsRecordedThisMonth = [],
@@ -674,35 +673,42 @@ $(function() {
                     }).addClass('calendar-stopwatch').attr('el', 'popover').attr('data-placement', 'top');
                 }
 
-                $element.find('#calendar td a').on('mouseleave', function() {
-                    $(this).popover('hide');
-                });
-
-                $element.find('#calendar td a').on('mouseenter', function() {
-                    //console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
-                    var sessionsRecordedToday = [],
-                        calendarMonth = Date.getMonthNumberFromName($('.ui-datepicker-month').text()),
-                        calendarYear = parseInt($('.ui-datepicker-year').text(), 10),
-                        calendarDate = parseInt($(this).text(), 10),
-                        totalSeconds = 0;
-                    for (i = 0; i <= model.get('sessions').length - 1; i++) {
-                        var startDate = new Date(parseInt(model.get('sessions')[i].startDate, 10));
-                        if (startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
-                            sessionsRecordedToday.push(startDate);
-                            totalSeconds += model.get('sessions')[i].totalTime;
-                        }
-                    }
-                    if (sessionsRecordedToday.length > 0) {
-                        var totalHours = Math.round((totalSeconds / 3600) * 100) / 100;
-                        $(this).popover({
-                            title: $('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $('.ui-datepicker-year').text(),
-                            content: '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
-                            html: true
-                        });
-                        $(this).popover('show');
-                    }
-                });
+                $element.find('#calendar td a').on('mouseleave', view.onCalendarDateMouseLeave);
+                $element.find('#calendar td a').on('mouseenter', {model: model, view: view}, view.onCalendarDateMouseEnter);
             }
+        },
+
+        onCalendarDateMouseEnter: function(e) {
+            //console.debug($(this).text() + ' ' + $('.ui-datepicker-month').text() + ' ' + $('.ui-datepicker-year').text());
+            var sessionsRecordedToday = [],
+                $element = $(e.data.view.$el),
+                calendarMonth = Date.getMonthNumberFromName($element.find('.ui-datepicker-month').text()),
+                calendarYear = parseInt($element.find('.ui-datepicker-year').text(), 10),
+                calendarDate = parseInt($(this).text(), 10),
+                totalSeconds = 0;
+            for (i = 0; i <= e.data.model.get('sessions').length - 1; i++) {
+                var startDate = new Date(parseInt(e.data.model.get('sessions')[i].startDate, 10));
+                console.log('startdate.getmonth: ' + startDate.getMonth() + ' calendarmonth: ' + calendarMonth);
+                console.log('startdate.getFullYear: ' + startDate.getFullYear() + ' calendaryear: ' + calendarYear);
+                console.log('startdate.getDate: ' + startDate.getDate() + ' calendardate: ' + calendarDate);
+                if (startDate.getMonth() === calendarMonth && startDate.getFullYear() === calendarYear && startDate.getDate() === calendarDate) {
+                    sessionsRecordedToday.push(startDate);
+                    totalSeconds += e.data.model.get('sessions')[i].totalTime;
+                }
+            }
+            if (sessionsRecordedToday.length > 0) {
+                var totalHours = Math.round((totalSeconds / 3600) * 100) / 100;
+                $(this).popover({
+                    title: $element.find('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $element.find('.ui-datepicker-year').text(),
+                    content: '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
+                    html: true
+                });
+                $(this).popover('show');
+            }
+        },
+
+        onCalendarDateMouseLeave: function(e) {
+            $(this).popover('hide');
         },
 
         setModel: function(model) {
@@ -711,6 +717,10 @@ $(function() {
         },
 
         close: function() {
+            var $element = $(this.$el);
+            $element.find('#calendar').datepicker('destroy');
+            $element.find('#calendar td a').unbind('mouseleave', this.onCalendarDateMouseLeave);
+            $element.find('#calendar td a').unbind('mouseenter', {model: this.model}, this.onCalendarDateMouseEnter);
             this.remove();
             this.unbind();
             this.model.unbind('change', this.modelChanged);
