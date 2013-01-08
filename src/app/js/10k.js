@@ -758,6 +758,8 @@ $(function() {
         initialize: function() {
             //init code here
             this.r = new Raphael(this.el, 542, 260);
+            //set the week number
+            this.weekNumber = Date.today().getWeekOfYear();
         },
 
         /**
@@ -766,7 +768,8 @@ $(function() {
          */
         render: function() {
             var $element = $(this.$el).parent(),
-                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of 1/23/13</div></div>';
+                firstDayOfWeek = Date.today().last().monday(),
+                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div></div>';
             this.r.barchart(0, 0, 542, 260, [76, 0, 67, 71, 69, 21, 33], {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
                 type: 'soft'
