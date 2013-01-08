@@ -598,7 +598,7 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            this.model.on('change', this.modelChanged, this);
+
         },
 
         modelChanged: function() {
@@ -613,6 +613,8 @@ $(function() {
             var $element = $(this.$el),
                 totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
             $element.html(this.template(this.model.toJSON()));
+
+            this.model.on('change', this.modelChanged, this);
 
             $element.find('.add-time-btn').popover({
                 content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2 add-time-date" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2 add-time-hours" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2 add-time-minutes" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
@@ -888,11 +890,12 @@ $(function() {
     appRouter.on('route:getTask', function(id) {
 
         if ($('.task-detail-view-container').is(':visible')) {
-            TaskDetail.close();
-            TaskDetail = null;
+            if (TaskDetail) {
+                TaskDetail.close();
+                TaskDetail = null;
+            }
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    console.log('found model');
                     TaskDetail = new TaskDetailView({
                         model: model
                     });
@@ -906,7 +909,7 @@ $(function() {
         $divToFade.fadeOut(200, function() {
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if (typeof TaskDetail !== 'undefined') {
+                    if (TaskDetail) {
                         TaskDetail.close();
                         TaskDetail = null;
                     }
@@ -941,6 +944,11 @@ $(function() {
         var $divToFade = ($('.task-detail-view-container').is(':visible')) ? $('.task-detail-view-container') : $('.edit-task-view-container');
         $divToFade.fadeOut(200, function() {
             $(App.el).fadeIn(200);
+            //make sure you call close on views to unbind listeners!
+            if (typeof TaskDetail !== 'undefined') {
+                TaskDetail.close();
+                TaskDetail = null;
+            }
         });
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
