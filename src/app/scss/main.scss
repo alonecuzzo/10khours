@@ -335,6 +335,19 @@ i {
             margin-left: 10px;
             position: absolute;
         }
+
+        .chart-date-label {
+            display: inline;
+        }
+
+        .inline-label {
+            margin-left: 39px;
+        }
+
+        #chart-date-label-container {
+            margin-top: 285px;
+            margin-left: 35px;
+        }
     }
 
    #task-detail-view {

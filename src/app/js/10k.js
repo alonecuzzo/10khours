@@ -769,7 +769,7 @@ $(function() {
         render: function() {
             var $element = $(this.$el).parent(),
                 firstDayOfWeek = Date.today().last().monday(),
-                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div></div>';
+                labelDiv = '<div id="chart-label-div"><div id="chart-header">Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '</div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add({days:1}).toString('MM/dd') + '</div></div></div>';
             this.r.barchart(0, 0, 542, 260, [76, 0, 67, 71, 69, 21, 33], {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
                 type: 'soft'
