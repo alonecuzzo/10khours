@@ -1117,10 +1117,10 @@ $(function() {
         return returnValue;
     }
 
-    $('#grey-bkgrnd').height($('.main').height());
+    $('#grey-bkgrnd').height($('.main').height() + 10);
     $('#grey-bkgrnd').width($('.main').width());
     $(window).resize(function() {
-        $('#grey-bkgrnd').height($('.main').height());
+        $('#grey-bkgrnd').height($('.main').height() + 10);
         $('#grey-bkgrnd').width($('.main').width());
     });
 
