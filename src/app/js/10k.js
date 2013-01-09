@@ -610,8 +610,7 @@ $(function() {
          * @return {Backbone.View}
          */
         render: function() {
-            var $element = $(this.$el),
-                totalHours = Math.round((this.model.getTotalTime() / 3600) * 100) / 100;
+            var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
 
             this.model.on('change', this.modelChanged, this);
@@ -633,7 +632,7 @@ $(function() {
                 $('#charts-view-inner').append(this.chartView.render().el);
             }
 
-            $element.find('.total-hours-text').text(totalHours + ' hours');
+            $element.find('.total-hours-text').text(formatHours(this.model.getTotalTime()));
             $element.find('.sessions-recorded-text').text(this.model.get('sessions').length + ' sessions');
             $('#charts-view').hide();
             $element.find('#calendar').datepicker({
@@ -705,10 +704,9 @@ $(function() {
                 }
             }
             if (sessionsRecordedToday.length > 0) {
-                var totalHours = Math.round((totalSeconds / 3600) * 100) / 100;
                 $(this).popover({
                     title: $element.find('.ui-datepicker-month').text() + ' ' + $(this).text() + ', ' + $element.find('.ui-datepicker-year').text(),
-                    content: '<div class="popover-content"><p>' + totalHours + ' hours recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
+                    content: '<div class="popover-content"><p>' + formatHours(totalSeconds) + ' recorded</p><p>' + sessionsRecordedToday.length + ' sessions</p></div>',
                     html: true
                 });
                 $(this).popover('show');
@@ -1097,8 +1095,23 @@ $(function() {
     });
 
     function formatHours(seconds) {
+        if(seconds === 0) {
+            return '0 hours';
+        }
         var returnString,
-        returnValue = Math.floor(((seconds / 3600) * 100) / 100);
+            returnValue = Math.floor(((seconds / 3600) * 100) / 100);
+        if(returnValue < 1) {
+            // handle minutes
+            returnValue = Math.floor(((seconds / 60) * 100) / 100);
+            if(returnValue < 1) {
+                //handle seconds
+                returnValue = seconds;
+                returnValue += ((returnValue === 1) ? ' second' : ' seconds');
+                return returnValue;
+            }
+            returnValue += ((returnValue === 1) ? ' minute' : ' minutes');
+            return returnValue;
+        }
         returnValue += ((returnValue === 1) ? ' hour' : ' hours');
         return returnValue;
     }
