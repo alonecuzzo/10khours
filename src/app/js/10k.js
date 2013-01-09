@@ -1096,15 +1096,15 @@ $(function() {
     });
 
     function formatHours(seconds) {
-        if(seconds === 0) {
+        if (seconds === 0) {
             return '0 hours';
         }
         var returnString,
-            returnValue = Math.floor(((seconds / 3600) * 100) / 100);
-        if(returnValue < 1) {
+        returnValue = Math.floor(((seconds / 3600) * 100) / 100);
+        if (returnValue < 1) {
             // handle minutes
             returnValue = Math.floor(((seconds / 60) * 100) / 100);
-            if(returnValue < 1) {
+            if (returnValue < 1) {
                 //handle seconds
                 returnValue = seconds;
                 returnValue += ((returnValue === 1) ? ' second' : ' seconds');
