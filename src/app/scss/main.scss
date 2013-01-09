@@ -178,15 +178,7 @@ nav a:hover {
 .main {
     padding: 30px 100px;
     overflow-x: hidden;
-}
-
-.main article h1 {
-    font-size: 2em;
-}
-
-.main aside {
-    color: white;
-    padding: 0px 5% 10px;
+    margin: 0 auto;
 }
 
 .footer-container footer {
@@ -318,8 +310,7 @@ i {
    margin: 0 auto;
    display: none;
    position: relative;
-   float: right;
-   z-index:10;
+   /*float: right;*/
 
 
     #charts-view {
@@ -375,9 +366,9 @@ i {
         /*background: blue;*/
         width: 95%;
         height: 225px;
-        margin-left: -80px;
-        margin-top: 0;
-        color: $task-font-grey;
+        margin-left: 168px;
+        margin-top: 20px;
+        color: #666;
 
         .task-detail-view-header-wrapper {
 
@@ -609,9 +600,7 @@ i {
 
 #tasks-list-view {
     background: $bg-color;
-    margin-bottom: 40px;
     margin: 0 auto;
-    float: left;
 
     input[type='text'] {
         width: 300px;
@@ -619,17 +608,18 @@ i {
         font-size: 17px;
         border: 1px solid #E7E7E7;
         padding: 8px;
-        margin-left: 0px;
+        margin-left: -270px;
         /*display: none;*/
     }
 
     #task-list {
         list-style: none;
         margin-top: 17px;
-        margin-left: 0px;
+        margin-left: -270px;
         padding: 0;
-        width: 400px;
+        width: 370px;
         border-right:1px solid #CCC;
+        float: left;
 
         li {
             padding : 10px 20px 10px 0;
