@@ -17,6 +17,7 @@ Tomorrow:
  ☐ need to format our githook output, look into unix utils nl, sed, awk and grep aosfijhpwe @githooks
  ☐ add some code in the applescript that creates the ln for the git hook automatically
  ☐ when you click an active item and it stops, the transition between the old color of the copy and the new color takes too long... there's too much of a delay @ui @functionality 
+ ☐ in add time panel on firefox, date dropdown appearing behind everything @bug
 
 Form Validation:
  ☐ make sure people can't add sessions in the future!

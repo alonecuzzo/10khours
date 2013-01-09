@@ -520,7 +520,7 @@ $(function() {
             'click .modify-task a': 'onEdit',
             'click .add-time a': 'onAddTime',
             'click .delete-task a': 'onDeleteClick',
-            'click .date-picker': 'onDatePicker',
+            //'click .date-picker': 'onDatePicker',
             'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
             'click #add-time-cancel-btn': 'onAddTimeCancelClick',
             'click #delete-task-confirm-btn': 'onDeleteConfirmationClick',
@@ -570,7 +570,8 @@ $(function() {
         onAddTime: function(e) {
             e.preventDefault();
             var $element = $(this.$el);
-            $element.find('.add-time-btn').popover('toggle');
+            $element.find('#dp').datepicker();
+            $element.find('#dp').val(Date.today().toString('MM/dd/yyyy'));
         },
 
         onDeleteClick: function(e) {
@@ -616,7 +617,7 @@ $(function() {
             this.model.on('change', this.modelChanged, this);
 
             $element.find('.add-time-btn').popover({
-                content: '<div class="input-append date date-picker" id="dp3" data-date="12-02-2013" data-date-format="mm-dd-yyyy"><input class="span2 add-time-date" id="dp" type="text"><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2 add-time-hours" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2 add-time-minutes" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
+                content: '<div class="date date-picker" id="dp3"><input class="add-time-date span2" id="dp" type="text"/><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2 add-time-hours" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2 add-time-minutes" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
                 html: true
             });
 
