@@ -103,7 +103,7 @@ $ rackup -p 4567
 
 **src/**: These are the source files that get built for distribution.
 
-**test/**: Mocha tests go here.
+**test/**: Jasmine tests go here.
 
 **tmp/**: Temporary place to throw files during build process.
 
