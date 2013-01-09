@@ -340,13 +340,19 @@ i {
             display: inline;
         }
 
+        .chart-date-label span{
+            text-align: center;
+            width: 50px;
+            display: inline-block;
+        }
+
         .inline-label {
-            margin-left: 39px;
+            margin-left: 25px;
         }
 
         #chart-date-label-container {
             margin-top: 285px;
-            margin-left: 35px;
+            margin-left: 30px;
         }
 
         #chart-footer {

@@ -751,12 +751,12 @@ $(function() {
         template: _.template(''),
 
         events: {
-            
+
         },
 
         onPreviousWeekClick: function(e) {
             e.preventDefault();
-            e.data.view.onWeekChange(e.data.view, -6);
+            e.data.view.onWeekChange(e.data.view, - 6);
         },
 
         onNextWeekClick: function(e) {
@@ -765,7 +765,7 @@ $(function() {
         },
 
         onWeekChange: function(instance, increment) {
-            $(instance.$el).fadeOut(100, function(){
+            $(instance.$el).fadeOut(100, function() {
                 instance.r.remove();
                 instance.r = null;
                 instance.r = new Raphael(instance.el, 542, 260);
@@ -793,7 +793,6 @@ $(function() {
         render: function() {
             var $element = $(this.$el).parent(),
                 firstDayOfWeek = this.firstDayOfWeek,
-                labelDiv = '<div id="chart-label-div"><div id="chart-header"><a href="#" id="previous-week"><i class="icon-arrow-left"></i></a>Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '<a href="#" id="next-week"><i class="icon-arrow-right"></i></a></div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label">' + firstDayOfWeek.toString('MM/dd') + '</div><div id="chart-date-tuesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-wednesday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-thursday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-friday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-saturday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div><div id="chart-date-sunday" class="chart-date-label inline-label">' + firstDayOfWeek.add(1).days().toString('MM/dd') + '</div></div><div id="chart-footer"></div></div>',
                 instance = this,
                 fin = function() {
                     this.flag = instance.r.popup(this.bar.x, this.bar.y, this.bar.value || '0').insertBefore(this);
@@ -806,7 +805,6 @@ $(function() {
                         this.remove();
                     });
                 };
-            firstDayOfWeek.add(-6).days();
             var sessions = this.model.get('sessions'),
                 i,
                 j,
@@ -815,7 +813,7 @@ $(function() {
 
             for (i = 0; i <= 6; i++) {
                 var currentDate = firstDayOfWeek.add((i === 0) ? 0 : 1).days();
-                    totalTime = 0;
+                totalTime = 0;
                 for (j = 0; j <= sessions.length - 1; j++) {
                     var startDate = new Date(parseInt(sessions[j].startDate, 10));
                     if (startDate.getMonth() === currentDate.getMonth() && startDate.getFullYear() === currentDate.getFullYear() && startDate.getDate() === currentDate.getDate()) {
@@ -827,6 +825,8 @@ $(function() {
             }
             totalTimeForWeek = Math.floor(totalTimeForWeek / 3600);
             firstDayOfWeek.add(-6).days();
+            var labelDiv = '<div id="chart-label-div"><div id="chart-header"><a href="#" id="previous-week"><i class="icon-arrow-left"></i></a>Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '<a href="#" id="next-week"><i class="icon-arrow-right"></i></a></div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label"><span>' + firstDayOfWeek.toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[0]) + '</span></div><div id="chart-date-tuesday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[1]) + '</span></div><div id="chart-date-wednesday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[2]) + '</span></div><div id="chart-date-thursday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[3]) + '</span></div><div id="chart-date-friday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[4]) + '</span></div><div id="chart-date-saturday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[5]) + '</span></div><div id="chart-date-sunday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[6]) + '</span></div></div><div id="chart-footer"></div></div>';
+            firstDayOfWeek.add(-6).days();
             $element.find('#chart-label-div').remove();
             this.r.barchart(0, 0, 542, 260, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
                 colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
@@ -834,8 +834,12 @@ $(function() {
             }).hover(fin, fout);
             $(instance.$el).fadeIn(200);
             $element.append(labelDiv);
-            $element.find('#previous-week').on('click', {view: this},this.onPreviousWeekClick);
-            $element.find('#next-week').on('click', {view: this},this.onNextWeekClick);
+            $element.find('#previous-week').on('click', {
+                view: this
+            }, this.onPreviousWeekClick);
+            $element.find('#next-week').on('click', {
+                view: this
+            }, this.onNextWeekClick);
             $element.find('#chart-footer').text(totalTimeForWeek + ((totalTimeForWeek !== 1) ? ' hours this week' : ' hour this week'));
 
             return this;
@@ -1092,6 +1096,13 @@ $(function() {
             }
         }
     });
+
+    function formatHours(seconds) {
+        var returnString,
+        returnValue = Math.floor(((seconds / 3600) * 100) / 100);
+        returnValue += ((returnValue === 1) ? ' hour' : ' hours');
+        return returnValue;
+    }
 
     $('#grey-bkgrnd').height($('.main').height());
     $('#grey-bkgrnd').width($('.main').width());
