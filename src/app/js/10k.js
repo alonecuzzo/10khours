@@ -973,6 +973,8 @@ $(function() {
                 TaskDetail.close();
                 TaskDetail = null;
             }
+            $('#grey-bkgrnd').height($('.main').height() + 1000);
+            $('#grey-bkgrnd').width($('.main').width() + 2000);
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
                     TaskDetail = new TaskDetailView({
@@ -983,30 +985,61 @@ $(function() {
             });
             return;
         }
-        _.each(Tasks.models, function(model) {
-                if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if (TaskDetail) {
-                        TaskDetail.close();
-                        TaskDetail = null;
-                    }
-                    TaskDetail = new TaskDetailView({
-                        model: model
-                    });
-                    $('#task-detail-view').append(TaskDetail.render().el);
-                }
-            });
-            $('.task-detail-view-container').fadeIn(200);
-            // $('#grey-bkgrnd').fadeIn(200);
-            // $('#grey-bkgrnd').height($('.main').height());
+
+        // $('#grey-bkgrnd').height($('.main').height());
         // var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
         // $divToFade.fadeOut(200, function() {
-            
+
         // });
-        $('#grey-bkgrnd').animate({
-            marginTop: 165
-        }, 300);
-        $('.alerts').fadeOut(0);
-        $('.delete-task-alert').fadeOut(0);
+        $('#task-list li').animate({
+            width: 200
+        }, {
+            duration: 'slow',
+            easing: 'easeOutBack'
+        });
+        $('#task-list').animate({
+            marginLeft: -257,
+            width: 250
+        }, {
+            duration: 'slow',
+            easing: 'easeOutBack'
+        });
+        // $('#new-task').animate({
+        //     marginLeft: -257,
+        //     width: 200
+        // }, {
+        //     duration: 'slow',
+        //     easing: 'easeOutBack',
+        //     complete: function() {
+
+        //     }
+        // });
+        _.each(Tasks.models, function(model) {
+            if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                if (TaskDetail) {
+                    TaskDetail.close();
+                    TaskDetail = null;
+                }
+                TaskDetail = new TaskDetailView({
+                    model: model
+                });
+                $('#task-detail-view').append(TaskDetail.render().el);
+            }
+        });
+
+        $('#grey-bkgrnd').height($('.main').height() + 1000);
+        $('#grey-bkgrnd').width($('.main').width() + 2000);
+
+        $('#grey-bkgrnd').fadeIn(100);
+
+        $('.task-detail-view-container').fadeIn(300, function() {
+            $('#grey-bkgrnd').height($('.main').height() + 10);
+            $('#grey-bkgrnd').width($('.main').width() + 200);
+        });
+
+
+        // $('.alerts').fadeOut(0);
+        // $('.delete-task-alert').fadeOut(0);
     });
 
     /**
@@ -1031,6 +1064,19 @@ $(function() {
         });
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);
+        $('#task-list li').animate({
+            width: 300
+        }, {
+            duration: 'slow',
+            easing: 'easeOutBack'
+        });
+        $('#task-list').animate({
+            marginLeft: 0,
+            width: 370
+        }, {
+            duration: 'slow',
+            easing: 'easeOutBack'
+        });
     });
 
     appRouter.on('route:editTask', function(id) {
@@ -1100,7 +1146,9 @@ $(function() {
 
     function formatHours(seconds, isMin) {
         if (seconds === 0) {
-            if(isMin === true){ return '0h'; }
+            if (isMin === true) {
+                return '0h';
+            }
             return '0 hours';
         }
         var returnString,
@@ -1111,21 +1159,21 @@ $(function() {
             if (returnValue < 1) {
                 //handle seconds
                 returnValue = seconds;
-                if(isMin === true){
+                if (isMin === true) {
                     returnValue += 's';
                 } else {
                     returnValue += ((returnValue === 1) ? ' second' : ' seconds');
                 }
                 return returnValue;
             }
-            if(isMin === true){
+            if (isMin === true) {
                 returnValue += 'm';
             } else {
                 returnValue += ((returnValue === 1) ? ' minute' : ' minutes');
             }
             return returnValue;
         }
-        if(isMin === true){
+        if (isMin === true) {
             returnValue += 'h';
         } else {
             returnValue += ((returnValue === 1) ? ' hour' : ' hours');
@@ -1133,11 +1181,11 @@ $(function() {
         return returnValue;
     }
 
-    $('#grey-bkgrnd').height($('.main').height() + 10);
-    $('#grey-bkgrnd').width($('.main').width());
+    // $('#grey-bkgrnd').height($('.main').height() + 10);
+    // $('#grey-bkgrnd').width($('.main').width());
     $(window).resize(function() {
         $('#grey-bkgrnd').height($('.main').height() + 10);
-        $('#grey-bkgrnd').width($('.main').width());
+        $('#grey-bkgrnd').width($('.main').width() + 200);
     });
 
     $('#task-list').disableSelection();
