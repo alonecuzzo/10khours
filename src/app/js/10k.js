@@ -823,7 +823,6 @@ $(function() {
                 totalTimeForWeek += totalTime;
                 sessionsWeekTotals.push(totalTime);
             }
-            totalTimeForWeek = Math.floor(totalTimeForWeek / 3600);
             firstDayOfWeek.add(-6).days();
             var labelDiv = '<div id="chart-label-div"><div id="chart-header"><a href="#" id="previous-week"><i class="icon-arrow-left"></i></a>Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '<a href="#" id="next-week"><i class="icon-arrow-right"></i></a></div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label"><span>' + firstDayOfWeek.toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[0]) + '</span></div><div id="chart-date-tuesday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[1]) + '</span></div><div id="chart-date-wednesday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[2]) + '</span></div><div id="chart-date-thursday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[3]) + '</span></div><div id="chart-date-friday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[4]) + '</span></div><div id="chart-date-saturday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[5]) + '</span></div><div id="chart-date-sunday" class="chart-date-label inline-label"><span>' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[6]) + '</span></div></div><div id="chart-footer"></div></div>';
             firstDayOfWeek.add(-6).days();
@@ -840,7 +839,7 @@ $(function() {
             $element.find('#next-week').on('click', {
                 view: this
             }, this.onNextWeekClick);
-            $element.find('#chart-footer').text(totalTimeForWeek + ((totalTimeForWeek !== 1) ? ' hours this week' : ' hour this week'));
+            $element.find('#chart-footer').text(formatHours(totalTimeForWeek) + ' this week');
 
             return this;
         },
