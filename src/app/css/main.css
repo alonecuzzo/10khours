@@ -85,23 +85,25 @@ body {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\0000394}}
 .header-container {
   /*border-bottom: 20px solid #e44d26;*/
-  border-bottom: 12px solid #9a63f5;
-  background-image: url("../img/backgrounds/header-background.png");
-  background-size: 70px 70px;
+  /*border-bottom: 12px solid $header-bottom-border-color;
+  background-image: url($header-background-url);
+  background-size: 70px 70px;*/
+  background: #E7E7E7;
+  border-bottom: 1px solid #CCC;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003101}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003103}}
 .header-container a {
   text-decoration: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003106}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003108}}
 .footer-container,
 .main aside {
   border-top: 2px solid #666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003110}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003112}}
 .footer-container {
   background: #666;
   overflow-x: hidden;
@@ -111,7 +113,7 @@ body {
   z-index: 123;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003120}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003122}}
 .header-container,
 .main aside {
   /*background: #f16529;*/
@@ -119,7 +121,7 @@ body {
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003128}}
 .main-container {
   min-height: 100%;
   height: auto !important;
@@ -127,12 +129,12 @@ body {
   margin: 0 auto -4em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003133}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003135}}
 .footer, .push {
   height: 4em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003137}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003139}}
 .title {
   color: white;
 }
@@ -140,13 +142,13 @@ body {
 /* ==============
     MOBILE: Menu
    ============== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003145}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003147}}
 nav ul {
   margin: 0;
   padding: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003152}}
 nav a {
   display: block;
   margin-bottom: 10px;
@@ -158,13 +160,13 @@ nav a {
   background: #e44d26;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003164}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003166}}
 nav a:hover,
 nav a:visited {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003168}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003170}}
 nav a:hover {
   text-decoration: underline;
 }
@@ -172,24 +174,24 @@ nav a:hover {
 /* ==============
     MOBILE: Main
    ============== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003178}}
 .main {
   padding: 30px 100px;
   overflow-x: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003183}}
 .main article h1 {
   font-size: 2em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003187}}
 .main aside {
   color: white;
   padding: 0px 5% 10px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003192}}
 .footer-container footer {
   /*padding: 20px 0;*/
 }
@@ -197,7 +199,7 @@ nav a:hover {
 /* ===============
     ALL: IE Fixes
    =============== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003198}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003200}}
 .ie7 .title {
   padding-top: 20px;
 }
@@ -205,14 +207,14 @@ nav a:hover {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003207}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003209}}
 html,
 body {
   background-color: #f7f7f0;
   height: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003212}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003214}}
 body {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4em;
@@ -221,12 +223,12 @@ body {
 }
 
 /*for icons*/
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003220}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003222}}
 i {
   padding-right: 5px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003224}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003226}}
 .calendar-stopwatch {
   background-image: url(../img/stopwatch-teal.png);
   background-size: 32px 32px;
@@ -235,30 +237,33 @@ i {
   color: #4794cb;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003233}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003235}}
 .alerts .delete-task-alert {
   display: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003238}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003240}}
 #header {
   width: 100%;
   height: 70px;
+  width: 100%;
+  margin: 0 auto;
   overflow-x: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003244}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003249}}
 #header .logo {
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 10px;
+  /*text-align: center;*/
+  /*margin: 0 auto;*/
+  margin-left: 40px;
+  margin-top: 13px;
   color: #f7f7f7;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003251}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003257}}
 #header a {
   outline: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003256}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003262}}
 #grey-bkgrnd {
   background: #e7e7e7;
   width: 10px;
@@ -268,24 +273,7 @@ i {
   display: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003265}}
-#tasks-list-view {
-  background: #f7f7f0;
-  margin-bottom: 40px;
-  width: 90%;
-  margin: 0 auto;
-}
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003271}}
-#tasks-list-view input[type='text'] {
-  width: 95%;
-  border: 0;
-  font-size: 24px;
-  border: 1px solid #999;
-  padding: 8px;
-  margin-left: -70px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003281}}
 .edit-task-view-container {
   width: 500px;
   height: auto;
@@ -293,20 +281,20 @@ i {
   display: none;
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003278}}
 .edit-task-view-container #edit-task-view {
   width: 95%;
   margin-left: 45px;
   margin-top: 0;
   color: #464646;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003294}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003284}}
 .edit-task-view-container #edit-task-view input[type='text'] {
   width: 95%;
   font-size: 30px;
   padding: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003300}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003290}}
 .edit-task-view-container #edit-task-view .section-heading {
   font-size: 45px;
   padding-top: 20px;
@@ -314,81 +302,82 @@ i {
   width: 300px;
   margin-top: -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003308}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003298}}
 .edit-task-view-container #edit-task-view .form-label {
   padding-top: 10px;
   font-size: 18px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003313}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003303}}
 .edit-task-view-container #edit-task-view .checkbox-section {
   background: #f7f7f7;
   padding: 10px;
   width: 120px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003309}}
 .edit-task-view-container #edit-task-view .nonspecific {
   width: 130px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003315}}
 .task-detail-view-container {
   /*background: red;*/
   height: 700px;
   margin: 0 auto;
   display: none;
   position: relative;
+  float: right;
   z-index: 10;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003325}}
 .task-detail-view-container #charts-view {
   display: none;
   margin-left: -110px;
   position: absolute;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003330}}
 .task-detail-view-container #charts-view #chart-label-div {
   z-index: 12;
   position: absolute;
   width: 542px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003336}}
 .task-detail-view-container #charts-view #chart-header {
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003343}}
 .task-detail-view-container #charts-view #chart-holder {
   margin-top: 65px;
   margin-left: 10px;
   position: absolute;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003349}}
 .task-detail-view-container #charts-view .chart-date-label {
   display: inline;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003353}}
 .task-detail-view-container #charts-view .chart-date-label span {
   text-align: center;
   width: 50px;
   display: inline-block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003368}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003359}}
 .task-detail-view-container #charts-view .inline-label {
   margin-left: 25px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003363}}
 .task-detail-view-container #charts-view #chart-date-label-container {
   margin-top: 285px;
   margin-left: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003377}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003368}}
 .task-detail-view-container #charts-view #chart-footer {
   margin-top: 10px;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003374}}
 .task-detail-view-container #task-detail-view {
   /*background: blue;*/
   width: 95%;
@@ -397,15 +386,15 @@ i {
   margin-top: 0;
   color: #464646;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003391}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003382}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper {
   margin-left: -20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003395}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003386}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .title-wrapper {
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003399}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003390}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-view-title {
   font-size: 45px;
   padding-top: 20px;
@@ -413,19 +402,19 @@ i {
   width: 300px;
   margin-top: -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003409}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003400}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .delete-task, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .add-time, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .modify-task {
   display: block;
   /*font-size: 14px;*/
   padding: 0;
   text-align: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003415}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003406}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .delete-task a, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .add-time a, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-actions .modify-task a {
   text-decoration: none;
   color: #321a5d;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003422}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003413}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats {
   text-align: right;
   margin-left: 367px;
@@ -438,7 +427,7 @@ i {
   border-radius: 5px;
   border: 1px solid #d6d6d6;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003439}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003430}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .header-text {
   position: relative;
   padding-bottom: 5px;
@@ -449,29 +438,29 @@ i {
   padding-top: 5px;
   margin-top: -5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003450}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003441}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .total-hours, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .sessions-recorded, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .daily-goal {
   text-align: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003454}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003445}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .total-hours-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .sessions-recorded-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .daily-goal-text {
   font-size: 13px;
   font-weight: bold;
   color: #257dbf;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003460}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003451}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .stat-text, .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .label-text {
   margin-top: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003464}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003455}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .stat-text {
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003468}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003459}}
 .task-detail-view-container #task-detail-view .task-detail-view-header-wrapper .task-detail-stats .label-text {
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003474}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003465}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar {
   margin-top: 50px;
   padding-bottom: 40px;
@@ -479,7 +468,7 @@ i {
      Date Picker stuff custom styles
      ========================================================================== */
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003487}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003478}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker,
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker table,
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker tr,
@@ -490,7 +479,7 @@ i {
   border: none;
   border-spacing: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003494}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003485}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker {
   display: none;
   width: 500px;
@@ -505,28 +494,28 @@ i {
   border-radius: 5px;
   border: 1px solid #d6d6d6;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003513}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003504}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-header {
   position: relative;
   padding-bottom: 10px;
   border-bottom: 1px solid #d6d6d6;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003519}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003510}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-title {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003521}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003512}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-month {
   position: relative;
   padding-right: 15px;
   color: #565656;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003527}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003518}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-year {
   padding-left: 8px;
   color: #a8a8a8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003533}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003524}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-prev,
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-next {
   position: absolute;
@@ -534,17 +523,17 @@ i {
   padding: 5px;
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003540}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003531}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-prev {
   left: 0;
   padding-left: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003545}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003536}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-next {
   right: 0;
   padding-right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003551}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003542}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-prev span,
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-next span {
   display: block;
@@ -553,23 +542,23 @@ i {
   text-indent: -9999px;
   background-image: url(../img/arrows.png);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003560}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003551}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-prev span {
   background-position: 0px 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003562}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003553}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-next span {
   background-position: -5px 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003564}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003555}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-prev-hover span {
   background-position: 0px -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003566}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003557}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-next-hover span {
   background-position: -5px -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003568}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003559}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-calendar th {
   padding-top: 15px;
   padding-bottom: 10px;
@@ -577,13 +566,13 @@ i {
   font-weight: normal;
   color: #a8a8a8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003577}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003568}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-calendar td {
   padding: 0 22px;
   text-align: center;
   line-height: 32px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003584}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003575}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-calendar .ui-state-default {
   display: block;
   width: 26px;
@@ -592,86 +581,103 @@ i {
   color: #565656;
   border: 1px solid transparent;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003595}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003586}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-calendar .ui-state-active {
   color: #9a63f5;
   border: 1px solid #9a63f5;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003600}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003591}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar .ui-datepicker-other-month .ui-state-default {
   color: #a8a8a8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003603}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003594}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar #calendar {
   margin-top: 20px;
   margin-left: -20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003608}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003599}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar #task-detail-btn-bar {
   margin-left: 120px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003611}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003602}}
 .task-detail-view-container #task-detail-view .detail-btn-bar-calendar #task-detail-btn-bar .btn {
   color: #464646;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003619}}
-#task-list {
-  list-style: none;
-  margin: 16px 0;
-  margin-left: -70px;
-  padding: 0;
-  width: 101%;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003610}}
+#tasks-list-view {
+  background: #f7f7f0;
+  margin-bottom: 40px;
+  margin: 0 auto;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003616}}
+#tasks-list-view input[type='text'] {
+  width: 300px;
+  border: 0;
+  font-size: 17px;
+  border: 1px solid #E7E7E7;
+  padding: 8px;
+  margin-left: 0px;
+  /*display: none;*/
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003626}}
-#task-list li {
-  padding: 18px 20px 18px 0;
-  font-size: 24px;
+#tasks-list-view #task-list {
+  list-style: none;
+  margin-top: 17px;
+  margin-left: 0px;
+  padding: 0;
+  width: 400px;
+  border-right: 1px solid #CCC;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003634}}
+#tasks-list-view #task-list li {
+  padding: 10px 20px 10px 0;
+  font-size: 18px;
   background-color: #FFF;
   margin-top: 3px;
-  border: 1px solid #cccccc;
-  color: #464646;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+  border: 1px solid #CCC;
+  color: #666;
   cursor: hand;
   cursor: pointer;
+  width: 300px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003638}}
-#task-list li #task-title {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003645}}
+#tasks-list-view #task-list li #task-title {
   margin-left: 15px;
-  /*color: #666;*/
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003643}}
-#task-list li #task-display-time {
-  float: right;
-  font-size: 27px;
-  margin-top: -20px;
-  display: none;
+  /*color: #999;*/
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003650}}
-#task-list li #task-total-time {
-  display: none;
+#tasks-list-view #task-list li .task-list-time-icon {
+  margin-top: 3.5px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003654}}
-#task-list li .ui-progress-bar {
+#tasks-list-view #task-list li #task-total-time {
+  float: right;
+  font-size: 17px;
+  margin-top: -20px;
+  margin-right: -5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003661}}
+#tasks-list-view #task-list li .ui-progress-bar {
   height: 10px;
   width: 30%;
   margin-left: 15px;
   margin-top: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003661}}
-#task-list li .ui-progress {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003668}}
+#tasks-list-view #task-list li .ui-progress {
   width: 80%;
   height: 8px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003668}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003678}}
 .task-holder-state-highlight {
   background-color: #FF0000;
   border: 1px solid #EEE;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003673}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003683}}
 .edit {
   display: none;
 }
@@ -683,7 +689,7 @@ i {
   /* ====================
       INTERMEDIATE: Menu
      ==================== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003687}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003697}}
   nav a {
     float: left;
     width: 27%;
@@ -692,12 +698,12 @@ i {
     margin-bottom: 0;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003695}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003705}}
   nav li:first-child a {
     margin-left: 0;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003699}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003709}}
   nav li:last-child a {
     margin-right: 0;
   }
@@ -705,12 +711,12 @@ i {
   /* ========================
       INTERMEDIATE: IE Fixes
      ======================== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003707}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003717}}
   nav ul li {
     display: inline;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003711}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003721}}
   .oldie nav a {
     margin: 0 0.7%;
   }
@@ -719,23 +725,23 @@ i {
   /* ====================
       WIDE: CSS3 Effects
      ==================== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003723}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003733}}
   .header-container,
   .main aside {
-    -webkit-box-shadow: 0 5px 10px #aaa;
-    -moz-box-shadow: 0 5px 10px #aaa;
-    box-shadow: 0 5px 10px #aaa;
+    -webkit-box-shadow: 0 5px 10px #ddd;
+    -moz-box-shadow: 0 5px 10px #ddd;
+    box-shadow: 0 5px 10px #ddd;
   }
 
   /* ============
       WIDE: Menu
      ============ */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003733}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003743}}
   .title {
     float: left;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003737}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003747}}
   nav {
     float: right;
     width: 38%;
@@ -744,27 +750,27 @@ i {
   /* ============
       WIDE: Main
      ============ */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003746}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003756}}
   .main article {
     float: left;
     width: 57%;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003751}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003761}}
   #tasks-list-view {
     width: 516px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003754}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003764}}
   #tasks-list-view input[type="text"] {
-    width: 502px;
+    /*width: 502px;*/
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003759}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003769}}
   .task-detail-view-container {
     width: 520px;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003763}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003773}}
   .main aside {
     float: right;
     width: 28%;
@@ -774,7 +780,7 @@ i {
   /* ===============
       Maximal Width
      =============== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003775}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003785}}
   .wrapper {
     /*width: 1026px;  1140px - 10% for margins */
     width: 100%;
@@ -784,7 +790,7 @@ i {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003786}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003796}}
 .ir {
   background-color: transparent;
   border: 0;
@@ -792,7 +798,7 @@ i {
   *text-indent: -9999px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003793}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003803}}
 .ir:before {
   content: "";
   display: block;
@@ -800,13 +806,13 @@ i {
   height: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003800}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003810}}
 .hidden {
   display: none !important;
   visibility: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003805}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003815}}
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -818,7 +824,7 @@ i {
   width: 1px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003817}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003827}}
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -829,24 +835,24 @@ i {
   width: auto;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003826}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003836}}
 .invisible {
   visibility: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003831}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003841}}
 .clearfix:before,
 .clearfix:after {
   content: " ";
   display: table;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003836}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003846}}
 .clearfix:after {
   clear: both;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003840}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003850}}
 .clearfix {
   *zoom: 1;
 }
@@ -855,7 +861,7 @@ i {
    Print styles
    ========================================================================== */
 @media print {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003849}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003859}}
   * {
     background: transparent !important;
     color: #000 !important;
@@ -864,18 +870,18 @@ i {
     text-shadow: none !important;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003857}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003867}}
   a,
   a:visited {
     text-decoration: underline;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003861}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003871}}
   a[href]:after {
     content: " (" attr(href) ")";
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003865}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003875}}
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
@@ -883,33 +889,33 @@ i {
   /*
    * Don't show links for images, or javascript/internal links
    */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003875}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003885}}
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
     content: "";
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003880}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003890}}
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003885}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003895}}
   thead {
     display: table-header-group;
     /* h5bp.com/t */
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003890}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003900}}
   tr,
   img {
     page-break-inside: avoid;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003894}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003904}}
   img {
     max-width: 100% !important;
   }
@@ -918,7 +924,7 @@ i {
     margin: 0.5cm;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003904}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003914}}
   p,
   h2,
   h3 {
@@ -926,7 +932,7 @@ i {
     widows: 3;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003910}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003920}}
   h2,
   h3 {
     page-break-after: avoid;

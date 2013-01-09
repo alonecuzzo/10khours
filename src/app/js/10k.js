@@ -289,7 +289,7 @@ $(function() {
         tagName: 'li',
 
         // cache the template function for a single item
-        template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'>Total time: <%- totalTime %></div><div class='ui-progress-bar blue ui-container'><div class='ui-progress'></div></div><a class='destroy'></a></div></div></div>"),
+        template: _.template("<div class='view' id='item'><div id='item-template'><div id='task-title'><%- title %></div><div id='task-display-time'><%- displayTime %></div><div id='task-total-time'></div></div></div></div>"),
 
         // events to listen to
         events: {
@@ -319,6 +319,7 @@ $(function() {
             $element.html(this.template(this.model.toJSON()));
             var $uiProgressBar = $($element).find('.ui-progress'),
                 $displayTime = $($element).find('#task-display-time'),
+                $totalTime = $($element).find('#task-total-time'),
                 barPercentage = this.model.getDailyPercentage();
             $uiProgressBar.width(barPercentage + '%');
             if (this.model.get('justStopped') === true) {
@@ -328,6 +329,8 @@ $(function() {
                 this.delegateEvents(this.events);
                 this.onMouseOut();
             }
+
+            $totalTime.html(formatHours(this.model.get('totalTime'), true)); //+ '<i class="icon-time task-list-time-icon"></i>');
 
             if (this.model.get('isRecording') === true) {
                 $displayTime.show();
@@ -367,9 +370,9 @@ $(function() {
         onMouseOver: function() {
             var $element = $(this.$el);
             $element.css({
-                borderColor: '#9a63f5',
-                backgroundColor: '#418fdc',
-                color: '#F7F7F7'
+                borderColor: '#AAAAAA',
+                backgroundColor: '#EEEEEE',
+                color: '#333333'
             });
         },
 
@@ -980,10 +983,7 @@ $(function() {
             });
             return;
         }
-
-        var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
-        $divToFade.fadeOut(200, function() {
-            _.each(Tasks.models, function(model) {
+        _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
                     if (TaskDetail) {
                         TaskDetail.close();
@@ -996,9 +996,12 @@ $(function() {
                 }
             });
             $('.task-detail-view-container').fadeIn(200);
-            $('#grey-bkgrnd').fadeIn(200);
-            $('#grey-bkgrnd').height($('.main').height());
-        });
+            // $('#grey-bkgrnd').fadeIn(200);
+            // $('#grey-bkgrnd').height($('.main').height());
+        // var $divToFade = ($('#tasks-list-view').is(':visible')) ? $('#tasks-list-view') : $('.edit-task-view-container');
+        // $divToFade.fadeOut(200, function() {
+            
+        // });
         $('#grey-bkgrnd').animate({
             marginTop: 165
         }, 300);
@@ -1095,8 +1098,9 @@ $(function() {
         }
     });
 
-    function formatHours(seconds) {
+    function formatHours(seconds, isMin) {
         if (seconds === 0) {
+            if(isMin === true){ return '0h'; }
             return '0 hours';
         }
         var returnString,
@@ -1107,13 +1111,25 @@ $(function() {
             if (returnValue < 1) {
                 //handle seconds
                 returnValue = seconds;
-                returnValue += ((returnValue === 1) ? ' second' : ' seconds');
+                if(isMin === true){
+                    returnValue += 's';
+                } else {
+                    returnValue += ((returnValue === 1) ? ' second' : ' seconds');
+                }
                 return returnValue;
             }
-            returnValue += ((returnValue === 1) ? ' minute' : ' minutes');
+            if(isMin === true){
+                returnValue += 'm';
+            } else {
+                returnValue += ((returnValue === 1) ? ' minute' : ' minutes');
+            }
             return returnValue;
         }
-        returnValue += ((returnValue === 1) ? ' hour' : ' hours');
+        if(isMin === true){
+            returnValue += 'h';
+        } else {
+            returnValue += ((returnValue === 1) ? ' hour' : ' hours');
+        }
         return returnValue;
     }
 
