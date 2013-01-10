@@ -305,7 +305,7 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            this.model.on('change:title change:sessions change:totalTime', this.render, this);
+            this.model.on('change:title change:sessions change:totalTime change:lastSessionAdded', this.render, this);
             this.model.on('change:isActive', this.toggleSelection, this);
             this.model.on('destroy', this.remove, this);
             this.hasBeenDragged = false;
@@ -333,7 +333,7 @@ $(function() {
                 this.onMouseOut();
             }
 
-            $totalTime.html(formatHours(this.model.get('totalTime'), true)); //+ '<i class="icon-time task-list-time-icon"></i>');
+            $totalTime.html(formatHours(this.model.getTotalTime(), true)); //+ '<i class="icon-time task-list-time-icon"></i>');
 
             if (this.model.get('isRecording') === true) {
                 $displayTime.show();
@@ -373,7 +373,6 @@ $(function() {
          */
         onMouseOut: function() {
             if (this.isActive === false) {
-                console.log('mosue out fired');
                 var $element = $(this.$el),
                     $displayTime = $element.find('#task-display-time');
                 $element.css({
