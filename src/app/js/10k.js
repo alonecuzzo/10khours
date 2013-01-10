@@ -1001,23 +1001,30 @@ $(function() {
         // set selected task in main view, highlighted, selected state
 
         if ($('.task-detail-view-container').is(':visible')) {
-            $('#grey-bkgrnd').height($('.main').height() + 10);
-            $('#grey-bkgrnd').width($('.main').width() + 200);
-            _.each(Tasks.models, function(model) {
-                // set all tasks inactive, only let active task change
-                model.set('isActive', false);
-                if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
-                    if (TaskDetail) {
-                        TaskDetail.close();
-                        TaskDetail = null;
+            $('.task-detail-view-container').fadeOut(200, function() {
+                $('#grey-bkgrnd').height($('.main').height() + 500);
+                $('#grey-bkgrnd').width($('.main').width() + 2000);
+                _.each(Tasks.models, function(model) {
+                    // set all tasks inactive, only let active task change
+                    model.set('isActive', false);
+                    if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                        if (TaskDetail) {
+                            TaskDetail.close();
+                            TaskDetail = null;
+                        }
+                        TaskDetail = new TaskDetailView({
+                            model: model
+                        });
+                        $('#task-detail-view').append(TaskDetail.render().el);
+                        model.set('isActive', true);
                     }
-                    TaskDetail = new TaskDetailView({
-                        model: model
-                    });
-                    $('#task-detail-view').append(TaskDetail.render().el);
-                    model.set('isActive', true);
-                }
+                });
+                $('.task-detail-view-container').fadeIn(200, function() {
+                    $('#grey-bkgrnd').height($('.main').height() + 10);
+                    $('#grey-bkgrnd').width($('.main').width() + 200);
+                });
             });
+
             return;
         }
 
