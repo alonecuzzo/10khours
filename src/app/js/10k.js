@@ -800,7 +800,7 @@ $(function() {
             $(instance.$el).fadeOut(100, function() {
                 instance.r.remove();
                 instance.r = null;
-                instance.r = new Raphael(instance.el, 542, 175);
+                instance.r = new Raphael(instance.el, 542, 190);
                 Date.parse(instance.firstDayOfWeek).add(increment).days();
                 instance.render();
             });
@@ -811,7 +811,7 @@ $(function() {
          */
         initialize: function(e) {
             //init code here
-            this.r = new Raphael(this.el, 542, 175);
+            this.r = new Raphael(this.el, 542, 190);
             //set the week number
             this.now = new Date();
             this.weekNumber = Date.today().getWeek();
@@ -862,7 +862,7 @@ $(function() {
             $element.find('#chart-label-div').remove();
             $(instance.$el).fadeIn(200);
             $element.prepend(labelDiv);
-            this.r.barchart(0, 0, 542, 175, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
+            this.r.barchart(0, 0, 542, 190, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
                 colors: [siteTeal, siteTeal, siteTeal, siteTeal, siteTeal, siteTeal, siteTeal],
                 type: 'soft'
             }).hover(fin, fout);
@@ -1020,7 +1020,7 @@ $(function() {
                         model.set('isActive', true);
                     }
                 });
-                $('.task-detail-view-container').fadeIn(200, function() {
+                $('.task-detail-view-container').fadeIn(300, function() {
                     $('#grey-bkgrnd').height($('.main').height() + 10);
                     $('#grey-bkgrnd').width($('.main').width() + 200);
                 });

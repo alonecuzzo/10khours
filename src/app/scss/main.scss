@@ -317,7 +317,7 @@ i {
     #charts-view {
         display: none; 
         margin-left: 60px;
-        margin-top: -30px;
+        margin-top: -40px;
         position: absolute;
 
         #chart-label-div {
@@ -336,14 +336,15 @@ i {
         }
 
         #chart-header {
-            margin-top: 20px;
+            margin-top: 0px;
             font-size: 20px;
-            font-weight: bold;
+            /*font-weight: bold;*/
             text-align: center;
+            padding-bottom: 20px;
         }
 
         #chart-holder {
-            margin-top: -290px;
+            margin-top: -280px;
             margin-left: 10px;
             position: absolute;
             float: left;
@@ -364,8 +365,11 @@ i {
         }
 
         #chart-date-label-container {
-            margin-top: 185px;
-            margin-left: 30px;
+            margin-top: 165px;
+            /*margin-left: 30px;*/
+            border-top: 1px solid $site-teal;
+            padding-top: 10px;
+            padding-left: 20px;
         }
 
         #chart-footer {
@@ -463,7 +467,7 @@ i {
 
         .detail-btn-bar-calendar {
 
-            margin-top: 50px;
+            margin-top: 30px;
             padding-bottom: 40px;
 
             /* ==========================================================================
