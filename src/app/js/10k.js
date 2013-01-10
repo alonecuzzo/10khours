@@ -517,11 +517,11 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"></div></div><div class="task-action-buttons"><button type="button" class="btn btn-info" data-toggle="button"><i class="icon-plus-sign icon-white"></i>Record Time</button><button type="button" rel="popover" data-placement="left" data-original-title="Add Time to Task" class="btn add-time-btn default-task-action-button" data-toggle="button"><i class="icon-time"></i>Add Time</button><button el="popover" data-placement="left" data-original-title="Confirm Task Deletion" type="button" class="btn delete-task-btn default-task-action-button"><i class="icon-trash"></i>Delete Task</button></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="total-hours-text"></div><div class="sessions-recorded-text"></div></div></div><div class="task-action-buttons"><button type="button" class="btn btn-info" data-toggle="button"><i class="icon-plus-sign icon-white"></i>Record Time</button><button type="button" rel="popover" data-placement="left" data-original-title="Add Time to Task" class="btn add-time-btn default-task-action-button" data-toggle="button"><i class="icon-time"></i>Add Time</button><button el="popover" data-placement="left" data-original-title="Confirm Task Deletion" type="button" class="btn delete-task-btn default-task-action-button" data-toggle="button"><i class="icon-trash"></i>Delete Task</button></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
 
         events: {
             'click .add-time-btn': 'onAddTime',
-            'click .delete-btn': 'onDeleteClick',
+            'click .delete-task-btn': 'onDeleteClick',
             //'click .date-picker': 'onDatePicker',
             'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
             'click #add-time-cancel-btn': 'onAddTimeCancelClick',
@@ -563,10 +563,12 @@ $(function() {
                 this.model.addSession(session);
             }
             $('.add-time-btn').popover('hide');
+            $('.add-time-btn').removeClass('active');
         },
 
         onAddTimeCancelClick: function(e) {
             $('.add-time-btn').popover('hide');
+            $('.add-time-btn').removeClass('active');
         },
 
         onAddTime: function(e) {
@@ -574,11 +576,14 @@ $(function() {
             var $element = $(this.$el);
             $element.find('#dp').datepicker();
             $element.find('#dp').val(Date.today().toString('MM/dd/yyyy'));
+            $(this.$el).find('.delete-task-btn').popover('hide');
+            $(this.$el).find('.delete-task-btn').removeClass('active');
         },
 
         onDeleteClick: function(e) {
             e.preventDefault();
-            $(this.$el).find('.delete-task-btn').popover('toggle');
+            $(this.$el).find('.add-time-btn').popover('hide');
+            $(this.$el).find('.add-time-btn').removeClass('active');
         },
 
         onDeleteConfirmationClick: function(e) {
@@ -590,6 +595,7 @@ $(function() {
         onDeleteCancelClick: function(e) {
             e.preventDefault();
             $(this.$el).find('.delete-task-btn').popover('hide');
+            $(this.$el).find('.delete-task-btn').removeClass('active');
         },
 
         onEdit: function(e) {
@@ -636,7 +642,7 @@ $(function() {
             }
 
             $element.find('.total-hours-text').text(formatHours(this.model.getTotalTime()));
-            $element.find('.sessions-recorded-text').text(this.model.get('sessions').length + ' sessions');
+            $element.find('.sessions-recorded-text').text(this.model.get('sessions').length + ((this.model.get('sessions').length === 1) ? ' session' : ' sessions'));
             $('#charts-view').hide();
             $element.find('#calendar').datepicker({
                 inline: true,
