@@ -295,7 +295,7 @@ $(function() {
         events: {
             'mousemove': 'onMouseMove',
             'mousedown': 'onMouseDown',
-            'mouseup': 'onMouseClick',
+            'mouseup': 'onMouseDoubleClick',
             'mouseenter': 'onMouseOver',
             'mouseleave': 'onMouseOut'
         },
@@ -341,7 +341,7 @@ $(function() {
         },
 
         /**
-         * Handles showing edit view.
+         * Handles showing detail view.
          */
         onMouseDoubleClick: function() {
             window.location = '/#task/' + this.model.get('order');
