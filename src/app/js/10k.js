@@ -800,7 +800,7 @@ $(function() {
             $(instance.$el).fadeOut(100, function() {
                 instance.r.remove();
                 instance.r = null;
-                instance.r = new Raphael(instance.el, 542, 260);
+                instance.r = new Raphael(instance.el, 542, 175);
                 Date.parse(instance.firstDayOfWeek).add(increment).days();
                 instance.render();
             });
@@ -811,7 +811,7 @@ $(function() {
          */
         initialize: function(e) {
             //init code here
-            this.r = new Raphael(this.el, 542, 260);
+            this.r = new Raphael(this.el, 542, 175);
             //set the week number
             this.now = new Date();
             this.weekNumber = Date.today().getWeek();
@@ -841,7 +841,8 @@ $(function() {
                 i,
                 j,
                 sessionsWeekTotals = [],
-                totalTimeForWeek = 0;
+                totalTimeForWeek = 0,
+                siteTeal = '#419cc3';
 
             for (i = 0; i <= 6; i++) {
                 var currentDate = firstDayOfWeek.add((i === 0) ? 0 : 1).days();
@@ -856,15 +857,15 @@ $(function() {
                 sessionsWeekTotals.push(totalTime);
             }
             firstDayOfWeek.add(-6).days();
-            var labelDiv = '<div id="chart-label-div"><div id="chart-header"><a href="#" id="previous-week"><i class="icon-arrow-left"></i></a>Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '<a href="#" id="next-week"><i class="icon-arrow-right"></i></a></div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label"><span>Mon ' + firstDayOfWeek.toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[0]) + '</span></div><div id="chart-date-tuesday" class="chart-date-label inline-label"><span>Tue ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[1]) + '</span></div><div id="chart-date-wednesday" class="chart-date-label inline-label"><span>Wed ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[2]) + '</span></div><div id="chart-date-thursday" class="chart-date-label inline-label"><span>Thu ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[3]) + '</span></div><div id="chart-date-friday" class="chart-date-label inline-label"><span>Fri ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[4]) + '</span></div><div id="chart-date-saturday" class="chart-date-label inline-label"><span>Sat ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[5]) + '</span></div><div id="chart-date-sunday" class="chart-date-label inline-label"><span>Sun ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[6]) + '</span></div></div><div id="chart-footer"></div></div>';
+            var labelDiv = '<div id="chart-label-div"><div id="chart-header"><a href="#" id="previous-week"><i class="icon-arrow-left"></i></a>Week of ' + firstDayOfWeek.toString('MM/dd/yy') + '<a href="#" id="next-week"><i class="icon-arrow-right"></i></a></div><div id="chart-date-label-container"><div id="chart-date-monday" class="chart-date-label"><span>Mon ' + firstDayOfWeek.toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[0], true) + '</span></div><div id="chart-date-tuesday" class="chart-date-label inline-label"><span>Tue ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[1], true) + '</span></div><div id="chart-date-wednesday" class="chart-date-label inline-label"><span>Wed ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[2], true) + '</span></div><div id="chart-date-thursday" class="chart-date-label inline-label"><span>Thu ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[3], true) + '</span></div><div id="chart-date-friday" class="chart-date-label inline-label"><span>Fri ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[4], true) + '</span></div><div id="chart-date-saturday" class="chart-date-label inline-label"><span>Sat ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[5], true) + '</span></div><div id="chart-date-sunday" class="chart-date-label inline-label"><span>Sun ' + firstDayOfWeek.add(1).days().toString('MM/dd') + '- ' + formatHours(sessionsWeekTotals[6], true) + '</span></div></div><div id="chart-footer"></div></div>';
             firstDayOfWeek.add(-6).days();
             $element.find('#chart-label-div').remove();
-            this.r.barchart(0, 0, 542, 260, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
-                colors: ['#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5', '#9a63f5'],
+            $(instance.$el).fadeIn(200);
+            $element.prepend(labelDiv);
+            this.r.barchart(0, 0, 542, 175, [sessionsWeekTotals[0], sessionsWeekTotals[1], sessionsWeekTotals[2], sessionsWeekTotals[3], sessionsWeekTotals[4], sessionsWeekTotals[5], sessionsWeekTotals[6]], {
+                colors: [siteTeal, siteTeal, siteTeal, siteTeal, siteTeal, siteTeal, siteTeal],
                 type: 'soft'
             }).hover(fin, fout);
-            $(instance.$el).fadeIn(200);
-            $element.append(labelDiv);
             $element.find('#previous-week').on('click', {
                 view: this
             }, this.onPreviousWeekClick);

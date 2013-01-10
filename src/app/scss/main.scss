@@ -3,6 +3,7 @@ $task-font-grey: #464646;
 $site-purple: #9a63f5;
 $site-dark-purple: #321a5d;
 $site-dark-blue: #257dbf;
+$site-teal: #419cc3;
 
 // header stuff
 $header-background-url: '../img/backgrounds/header-background.png';
@@ -97,7 +98,7 @@ body {
     background-image: url($header-background-url);
     background-size: 70px 70px;*/
     background: #666;
-    border-bottom: 5px solid #419cc3;
+    border-bottom: 5px solid $site-teal;
 }
 
 .header-container a{
@@ -313,16 +314,25 @@ i {
    position: relative;
    /*float: right;*/
 
-
     #charts-view {
         display: none; 
-        margin-left: -10px;
+        margin-left: 60px;
+        margin-top: -30px;
         position: absolute;
 
         #chart-label-div {
             z-index: 12;
-            position: absolute;
+            /*position: absolute;*/
             width: 542px;
+
+            background: #f7f7f7;
+            padding: 12px;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+         
+            border: 1px solid #d6d6d6;
         }
 
         #chart-header {
@@ -333,9 +343,10 @@ i {
         }
 
         #chart-holder {
-            margin-top: 65px;
+            margin-top: -290px;
             margin-left: 10px;
             position: absolute;
+            float: left;
         }
 
         .chart-date-label {
@@ -353,7 +364,7 @@ i {
         }
 
         #chart-date-label-container {
-            margin-top: 285px;
+            margin-top: 185px;
             margin-left: 30px;
         }
 
