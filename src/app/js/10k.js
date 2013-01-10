@@ -635,7 +635,7 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            this.model.on('change:title change:sessions change:totalTime', this.modelChanged, this);
+            this.model.on('change:title change:sessions change:totalTime change:lastSessionAdded', this.modelChanged, this);
         },
 
         modelChanged: function() {
