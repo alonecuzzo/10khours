@@ -41,7 +41,8 @@ $(function() {
          */
         initialize: function() {
             this.set({
-                'isRecording': false
+                'isRecording': false,
+                'isSelected': false
             });
             this.set('displayTime', '0:00:00');
             this.set('totalTime', this.getTotalTime(Date.today().last().sunday().getTime()));
@@ -304,10 +305,12 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-            this.model.on('change', this.render, this);
+            this.model.on('change:title change:sessions change:totalTime', this.render, this);
+            this.model.on('change:isActive', this.toggleSelection, this);
             this.model.on('destroy', this.remove, this);
             this.hasBeenDragged = false;
             this.mousedown = false;
+            this.isActive = this.model.get('isActive');
         },
 
         /**
@@ -337,7 +340,25 @@ $(function() {
             } else {
                 $displayTime.hide();
             }
+
+            this.onMouseOut();
+
             return this;
+        },
+
+        toggleSelection: function() {
+            // this.undelegateEvents();
+            this.isActive = this.model.get('isActive');
+            if (this.isActive === false) {
+                this.render();
+            } else {
+                var $element = $(this.$el);
+                $element.css({
+                    borderColor: '#AAAAAA',
+                    backgroundColor: '#EEEEEE',
+                    color: '#333333'
+                });
+            }
         },
 
         /**
@@ -351,50 +372,57 @@ $(function() {
          * Fades rollover effect out.
          */
         onMouseOut: function() {
-            var $element = $(this.$el),
-                $displayTime = $element.find('#task-display-time');
-            $element.animate({
-                backgroundColor: '#FFFFFF'
-            }, 100);
-            $element.animate({
-                borderColor: '#CCCCCC'
-            }, 100);
-            $element.css({
-                color: '#666666'
-            }, 100);
+            if (this.isActive === false) {
+                console.log('mosue out fired');
+                var $element = $(this.$el),
+                    $displayTime = $element.find('#task-display-time');
+                $element.css({
+                    backgroundColor: '#FFFFFF'
+                }, 100);
+                $element.css({
+                    borderColor: '#CCCCCC'
+                }, 100);
+                $element.css({
+                    color: '#666666'
+                }, 100);
+            }
         },
 
         /**
          * Fades rollover effect in.
          */
         onMouseOver: function() {
-            var $element = $(this.$el);
-            $element.css({
-                borderColor: '#AAAAAA',
-                backgroundColor: '#EEEEEE',
-                color: '#333333'
-            });
+            if (this.isActive === false) {
+                var $element = $(this.$el);
+                $element.css({
+                    borderColor: '#AAAAAA',
+                    backgroundColor: '#EEEEEE',
+                    color: '#333333'
+                });
+            }
         },
 
         /**
          * Catches mouse click and handles whether it should listen for a double click or treat the click as a single click.
          */
         onMouseClick: function() {
-            var instance = this;
-            this.mousedown = false;
-            if (this.alreadyClicked) {
-                // handle double click
-                this.alreadyClicked = false;
-                clearTimeout(this.alreadyClickedTimeout);
-                this.onMouseDoubleClick();
-            } else {
-                // handle single click business
-                // wait 300ms, if no second click reset everything
-                this.alreadyClicked = true;
-                this.alreadyClickedTimeout = setTimeout(function() {
-                    instance.alreadyClicked = false;
-                    instance.startSession();
-                }, 300);
+            if (this.isActive === false) {
+                var instance = this;
+                this.mousedown = false;
+                if (this.alreadyClicked) {
+                    // handle double click
+                    this.alreadyClicked = false;
+                    clearTimeout(this.alreadyClickedTimeout);
+                    this.onMouseDoubleClick();
+                } else {
+                    // handle single click business
+                    // wait 300ms, if no second click reset everything
+                    this.alreadyClicked = true;
+                    this.alreadyClickedTimeout = setTimeout(function() {
+                        instance.alreadyClicked = false;
+                        instance.startSession();
+                    }, 300);
+                }
             }
         },
 
@@ -517,7 +545,7 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="total-hours-text"></div><div class="sessions-recorded-text"></div></div></div><div class="task-action-buttons"><button type="button" class="btn btn-info" data-toggle="button"><i class="icon-plus-sign icon-white"></i>Record Time</button><button type="button" rel="popover" data-placement="left" data-original-title="Add Time to Task" class="btn add-time-btn default-task-action-button" data-toggle="button"><i class="icon-time"></i>Add Time</button><button el="popover" data-placement="left" data-original-title="Confirm Task Deletion" type="button" class="btn delete-task-btn default-task-action-button" data-toggle="button"><i class="icon-trash"></i>Delete Task</button></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="total-hours-text task-stats-text"></div><div class="sessions-recorded-text task-stats-text"></div></div></div><div class="task-action-buttons"><button type="button" class="btn btn-info" data-toggle="button"><i class="icon-plus-sign icon-white"></i>Record Time</button><button type="button" rel="popover" data-placement="left" data-original-title="Add Time to Task" class="btn add-time-btn default-task-action-button" data-toggle="button"><i class="icon-time"></i>Add Time</button><button el="popover" data-placement="left" data-original-title="Confirm Task Deletion" type="button" class="btn delete-task-btn default-task-action-button" data-toggle="button"><i class="icon-trash"></i>Delete Task</button></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
 
         events: {
             'click .add-time-btn': 'onAddTime',
@@ -607,7 +635,7 @@ $(function() {
          * Initialize view.
          */
         initialize: function() {
-
+            this.model.on('change:title change:sessions change:totalTime', this.modelChanged, this);
         },
 
         modelChanged: function() {
@@ -621,8 +649,6 @@ $(function() {
         render: function() {
             var $element = $(this.$el);
             $element.html(this.template(this.model.toJSON()));
-
-            this.model.on('change', this.modelChanged, this);
 
             $element.find('.add-time-btn').popover({
                 content: '<div class="date date-picker" id="dp3"><input class="add-time-date span2" id="dp" type="text"/><span class="add-on"><i class="icon-calendar"></i></span></div><div class="input-append"><input class="span2 add-time-hours" type="text" id="appendedInput" placeholder="Hours"><span class="add-on">hours</span></div><div class="input-append"><input class="span2 add-time-minutes" type="text" id="appendedInput" placeholder="Minutes"><span class="add-on">minutes</span></div><button id="add-time-confirm-btn"class="btn btn-success">Confirm</button><button id="add-time-cancel-btn" class="btn">Cancel</button>',
@@ -657,7 +683,7 @@ $(function() {
                 view: this
             });
 
-            console.debug('model: ' + JSON.stringify(this.model));
+            // console.debug('model: ' + JSON.stringify(this.model));
 
             this.onCalendarRefresh($element, this.model, this);
 
@@ -973,19 +999,24 @@ $(function() {
     var appRouter = new AppRouter();
     appRouter.on('route:getTask', function(id) {
 
+        // set selected task in main view, highlighted, selected state
+
         if ($('.task-detail-view-container').is(':visible')) {
-            if (TaskDetail) {
-                TaskDetail.close();
-                TaskDetail = null;
-            }
             $('#grey-bkgrnd').height($('.main').height() + 10);
             $('#grey-bkgrnd').width($('.main').width() + 200);
             _.each(Tasks.models, function(model) {
+                // set all tasks inactive, only let active task change
+                model.set('isActive', false);
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
+                    if (TaskDetail) {
+                        TaskDetail.close();
+                        TaskDetail = null;
+                    }
                     TaskDetail = new TaskDetailView({
                         model: model
                     });
                     $('#task-detail-view').append(TaskDetail.render().el);
+                    model.set('isActive', true);
                 }
             });
             return;
@@ -1020,6 +1051,7 @@ $(function() {
         //     }
         // });
         _.each(Tasks.models, function(model) {
+            model.set('isActive', false);
             if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
                 if (TaskDetail) {
                     TaskDetail.close();
@@ -1029,6 +1061,7 @@ $(function() {
                     model: model
                 });
                 $('#task-detail-view').append(TaskDetail.render().el);
+                model.set('isActive', true);
             }
         });
 
@@ -1066,6 +1099,9 @@ $(function() {
                 TaskDetail.close();
                 TaskDetail = null;
             }
+        });
+        _.each(Tasks.models, function(model) {
+            model.set('isActive', false);
         });
         $('.alerts').fadeOut(0);
         $('.delete-task-alert').fadeOut(0);

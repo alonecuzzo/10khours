@@ -389,16 +389,8 @@ i {
 
             .task-actions {
 
-                .delete-task, .add-time, .modify-task {
-                    display: block;
-                    /*font-size: 14px;*/
-                    padding: 0;
-                    text-align: left;
-
-                    a {
-                        text-decoration: none;
-                        color: $site-dark-purple;
-                    }
+                .task-stats-text {
+                    font-weight: bold;
                 }
             }
 
