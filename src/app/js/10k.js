@@ -517,12 +517,11 @@ $(function() {
     // -----------
     var TaskDetailView = Backbone.View.extend({
 
-        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"><div class="add-time"><a class="add-time-btn" rel="popover" data-placement="right" data-original-title="Add Time to Task" href="#"><i class="icon-time icon-dark-purple"></i>Add Time</a></div><div class="modify-task"><a class="" href="#"><i class="icon-edit icon-dark-purple"></i>Edit Task</a></div><div class="delete-task"><a class="delete-task-btn" el="popover" data-placement="right" data-original-title="Confirm Task Deletion" href="#"><i class="icon-trash icon-dark-purple"></i>Delete Task</a></div></div></div><div class="task-detail-stats"><div class="header-text"><i class="icon-signal"></i>Stats at a glance</div><div class="stat-text"><div class="total-hours-text">34 hours</div><div class="sessions-recorded-text">3 sessions</div><div class="daily-goal-text">1 hour</div></div><div class="label-text"><div class="total-hours">so far</div><div class="sessions-recorded">recorded</div><div class="daily-goal">daily goal</div></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
+        template: _.template('<div class="task-detail-view-header-wrapper"><div class="title-wrapper"><div class="task-detail-view-title"><%- title %></div><div class="task-actions"></div></div><div class="task-action-buttons"><button type="button" class="btn btn-info" data-toggle="button"><i class="icon-plus-sign icon-white"></i>Record Time</button><button type="button" rel="popover" data-placement="left" data-original-title="Add Time to Task" class="btn add-time-btn default-task-action-button" data-toggle="button"><i class="icon-time"></i>Add Time</button><button el="popover" data-placement="left" data-original-title="Confirm Task Deletion" type="button" class="btn delete-task-btn default-task-action-button"><i class="icon-trash"></i>Delete Task</button></div></div></div><div class="detail-btn-bar-calendar clearfix"><div id="task-detail-btn-bar" class="btn-group"><button id="calendar-tab-btn" class="btn btn-large active"><i class="icon-calendar"></i>Calendar</button><button id="stats-tab-btn" class="btn btn-large"><i class="icon-signal"></i>Stats</button></div><div id="calendar"></div><div id="charts-view-inner"></div></div>'),
 
         events: {
-            'click .modify-task a': 'onEdit',
-            'click .add-time a': 'onAddTime',
-            'click .delete-task a': 'onDeleteClick',
+            'click .add-time-btn': 'onAddTime',
+            'click .delete-btn': 'onDeleteClick',
             //'click .date-picker': 'onDatePicker',
             'click #add-time-confirm-btn': 'onAddTimeConfirmClick',
             'click #add-time-cancel-btn': 'onAddTimeCancelClick',
@@ -960,7 +959,7 @@ $(function() {
         routes: {
             '': 'getAllTasks',
             'task/:id': 'getTask',
-            'task/edit/:id': 'editTask',
+            // 'task/edit/:id': 'editTask',
             'task/refresh-detail/:id': 'refreshDetail'
         }
     });
@@ -973,8 +972,8 @@ $(function() {
                 TaskDetail.close();
                 TaskDetail = null;
             }
-            $('#grey-bkgrnd').height($('.main').height() + 1000);
-            $('#grey-bkgrnd').width($('.main').width() + 2000);
+            $('#grey-bkgrnd').height($('.main').height() + 10);
+            $('#grey-bkgrnd').width($('.main').width() + 200);
             _.each(Tasks.models, function(model) {
                 if (parseInt(model.get('order'), 10) === parseInt(id, 10)) {
                     TaskDetail = new TaskDetailView({

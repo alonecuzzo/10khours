@@ -97,7 +97,7 @@ body {
     background-image: url($header-background-url);
     background-size: 70px 70px;*/
     background: #666;
-    border-bottom: 1px solid #333;
+    border-bottom: 5px solid #419cc3;
 }
 
 .header-container a{
@@ -402,14 +402,14 @@ i {
                 }
             }
 
-            .task-detail-stats {
+            .task-action-buttons {
 
                 text-align: right;
                 margin-left: 367px;
                 width: 150px;
                 height: 87px;
 
-                background: #f7f7f7;
+                /*background: #f7f7f7;
 
                 padding: 12px;
      
@@ -417,7 +417,11 @@ i {
                 -moz-border-radius: 5px;
                 border-radius: 5px;
              
-                border: 1px solid #d6d6d6;
+                border: 1px solid #d6d6d6;*/
+
+                .default-task-action-button {
+                    margin-top: 3px;
+                }
 
                 .header-text {
                     position: relative;
