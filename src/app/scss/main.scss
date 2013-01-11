@@ -338,9 +338,27 @@ i {
         #chart-header {
             margin-top: 0px;
             font-size: 20px;
-            /*font-weight: bold;*/
             text-align: center;
             padding-bottom: 20px;
+
+
+            #previous-week-arrow {
+                padding-right: 10px;
+                display: inline-block;
+            }
+
+            #previous-week-arrow-btn {
+                width: 30px;
+                margin-left: -320px;
+            }
+
+            .previous-week-arrow-icon {
+                margin-left: -4px;
+            }
+
+            #next-week-arrow {
+                
+            }
         }
 
         #chart-holder {
