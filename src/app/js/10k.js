@@ -956,6 +956,9 @@ $(function() {
                 model: task
             });
             this.$('#task-list').prepend(view.render().el);
+            if ($('.task-detail-view-container').is(':visible')) {
+                $('li').width(200);
+            }
         },
 
         /**

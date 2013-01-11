@@ -343,6 +343,7 @@ i {
   font-size: 20px;
   text-align: center;
   padding-bottom: 20px;
+  color: #666;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/cuzzo\/projects\/10khours\/src\/app\/scss\/main\.scss}line{font-family:\00003345}}
 .task-detail-view-container #charts-view #chart-header #previous-week-arrow {
