@@ -788,12 +788,12 @@ $(function() {
 
         onPreviousWeekClick: function(e) {
             e.preventDefault();
-            e.data.view.onWeekChange(e.data.view, - 6);
+            e.data.view.onWeekChange(e.data.view, -7);
         },
 
         onNextWeekClick: function(e) {
             e.preventDefault();
-            e.data.view.onWeekChange(e.data.view, 6);
+            e.data.view.onWeekChange(e.data.view, 7);
         },
 
         onWeekChange: function(instance, increment) {
