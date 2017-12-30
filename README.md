@@ -35,7 +35,7 @@ $ rackup -p 4567
 [url on heroku](http://bit23-alonecuzzo-10k.herokuapp.com/)
 
 ### File Structure 
-10k is built following a [mochajs](http://visionmedia.github.com/mocha/)/[gruntjs](http://gruntjs.com) directory structure:
+10k is built following a [mochajs](http://mochajs.org/)/[gruntjs](http://gruntjs.com) directory structure:
 
 ```bash
 ├── README.md
